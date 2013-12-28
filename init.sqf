@@ -40,8 +40,6 @@ skipTime 24;
 
 skipTime _time;
 
-hint format ["%1:00, weather: %2", _time, _weather];
-
 _enemy_faction = ["CSAT", "AAF", "FIA"] select _param_enemy_faction;
 
 _enemy_strength = if (_param_enemy_strength == -1) then {
