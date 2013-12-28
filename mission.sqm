@@ -7,7 +7,6 @@ class Mission
 		"A3_Modules_F_HC",
 		"a3_map_altis",
 		"A3_Modules_F_GroupModifiers",
-		"A3_Air_F_Beta_Heli_Transport_01",
 		"A3_Characters_F_Gamma",
 		"a3_uav_f_characters_f_gamma",
 		"A3_Air_F_Gamma_UAV_02"
@@ -18,7 +17,6 @@ class Mission
 		"A3_Characters_F_Gamma",
 		"a3_uav_f_characters_f_gamma",
 		"A3_Modules_F_GroupModifiers",
-		"A3_Air_F_Beta_Heli_Transport_01",
 		"A3_Air_F_Gamma_UAV_02",
 		"a3_map_altis"
 	};
@@ -44,7 +42,7 @@ class Mission
 	};
 	class Groups
 	{
-		items=10;
+		items=9;
 		class Item0
 		{
 			side="WEST";
@@ -464,46 +462,13 @@ class Mission
 			side="WEST";
 			class Vehicles
 			{
-				items=2;
-				class Item0
-				{
-					position[]={15127.656,17.91,17198.441};
-					azimut=-220.88437;
-					special="NONE";
-					id=19;
-					side="WEST";
-					vehicle="B_Heli_Transport_01_F";
-					leader=1;
-					rank="CAPTAIN";
-					skill=0.60000002;
-					text="ghosthawk_1";
-				};
-				class Item1
-				{
-					position[]={15151.299,17.91,17222.77};
-					azimut=135.48038;
-					special="NONE";
-					id=20;
-					side="WEST";
-					vehicle="B_Heli_Transport_01_F";
-					rank="CAPTAIN";
-					skill=0.60000002;
-					text="ghosthawk_2";
-				};
-			};
-		};
-		class Item9
-		{
-			side="WEST";
-			class Vehicles
-			{
 				items=1;
 				class Item0
 				{
 					position[]={16137.542,6.2067947,15786.253};
 					azimut=-135.808;
 					special="FLY";
-					id=21;
+					id=19;
 					side="WEST";
 					vehicle="B_UAV_02_F";
 					isUAV=1;
@@ -515,63 +480,36 @@ class Mission
 	};
 	class Markers
 	{
-		items=7;
+		items=4;
 		class Item0
 		{
-			position[]={20529.301,34.111599,8869.6641};
-			name="Panagia";
+			position[]={14495.816,17.86418,16049};
+			name="Test_Alpha";
 			markerType="RECTANGLE";
 			type="Empty";
-			a=150;
-			b=150;
+			a=20;
+			b=20;
 		};
 		class Item1
 		{
-			position[]={20790.023,38.408318,6711.9258};
-			name="Selakano";
-			markerType="RECTANGLE";
+			position[]={14447.462,17.802515,16008.148};
+			name="Test_Alpha_Start";
 			type="Empty";
-			a=150;
-			b=150;
 		};
 		class Item2
 		{
-			position[]={14777.228,17.91,16812.699};
-			name="airfield";
+			position[]={23547.254,3.1900001,18439.57};
+			name="Test_Bravo";
+			markerType="RECTANGLE";
 			type="Empty";
+			a=20;
+			b=20;
 		};
 		class Item3
 		{
-			position[]={14187.657,14.853564,17074.686};
-			name="staging";
+			position[]={23498.898,3.1900001,18398.719};
+			name="Test_Bravo_Start";
 			type="Empty";
-		};
-		class Item4
-		{
-			position[]={21691.348,15.009689,7586.3662};
-			name="Feres";
-			markerType="RECTANGLE";
-			type="Empty";
-			a=150;
-			b=150;
-		};
-		class Item5
-		{
-			position[]={20227.6,54.14558,11664.819};
-			name="Chalkeia";
-			markerType="RECTANGLE";
-			type="Empty";
-			a=150;
-			b=150;
-		};
-		class Item6
-		{
-			position[]={19384.705,38.556328,13250.071};
-			name="Dorida";
-			markerType="RECTANGLE";
-			type="Empty";
-			a=150;
-			b=150;
 		};
 	};
 };
