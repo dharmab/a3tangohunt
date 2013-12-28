@@ -34,6 +34,7 @@ _weather = if (_param_weather == -1) then {
 	_param_weather;
 };
 
+// Make sure to turn off auto weather in the mission editor!
 86400 setOvercast _weather;
 if (_weather > 0.5) then {86400 setRain _weather};
 skipTime 24;
