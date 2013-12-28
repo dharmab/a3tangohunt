@@ -27,21 +27,20 @@ _time = if (_param_time == -1) then {
 	_param_time;
 };
 
-hint format ["%1", _time];
-
-skipTime _time;
-
-/*
-//Set the weather
-_overcast = if (_param_weather == -1) then {
+skipTime -24;
+_weather = if (_param_weather == -1) then {
 	[0.0, 0.3, 0.5, 0.7, 1.0] call BIS_fnc_selectRandom;
 } else {
 	_param_weather;
 };
-skipTime -24;
-86400 setOvercast _overcast;
+
+86400 setOvercast _weather;
+if (_weather > 0.5) then {86400 setRain _weather};
 skipTime 24;
-*/
+
+skipTime _time;
+
+hint format ["%1:00, weather: %2", _time, _weather];
 
 _enemy_faction = ["CSAT", "AAF", "FIA"] select _param_enemy_faction;
 
