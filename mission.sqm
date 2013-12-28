@@ -18,6 +18,7 @@ class Mission
 		"a3_uav_f_characters_f_gamma",
 		"A3_Modules_F_GroupModifiers",
 		"A3_Air_F_Gamma_UAV_02",
+		"A3_Modules_F_HC",
 		"a3_map_altis"
 	};
 	randomSeed=652662;
@@ -45,7 +46,7 @@ class Mission
 	};
 	class Groups
 	{
-		items=9;
+		items=13;
 		class Item0
 		{
 			side="WEST";
@@ -54,7 +55,7 @@ class Mission
 				items=3;
 				class Item0
 				{
-					position[]={14744.772,17.91,16797.568};
+					position[]={14744.578,17.91,16797.334};
 					id=0;
 					side="WEST";
 					vehicle="B_Soldier_SL_F";
@@ -65,11 +66,11 @@ class Mission
 					init="group_hq = group this;";
 					description="HQ Element - Team Leader";
 					syncId=0;
-					synchronizations[]={7};
+					synchronizations[]={7,8};
 				};
 				class Item1
 				{
-					position[]={14743.209,17.91,16796.283};
+					position[]={14743.015,17.91,16796.049};
 					special="FLY";
 					id=1;
 					side="WEST";
@@ -82,7 +83,7 @@ class Mission
 				};
 				class Item2
 				{
-					position[]={14746.158,17.91,16796.283};
+					position[]={14745.964,17.91,16796.049};
 					special="FLY";
 					id=2;
 					side="WEST";
@@ -102,7 +103,7 @@ class Mission
 				items=4;
 				class Item0
 				{
-					position[]={14714.063,17.91,16784.477};
+					position[]={14714.127,17.91,16783.412};
 					id=3;
 					side="WEST";
 					vehicle="B_Soldier_TL_F";
@@ -113,11 +114,11 @@ class Mission
 					init="group_alpha = group this;";
 					description="Fire Team Alpha - Fire Team Leader";
 					syncId=1;
-					synchronizations[]={6};
+					synchronizations[]={6,9};
 				};
 				class Item1
 				{
-					position[]={14719.063,17.91,16779.477};
+					position[]={14719.127,17.91,16778.412};
 					id=4;
 					side="WEST";
 					vehicle="B_Soldier_F";
@@ -129,7 +130,7 @@ class Mission
 				};
 				class Item2
 				{
-					position[]={14709.063,17.91,16779.477};
+					position[]={14709.127,17.91,16778.412};
 					id=5;
 					side="WEST";
 					vehicle="B_soldier_AR_F";
@@ -141,7 +142,7 @@ class Mission
 				};
 				class Item3
 				{
-					position[]={14724.063,17.91,16774.477};
+					position[]={14724.127,17.91,16773.412};
 					id=6;
 					side="WEST";
 					vehicle="B_Soldier_F";
@@ -160,7 +161,7 @@ class Mission
 				items=4;
 				class Item0
 				{
-					position[]={14744.677,17.91,16783.367};
+					position[]={14744.639,17.91,16783.502};
 					id=7;
 					side="WEST";
 					vehicle="B_Soldier_TL_F";
@@ -171,11 +172,11 @@ class Mission
 					init="group_bravo = group this;";
 					description="Fire Team Bravo - Fire Team Leader";
 					syncId=2;
-					synchronizations[]={5};
+					synchronizations[]={5,10};
 				};
 				class Item1
 				{
-					position[]={14749.677,17.91,16778.367};
+					position[]={14749.639,17.91,16778.502};
 					id=8;
 					side="WEST";
 					vehicle="B_Soldier_F";
@@ -187,7 +188,7 @@ class Mission
 				};
 				class Item2
 				{
-					position[]={14739.677,17.91,16778.367};
+					position[]={14739.639,17.91,16778.502};
 					id=9;
 					side="WEST";
 					vehicle="B_soldier_AR_F";
@@ -199,7 +200,7 @@ class Mission
 				};
 				class Item3
 				{
-					position[]={14754.677,17.91,16773.367};
+					position[]={14754.639,17.91,16773.502};
 					id=10;
 					side="WEST";
 					vehicle="B_Soldier_F";
@@ -218,7 +219,7 @@ class Mission
 				items=4;
 				class Item0
 				{
-					position[]={14776.915,17.91,16781.223};
+					position[]={14776.853,17.91,16783.102};
 					id=11;
 					side="WEST";
 					vehicle="B_Soldier_TL_F";
@@ -229,11 +230,11 @@ class Mission
 					init="group_charlie = group this;";
 					description="Fire Team Charlie - Fire Team Leader";
 					syncId=3;
-					synchronizations[]={4};
+					synchronizations[]={4,11};
 				};
 				class Item1
 				{
-					position[]={14781.915,17.91,16776.223};
+					position[]={14781.853,17.91,16778.102};
 					id=12;
 					side="WEST";
 					vehicle="B_Soldier_F";
@@ -245,7 +246,7 @@ class Mission
 				};
 				class Item2
 				{
-					position[]={14771.915,17.91,16776.223};
+					position[]={14771.853,17.91,16778.102};
 					id=13;
 					side="WEST";
 					vehicle="B_soldier_AR_F";
@@ -257,7 +258,7 @@ class Mission
 				};
 				class Item3
 				{
-					position[]={14786.915,17.91,16771.223};
+					position[]={14786.853,17.91,16773.102};
 					id=14;
 					side="WEST";
 					vehicle="B_Soldier_F";
@@ -276,7 +277,7 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={14779.725,17.91,16781.207};
+					position[]={14779.662,17.91,16783.086};
 					class args
 					{
 						items=4;
@@ -324,7 +325,7 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={14748.833,17.91,16783.438};
+					position[]={14748.639,17.91,16783.418};
 					class args
 					{
 						items=4;
@@ -372,7 +373,7 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={14717.029,17.91,16784.615};
+					position[]={14717.054,17.91,16783.475};
 					class args
 					{
 						items=4;
@@ -420,7 +421,7 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={14748.702,17.91,16797.799};
+					position[]={14748.62,17.91,16797.4};
 					class args
 					{
 						items=4;
@@ -477,6 +478,86 @@ class Mission
 					isUAV=1;
 					leader=1;
 					skill=0.60000002;
+				};
+			};
+		};
+		class Item9
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={14744.633,17.91,16791.277};
+					id=20;
+					side="LOGIC";
+					vehicle="HighCommand";
+					leader=1;
+					lock="UNLOCKED";
+					skill=0.60000002;
+					syncId=8;
+					synchronizations[]={0,9,10,11};
+				};
+			};
+		};
+		class Item10
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={14714.259,17.91,16791.291};
+					id=21;
+					side="LOGIC";
+					vehicle="HighCommandSubordinate";
+					leader=1;
+					lock="UNLOCKED";
+					skill=0.60000002;
+					syncId=9;
+					synchronizations[]={1,8};
+				};
+			};
+		};
+		class Item11
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={14744.637,17.91,16788.014};
+					id=22;
+					side="LOGIC";
+					vehicle="HighCommandSubordinate";
+					leader=1;
+					lock="UNLOCKED";
+					skill=0.60000002;
+					syncId=10;
+					synchronizations[]={2,8};
+				};
+			};
+		};
+		class Item12
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={14776.835,17.91,16791.365};
+					id=23;
+					side="LOGIC";
+					vehicle="HighCommandSubordinate";
+					leader=1;
+					lock="UNLOCKED";
+					skill=0.60000002;
+					syncId=11;
+					synchronizations[]={3,8};
 				};
 			};
 		};
