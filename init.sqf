@@ -114,14 +114,16 @@ _insertion_marker setMarkerColor "ColorBlue";
 _victory_trigger = createTrigger ["EmptyDetector", getMarkerPos _area_marker];
 _victory_trigger setTriggerArea [_area_marker_x_radius, _area_marker_y_radius, 0, true];
 _victory_trigger setTriggerActivation ["EAST", "NOT PRESENT", false];
-_victory_trigger_prepared_statement = "'task_objective' setTaskState 'Succeeded';['Victory', true, true] call BIS_fnc_endMission;"
+_victory_trigger_prepared_statement = """task_objective"" setTaskState ""Succeeded"";[""Victory"", true, true] call BIS_fnc_endMission;"
 _victory_trigger setTriggerStatements ["this", _victory_trigger_prepared_statement,	""];
 
 // Defeat conditions (handled by event handler)
 {_x addMPEventHandler ["MPKilled", {
 	_count_alive_players = count (units group_hq + units group_alpha + units group_bravo + units group_charlie);
-	if (_count_alive_players < (_count_all_players / 2)) then {
-		"task_objective" setTaskState "Failed";
-		["Defeat", false, true] call BIS_fnc_endMission;
+	if ( _count_alive_players < (_count_all_players / 2)) then {
+		if (taskState "task_objective" == "Assigned") then {
+			"task_objective" setTaskState "Failed";
+			["Defeat", false, true] call BIS_fnc_endMission;
+		};
 	};
 } forEach _all_players_array;
