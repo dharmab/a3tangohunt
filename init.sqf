@@ -23,6 +23,8 @@ _all_players_array =
 	units group_bravo +
 	units group_charlie;
 
+_count_all_players = count _all_players_array;
+
 // Utility functions
 fnc_setWeather = {
 	// Make sure to turn off auto weather in the mission editor!
@@ -41,10 +43,18 @@ fnc_setWeather = {
 _enemy_faction = ["CSAT", "AAF", "FIA"] select _param_enemy_faction;
 
 _enemy_strength = if (_param_enemy_strength == -1) then {
-	(count _all_players_array * 3) / 2;
+	(_count_all_players * 3) / 2;
 } else {
 	_param_enemy_strength;
 };
+
+_area_marker = if (_param_area == -1) then {
+	_area_markers_array call BIS_fnc_selectRandom;
+} else {
+	_area_markers_array select _param_area;
+};
+_area_marker_x_radius = round ((GetMarkerSize _area_marker select 0) / 2);
+_area_marker_y_radius = round ((GetMarkerSize _area_marker select 1) / 2);
 
 _time = if (_param_time == -1) then {
 	[0, 6, 9, 12, 15, 18] call BIS_fnc_selectRandom;
@@ -70,17 +80,23 @@ _fog = if (_overcast > 0.5) then {
 	0.0;
 };
 
-_area_marker = if (_param_area == -1) then {
-	_area_markers_array call BIS_fnc_selectRandom;
-} else {
-	_area_markers_array select _param_area;
-};
-
-// Initialize mission
+// Initialize weather and time
 [_overcast, _rain, _fog] call fnc_setWeather;
-
 skipTime _time;
 
+// Spawn enemy units
+[_area_marker, east, _enemy_faction, _enemy_strength] execVM "tangohunt.sqf";
+
+// Inititalize task
+[player, "task_objective", [
+	"Attack the enemy infantry force and secure the area.",
+	"Secure the area",
+	"task_marker"
+], objNull, true] call BIS_fnc_taskCreate;  
+
+["TaskAssigned", ["Secure area"]] call BIS_fnc_showNotification;
+
+// Initialize visible markers
 createMarker ["task_marker", getMarkerPos _area_marker]
 "task_marker" setMarkerShape "ICON";
 "task_marker" setMarkerType "mil_objective";
@@ -91,28 +107,21 @@ _insertion_marker setMarkerShape "ICON";
 _insertion_marker setMarkerType "Start";
 _insertion_marker setMarkerColor "ColorBlue";
 
+// Move players to start zone
 {_x setPos (getMarkerPos _insertion_marker)} forEach _all_players_array;
 
-[player, "task_objective", ["Attack the enemy infantry force and secure the area.", "Secure the area", "task_marker"], objNull, true] call BIS_fnc_taskCreate;  
-["TaskAssigned", ["Attack the enemy"]] call BIS_fnc_showNotification;
-
-_xrad = round ((GetMarkerSize _area_marker select 0) / 2);
-_yrad = round ((GetMarkerSize _area_marker select 1) / 2);
-
+// Victory conditions (handled by trigger)
 _victory_trigger = createTrigger ["EmptyDetector", getMarkerPos _area_marker];
-_victory_trigger setTriggerArea [_xrad, _yrad, 0, true];
-_victory_trigger setTriggerActivation ["WEST SEIZED", "PRESENT", false];
-_victory_trigger setTriggerStatements [
-	"this",
-	"nul = execVM 'victory.sqf';",
-	""
-];
+_victory_trigger setTriggerArea [_area_marker_x_radius, _area_marker_y_radius, 0, true];
+_victory_trigger setTriggerActivation ["EAST", "NOT PRESENT", false];
+_victory_trigger_prepared_statement = "'task_objective' setTaskState 'Succeeded';['Victory', true, true] call BIS_fnc_endMission;"
+_victory_trigger setTriggerStatements ["this", _victory_trigger_prepared_statement,	""];
 
-_defeat_trigger = createTrigger ["EmptyDetector", [0, 0, 0]];
-_defeat_trigger setTriggerStatements [
-	format ["count (units group_hq + units group_alpha + units group_bravo + units group_charlie) < (%1 / 2)", count _all_players_array],
-	 "nul = execVM 'defeat.sqf';",
-	 ""
-];
-
-[_area_marker, east, _enemy_faction, _enemy_strength] execVM "tangohunt.sqf";
+// Defeat conditions (handled by event handler)
+{_x addMPEventHandler ["MPKilled", {
+	_count_alive_players = count (units group_hq + units group_alpha + units group_bravo + units group_charlie);
+	if (_count_alive_players < (_count_all_players / 2)) then {
+		"task_objective" setTaskState "Failed";
+		["Defeat", false, true] call BIS_fnc_endMission;
+	};
+} forEach _all_players_array;
