@@ -3,7 +3,7 @@ onLoadName        = "Tango Hunt"
 onLoadMission     = "Neutralize all hostiles";
 onLoadMissionTime = 1;
 respawn           = 0;
-disabledAI        = 1;
+disabledAI        = 0;
 class weapons
 {
 	class arifle_Katiba_C_F                  {count =  16}; // Katiba Carbine
@@ -83,5 +83,20 @@ class Params
 		values[] = {-1, 0.0, 0.3, 0.5, 0.7, 1.0};
 		texts[]  = {"Random", "Clear", "Partly Cloudy", "Cloudy", "Raining", "Thunderstorm"};
 		default  = -1;
+	};
+};
+class CfgDebriefing
+{  
+	class Victory
+	{
+		title = "Mission Completed";
+		subtitle = "Area Secure";
+		description = "The area has been secured and all enemy forces in the area have been neutralized.";
+	};
+	class Defeat
+	{
+		title = "Mission Failed";
+		subtitle = "Casualties too high";
+		description = "Friendly forces sustained high casualties and the mission was aborted.";
 	};
 };
