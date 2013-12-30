@@ -97,14 +97,15 @@ skipTime _time;
 ["TaskAssigned", ["Secure area"]] call BIS_fnc_showNotification;
 
 // Initialize visible markers
-createMarker ["task_marker", getMarkerPos _area_marker]
+createMarker ["task_marker", getMarkerPos _area_marker];
 "task_marker" setMarkerShape "ICON";
 "task_marker" setMarkerType "mil_objective";
 "task_marker" setMarkerText "Secure Area";
+_insertion_marker setMarkerColor "ColorRed";
 
 _insertion_marker = format["%1_Start", _area_marker];
 _insertion_marker setMarkerShape "ICON";
-_insertion_marker setMarkerType "Start";
+_insertion_marker setMarkerType "mil_start";
 _insertion_marker setMarkerColor "ColorBlue";
 
 // Move players to start zone
@@ -114,7 +115,7 @@ _insertion_marker setMarkerColor "ColorBlue";
 _victory_trigger = createTrigger ["EmptyDetector", getMarkerPos _area_marker];
 _victory_trigger setTriggerArea [_area_marker_x_radius, _area_marker_y_radius, 0, true];
 _victory_trigger setTriggerActivation ["EAST", "NOT PRESENT", false];
-_victory_trigger_prepared_statement = """task_objective"" setTaskState ""Succeeded"";[""Victory"", true, true] call BIS_fnc_endMission;"
+_victory_trigger_prepared_statement = """task_objective"" setTaskState ""Succeeded"";[""Victory"", true, true] call BIS_fnc_endMission;";
 _victory_trigger setTriggerStatements ["this", _victory_trigger_prepared_statement,	""];
 
 // Defeat conditions (handled by event handler)

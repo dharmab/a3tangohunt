@@ -18,13 +18,12 @@ class Mission
 		"a3_uav_f_characters_f_gamma",
 		"A3_Modules_F_GroupModifiers",
 		"A3_Modules_F_HC",
-		"A3_Modules_F_Intel",
 		"a3_map_altis"
 	};
 	randomSeed=652662;
 	class Intel
 	{
-		briefingName="Assault Force";
+		briefingName="Tango Hunt";
 		overviewText="Assault and clear a town of enemies. Different every time!";
 		resistanceWest=0;
 		startWeather=0.84999996;
@@ -50,7 +49,7 @@ class Mission
 	};
 	class Groups
 	{
-		items=14;
+		items=12;
 		class Item0
 		{
 			side="WEST";
@@ -545,142 +544,10 @@ class Mission
 				};
 			};
 		};
-		class Item12
-		{
-			side="LOGIC";
-			class Vehicles
-			{
-				items=1;
-				class Item0
-				{
-					position[]={14754.302,17.91,16805.635};
-					class args
-					{
-						items=7;
-						class Item0
-						{
-							value="3";
-							parentCls="ModuleTaskCreate_F";
-							typeName="Owner";
-						};
-						class Item1
-						{
-							value="objective1";
-							parentCls="ModuleTaskCreate_F";
-							typeName="ID";
-						};
-						class Item2
-						{
-							value="Attack the Enemy Force";
-							parentCls="ModuleTaskCreate_F";
-							typeName="Title";
-						};
-						class Item3
-						{
-							value="Attack the enemy infantry force in the marked area.";
-							parentCls="ModuleTaskCreate_F";
-							typeName="Description";
-						};
-						class Item4
-						{
-							value="attackTaskMarker";
-							parentCls="ModuleTaskCreate_F";
-							typeName="Marker";
-						};
-						class Item5
-						{
-							value="0";
-							parentCls="ModuleTaskCreate_F";
-							typeName="Destination";
-						};
-						class Item6
-						{
-							value="ASSIGNED";
-							parentCls="ModuleTaskCreate_F";
-							typeName="State";
-						};
-					};
-					id=23;
-					side="LOGIC";
-					vehicle="ModuleTaskCreate_F";
-					leader=1;
-					lock="UNLOCKED";
-					skill=0.60000002;
-					text="attackTask";
-					description="Attack the Enemy Force";
-				};
-			};
-		};
-		class Item13
-		{
-			side="LOGIC";
-			class Vehicles
-			{
-				items=1;
-				class Item0
-				{
-					position[]={14776.831,17.91,16805.633};
-					class args
-					{
-						items=7;
-						class Item0
-						{
-							value="3";
-							parentCls="ModuleTaskCreate_F";
-							typeName="Owner";
-						};
-						class Item1
-						{
-							value="objective2";
-							parentCls="ModuleTaskCreate_F";
-							typeName="ID";
-						};
-						class Item2
-						{
-							value="Secure the Area";
-							parentCls="ModuleTaskCreate_F";
-							typeName="Title";
-						};
-						class Item3
-						{
-							value="";
-							parentCls="ModuleTaskCreate_F";
-							typeName="Description";
-						};
-						class Item4
-						{
-							value="attackTaskMarker";
-							parentCls="ModuleTaskCreate_F";
-							typeName="Marker";
-						};
-						class Item5
-						{
-							value="0";
-							parentCls="ModuleTaskCreate_F";
-							typeName="Destination";
-						};
-						class Item6
-						{
-							value="CREATED";
-							parentCls="ModuleTaskCreate_F";
-							typeName="State";
-						};
-					};
-					id=24;
-					side="LOGIC";
-					vehicle="ModuleTaskCreate_F";
-					leader=1;
-					lock="UNLOCKED";
-					skill=0.60000002;
-					text="secureTask";
-					description="Attack the Enemy Force";
-				};
-			};
-		};
 	};
 	class Markers
 	{
-		items=5;
+		items=4;
 		class Item0
 		{
 			position[]={12933.169,29.633076,15054.509};
@@ -710,13 +577,6 @@ class Mission
 			position[]={21061.869,53.614876,9056.8867};
 			name="Test_Bravo_Start";
 			type="Empty";
-		};
-		class Item4
-		{
-			position[]={14761.481,17.91,16805.842};
-			name="task_marker";
-			text=" Attack Area";
-			type="mil_objective";
 		};
 	};
 };
