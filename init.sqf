@@ -101,7 +101,7 @@ createMarker ["task_marker", getMarkerPos _area_marker];
 "task_marker" setMarkerShape "ICON";
 "task_marker" setMarkerType "mil_objective";
 "task_marker" setMarkerText "Secure Area";
-_insertion_marker setMarkerColor "ColorRed";
+_task_marker setMarkerColor "ColorRed";
 
 _insertion_marker = format["%1_Start", _area_marker];
 _insertion_marker setMarkerShape "ICON";
