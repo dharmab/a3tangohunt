@@ -66,8 +66,8 @@ class Params
 	class Area
 	{
 		title    = "Area of Operations";
-		values[] = {-1, 0, 1, 2, 3, 4, 5};
-		texts[]  = {"Random", "Chalkeia", "Dorida", "Feres", "Panagia", "Selakano"};
+		values[] = {-1};
+		texts[]  = {"Random"};
 		default  = -1;
 	};
 	class Time

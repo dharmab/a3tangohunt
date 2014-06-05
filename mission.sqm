@@ -9,11 +9,13 @@ class Mission
 		"A3_Modules_F_GroupModifiers",
 		"A3_Characters_F_Gamma",
 		"a3_uav_f_characters_f_gamma",
-		"A3_Modules_F_Intel"
+		"A3_Modules_F_Intel",
+		"a3_characters_f"
 	};
 	addOnsAuto[]=
 	{
 		"A3_Characters_F_BLUFOR",
+		"a3_characters_f",
 		"A3_Characters_F_Gamma",
 		"a3_uav_f_characters_f_gamma",
 		"A3_Modules_F_GroupModifiers",
@@ -27,16 +29,11 @@ class Mission
 		overviewText="Assault and clear a town of enemies. Different every time!";
 		resistanceWest=0;
 		startWeather=0.84999996;
-		startWind=0.099999994;
-		startWaves=0.099999994;
+		startWind=0;
 		forecastWeather=0.84999996;
-		forecastWind=0.099999994;
-		forecastWaves=0.099999994;
-		forecastLightnings=0.099999994;
+		forecastWind=0;
+		forecastWaves=0;
 		rainForced=1;
-		lightningsForced=1;
-		wavesForced=1;
-		windForced=1;
 		year=2035;
 		month=6;
 		day=24;
@@ -547,26 +544,26 @@ class Mission
 	};
 	class Markers
 	{
-		items=4;
+		items=6;
 		class Item0
 		{
-			position[]={12933.169,29.633076,15054.509};
-			name="Test_Alpha";
+			position[]={14201.174,54.983635,22148.615};
+			name="Agrios_Forest";
 			markerType="RECTANGLE";
 			type="Empty";
-			a=150;
-			b=150;
+			a=200;
+			b=200;
 		};
 		class Item1
 		{
-			position[]={13365.56,8.7799025,15067.777};
-			name="Test_Alpha_Start";
+			position[]={14305.948,96.796379,21796.045};
+			name="Agrios_Forest_Start";
 			type="Empty";
 		};
 		class Item2
 		{
 			position[]={20422.098,36.279762,8872.7656};
-			name="Test_Bravo";
+			name="Panagia";
 			markerType="RECTANGLE";
 			type="Empty";
 			a=250;
@@ -575,7 +572,22 @@ class Mission
 		class Item3
 		{
 			position[]={21061.869,53.614876,9056.8867};
-			name="Test_Bravo_Start";
+			name="Panagia_Start";
+			type="Empty";
+		};
+		class Item4
+		{
+			position[]={25412.545,9.8987427,20334.422};
+			name="Power_Plant";
+			markerType="RECTANGLE";
+			type="Empty";
+			a=75;
+			b=75;
+		};
+		class Item5
+		{
+			position[]={25380.182,14.468657,20774.043};
+			name="Power_Plant_Start";
 			type="Empty";
 		};
 	};
