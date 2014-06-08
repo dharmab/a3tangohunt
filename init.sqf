@@ -9,13 +9,16 @@ fnc_setWeather = {
 	_param_rain     = _this select 1;
 	_param_fog      = _this select 2;
 	
-	skipTime -24;
-	86400 setOvercast _param_overcast;
-	skipTime 24;
+	[_param_overcast] call BIS_fnc_setOvercast;
+	// skipTime -24;
+	// 86400 setOvercast _param_overcast;
+	// skipTime 24;
+
+	// todo BIS_fnc_setFog
 	skipTime -24;
 	86400 setFog _param_fog;
-	skipTime 24;
 	86400 setRain _param_rain;
+	skipTime 24;
 	0 = [] spawn {
 		sleep 0.1;
 		simulWeatherSync;
@@ -28,21 +31,26 @@ _area_markers_array = [
 	"Panagia"
 ];
 
-_all_players_array =
-	units group_hq +
-	units group_alpha +
-	units group_bravo +
-	units group_charlie;
+_all_players_array = [];
+
+if (isMultiplayer) then {
+	_all_players_array = playableUnits;
+} else {
+	_all_players_array =
+		units group_hq +
+		units group_alpha +
+		units group_bravo +
+		units group_charlie;
+};
 
 _count_all_players = count _all_players_array;
 
 {_x setMarkerAlpha 0.0;} forEach _area_markers_array;
 
-if (isServer) then {
-	// Flag that indicates when server init is complete
-	tangohunt_init = false;
-	publicVariable "tangohunt_init";
+// Flag that indicates when server init is complete
+tangohunt_init = false;
 
+if (isServer) then {
 	// Parameters from description.ext
 	_param_enemy_faction  = paramsArray select 0;
 	_param_enemy_strength = paramsArray select 1;
@@ -89,6 +97,7 @@ if (isServer) then {
 	[public_param_area_marker, east, _enemy_faction, _enemy_strength] execVM "tangohunt.sqf";
 
 	tangohunt_init = true;
+	publicVariable "tangohunt_init";
 };
 
 waitUntil {tangohunt_init};
@@ -96,8 +105,8 @@ waitUntil {tangohunt_init};
 // Initialize weather and time
 _overcast = public_param_weather;
 
-_rain = if (_overcast > 0.5) then {
-	_overcast;
+_rain = if (_overcast > 0.7) then {
+	(1 - _overcast) * 3.0;
 } else {
 	0.0;
 };
@@ -123,8 +132,12 @@ _insertion_marker setMarkerShape "ICON";
 _insertion_marker setMarkerType "mil_start";
 _insertion_marker setMarkerColor "ColorBlue";
 
-// Move players to start zone
-{_x setPos (getMarkerPos _insertion_marker)} forEach _all_players_array;
+
+// if (isServer) then {
+// 	{if (!isPlayer _x) then {
+// 		_x setPos (getMarkerPos _insertion_marker);
+// 	}} forEach _all_players_array;
+// }
 
 // Create task
 [player, "task_objective", [
@@ -133,24 +146,32 @@ _insertion_marker setMarkerColor "ColorBlue";
 	"task_marker"
 ], objNull, true] call BIS_fnc_taskCreate;  
 
-["TaskAssigned", ["Secure area"]] call BIS_fnc_showNotification;
+// ["TaskAssigned", ["Secure area"]] call BIS_fnc_showNotification;
 
-// Victory conditions (handled by trigger)
-_victory_trigger = createTrigger ["EmptyDetector", getMarkerPos public_param_area_marker];
-_area_marker_x_radius = round ((GetMarkerSize public_param_area_marker select 0) / 2);
-_area_marker_y_radius = round ((GetMarkerSize public_param_area_marker select 1) / 2);
-_victory_trigger setTriggerArea [_area_marker_x_radius, _area_marker_y_radius, 0, true];
-_victory_trigger setTriggerActivation ["EAST", "NOT PRESENT", false];
-_victory_trigger_prepared_statement = """task_objective"" setTaskState ""Succeeded"";[""Victory"", true, true] call BIS_fnc_endMission;";
-_victory_trigger setTriggerStatements ["this", _victory_trigger_prepared_statement,	""];
+// // Victory conditions (handled by trigger)
+// _victory_trigger = createTrigger ["EmptyDetector", getMarkerPos public_param_area_marker];
+// _area_marker_x_radius = round ((GetMarkerSize public_param_area_marker select 0) / 2);
+// _area_marker_y_radius = round ((GetMarkerSize public_param_area_marker select 1) / 2);
+// _victory_trigger setTriggerArea [_area_marker_x_radius, _area_marker_y_radius, 0, true];
+// _victory_trigger setTriggerActivation ["EAST", "NOT PRESENT", false];
+// _victory_trigger_prepared_statement = """task_objective"" setTaskState ""Succeeded"";[""Victory"", true, true] call BIS_fnc_endMission;";
+// _victory_trigger setTriggerStatements ["this", _victory_trigger_prepared_statement,	""];
 
-// Defeat conditions (handled by event handler)
-{_x addMPEventHandler ["MPKilled", {
-	_count_alive_players = count (units group_hq + units group_alpha + units group_bravo + units group_charlie);
-	if ( _count_alive_players < (_count_all_players / 2)) then {
-		if (taskState "task_objective" == "Assigned") then {
-			"task_objective" setTaskState "Failed";
-			["Defeat", false, true] call BIS_fnc_endMission;
-		};
-	};
-} forEach _all_players_array;
+// // Defeat conditions (handled by event handler)
+// {_x addMPEventHandler ["MPKilled", {
+// 	_count_alive_players = count (units group_hq + units group_alpha + units group_bravo + units group_charlie);
+// 	if ( _count_alive_players < (_count_all_players / 2)) then {
+// 		if (taskState "task_objective" == "Assigned") then {
+// 			"task_objective" setTaskState "Failed";
+// 			["Defeat", false, true] call BIS_fnc_endMission;
+// 		};
+// 	};
+// } forEach _all_players_array;
+
+waitUntil {player == player};
+// Move players to start zone
+
+{if (local _x) then {
+	_x setPos (getMarkerPos _insertion_marker);
+}} forEach _all_players_array;
+

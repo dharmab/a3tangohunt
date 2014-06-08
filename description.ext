@@ -4,7 +4,12 @@ onLoadMission     = "Neutralize all hostiles";
 onLoadMissionTime = 1;
 respawn           = 0;
 disabledAI        = 0;
-class weapons
+allowSubordinatesTakeWeapons = 1;
+class Header
+{
+	gameType = Coop;
+};
+class Weapons
 {
 	class arifle_Katiba_C_F                  {count =  16}; // Katiba Carbine
 	class arifle_Katiba_F                    {count =  16}; // Katiba Rifle
@@ -12,7 +17,7 @@ class weapons
 	class arifle_MX_F                        {count =  16}; // MX Rifle
 	class arifle_MX_GL_F                     {count =  16}; // MX Rifle with Grenade Launcher
 	class arifle_MXC_F                       {count =  16}; // MX Carbine
-	class arifle_MX_SW_F                      {count =  16}; // MX Support Weaoon
+	class arifle_MX_SW_F                     {count =  16}; // MX Support Weaoon
 	class arifle_SDAR_F                      {count =  16}; // SDAR Supercativating Rifle
 	class arifle_TRG20_F                     {count =  16}; // TRG-20 (Carbine)
 	class arifle_TRG21_F                     {count =  16}; // TRG-21 (Rifle)
@@ -30,7 +35,7 @@ class weapons
 	class srifle_GM6_F                       {count =  16}; // GM6 Lynx (Sniper Rifle)
 	class srifle_LRR_F                       {count =  16}; // M320 LRR (sniper Rifle)
 };
-class magazines
+class Magazines
 {
 	class 30Rnd_556x45_Stanag                {count = 120}; // 5.56x45, 30 rounds
 	class 20Rnd_556x45_UW_mag                {count = 120}; // 5.56x45 supercavivating, 20 rounds
@@ -45,7 +50,7 @@ class magazines
 	class 1Rnd_Smoke_Grenade_shell           {count = 120}; // Grenade launcher Smoke round
 	class HandGrenade                        {count = 120}; // Frag grenade
 	class SmokeShell                         {count = 120}; // Smoke grenade
-	class ClaymoreDirectionalMine_Remote_Mag {count = 120}; // Claymore mine
+	// class ClaymoreDirectionalMine_Remote_Mag {count = 120}; // Claymore mine
 };
 class Params
 {
