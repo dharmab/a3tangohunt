@@ -1,5 +1,5 @@
-author            = "Zaid"
-onLoadName        = "Tango Hunt"
+author            = "Zaid";
+onLoadName        = "Tango Hunt";
 onLoadMission     = "Neutralize all hostiles";
 onLoadMissionTime = 1;
 respawn           = 0;
@@ -11,45 +11,45 @@ class Header
 };
 class Weapons
 {
-	class arifle_Katiba_C_F                  {count =  16}; // Katiba Carbine
-	class arifle_Katiba_F                    {count =  16}; // Katiba Rifle
-	class arifle_Katiba_GL_F                 {count =  16}; // Katiba Rifle with Grenade Launcher
-	class arifle_MX_F                        {count =  16}; // MX Rifle
-	class arifle_MX_GL_F                     {count =  16}; // MX Rifle with Grenade Launcher
-	class arifle_MXC_F                       {count =  16}; // MX Carbine
-	class arifle_MX_SW_F                     {count =  16}; // MX Support Weaoon
-	class arifle_SDAR_F                      {count =  16}; // SDAR Supercativating Rifle
-	class arifle_TRG20_F                     {count =  16}; // TRG-20 (Carbine)
-	class arifle_TRG21_F                     {count =  16}; // TRG-21 (Rifle)
-	class arifle_Mk20_F                      {count =  16}; // Mk20 Carbine
-	class arifle_Mk20C_F                     {count =  16}; // Mk20 Rifle
-	class arifle_Mk20_GL_F                   {count =  16}; // Mk20 Rifle with Grenade Launcher
-	class hgun_ACPC2_F                       {count =  16}; // ACP-C2 Pistol
-	class hgun_P07_F                         {count =  16}; // P07 Pistol
-	class hgun_Rook40_F                      {count =  16}; // Rook 40 Pistol
-	class LMG_Mk200_F                        {count =  16}; // Mk200 LMG
-	class LMG_Zafir_F                        {count =  16}; // Zafir LMG
-	class SMG_01_F                           {count =  16}; // Vermin SMG
-	class SMG_02_F                           {count =  16}; // Sting SMG
-	class srifle_EBR_F                       {count =  16}; // Mk18 EBR (Marksman Rifle)
-	class srifle_GM6_F                       {count =  16}; // GM6 Lynx (Sniper Rifle)
-	class srifle_LRR_F                       {count =  16}; // M320 LRR (sniper Rifle)
+	class arifle_Katiba_C_F                  {count = 16;}; // Katiba Carbine
+	class arifle_Katiba_F                    {count = 16;}; // Katiba Rifle
+	class arifle_Katiba_GL_F                 {count = 16;}; // Katiba Rifle with Grenade Launcher
+	class arifle_MX_F                        {count = 16;}; // MX Rifle
+	class arifle_MX_GL_F                     {count = 16;}; // MX Rifle with Grenade Launcher
+	class arifle_MXC_F                       {count = 16;}; // MX Carbine
+	class arifle_MX_SW_F                     {count = 16;}; // MX Support Weaoon
+	class arifle_SDAR_F                      {count = 16;}; // SDAR Supercativating Rifle
+	class arifle_TRG20_F                     {count = 16;}; // TRG-20 (Carbine)
+	class arifle_TRG21_F                     {count = 16;}; // TRG-21 (Rifle)
+	class arifle_Mk20_F                      {count = 16;}; // Mk20 Carbine
+	class arifle_Mk20C_F                     {count = 16;}; // Mk20 Rifle
+	class arifle_Mk20_GL_F                   {count = 16;}; // Mk20 Rifle with Grenade Launcher
+	class hgun_ACPC2_F                       {count = 16;}; // ACP-C2 Pistol
+	class hgun_P07_F                         {count = 16;}; // P07 Pistol
+	class hgun_Rook40_F                      {count = 16;}; // Rook 40 Pistol
+	class LMG_Mk200_F                        {count = 16;}; // Mk200 LMG
+	class LMG_Zafir_F                        {count = 16;}; // Zafir LMG
+	class SMG_01_F                           {count = 16;}; // Vermin SMG
+	class SMG_02_F                           {count = 16;}; // Sting SMG
+	class srifle_EBR_F                       {count = 16;}; // Mk18 EBR (Marksman Rifle)
+	class srifle_GM6_F                       {count = 16;}; // GM6 Lynx (Sniper Rifle)
+	class srifle_LRR_F                       {count = 16;}; // M320 LRR (sniper Rifle)
 };
 class Magazines
 {
-	class 30Rnd_556x45_Stanag                {count = 120}; // 5.56x45, 30 rounds
-	class 20Rnd_556x45_UW_mag                {count = 120}; // 5.56x45 supercavivating, 20 rounds
-	class 30Rnd_65x39_caseless_mag           {count = 120}; // 6.5x39, 30 rounds
-	class 200Rnd_65x39_cased_Box             {count = 120}; // 6.5x39, 200 rounds
-	class 20Rnd_762x51_Mag                   {count = 120}; // 7.62x51, 20 rounds
-	class 7Rnd_408_Mag                       {count = 120}; // .408, 7 rounds
-	class 5Rnd_127x108_Mag                   {count = 120}; // 12.7x108, 5 rounds
-	class 16Rnd_9x21_Mag                     {count = 120}; // 9x21, 16 rounds
-	class 30Rnd_45ACP_Mag_SMG_01             {count = 120}; // .45 ACP, 30 rounds
-	class 1Rnd_HE_Grenade_shell              {count = 120}; // Grenade launcher High Explosive round
-	class 1Rnd_Smoke_Grenade_shell           {count = 120}; // Grenade launcher Smoke round
-	class HandGrenade                        {count = 120}; // Frag grenade
-	class SmokeShell                         {count = 120}; // Smoke grenade
+	class 30Rnd_556x45_Stanag                {count = 120;}; // 5.56x45, 30 rounds
+	class 20Rnd_556x45_UW_mag                {count = 120;}; // 5.56x45 supercavivating, 20 rounds
+	class 30Rnd_65x39_caseless_mag           {count = 120;}; // 6.5x39, 30 rounds
+	class 200Rnd_65x39_cased_Box             {count = 120;}; // 6.5x39, 200 rounds
+	class 20Rnd_762x51_Mag                   {count = 120;}; // 7.62x51, 20 rounds
+	class 7Rnd_408_Mag                       {count = 120;}; // .408, 7 rounds
+	class 5Rnd_127x108_Mag                   {count = 120;}; // 12.7x108, 5 rounds
+	class 16Rnd_9x21_Mag                     {count = 120;}; // 9x21, 16 rounds
+	class 30Rnd_45ACP_Mag_SMG_01             {count = 120;}; // .45 ACP, 30 rounds
+	class 1Rnd_HE_Grenade_shell              {count = 120;}; // Grenade launcher High Explosive round
+	class 1Rnd_Smoke_Grenade_shell           {count = 120;}; // Grenade launcher Smoke round
+	class HandGrenade                        {count = 120;}; // Frag grenade
+	class SmokeShell                         {count = 120;}; // Smoke grenade
 	// class ClaymoreDirectionalMine_Remote_Mag {count = 120}; // Claymore mine
 };
 class Params
