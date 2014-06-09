@@ -23,7 +23,13 @@ fnc_setWeather = {
 // Specify possible area markers here and in description.ext
 _area_markers_array = [
 	"Agrios_Forest",
-	"Panagia"
+	"Panagia",
+	"Sofia_Power_Plant",
+	"Nidasos_West_Village",
+	"Ghost_Hotel",
+	"Charkia_Storage",
+	"Chapel_Hill",
+	"Kavala_Suburbs"
 ];
 
 

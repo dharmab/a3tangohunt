@@ -560,7 +560,7 @@ class Mission
 	};
 	class Markers
 	{
-		items=7;
+		items=19;
 		class Item0
 		{
 			position[]={14201.174,54.983635,22148.615};
@@ -594,7 +594,7 @@ class Mission
 		class Item4
 		{
 			position[]={25412.545,9.8987427,20334.422};
-			name="Power_Plant";
+			name="Sofia_Power_Plant";
 			markerType="RECTANGLE";
 			type="Empty";
 			a=75;
@@ -603,13 +603,103 @@ class Mission
 		class Item5
 		{
 			position[]={25380.182,14.468657,20774.043};
-			name="Power_Plant_Start";
+			name="Sofia_Plant_Start";
 			type="Empty";
 		};
 		class Item6
 		{
 			position[]={14771.744,17.91,16827.846};
 			name="respawn_west";
+			type="Empty";
+		};
+		class Item7
+		{
+			position[]={23122.801,25.766113,21763.637};
+			name="Nidasos_West_Village";
+			markerType="RECTANGLE";
+			type="Empty";
+			a=180;
+			b=120;
+		};
+		class Item8
+		{
+			position[]={22800.154,16.194984,21676.564};
+			name="Nidasos_West_Village_Start";
+			type="Empty";
+		};
+		class Item9
+		{
+			position[]={21840.422,16.063473,20965.783};
+			name="Ghost_Hotal";
+			markerType="RECTANGLE";
+			type="Empty";
+			a=180;
+			b=120;
+		};
+		class Item10
+		{
+			position[]={22155.895,48.442299,21095.613};
+			name="Ghost_Hotel_Start";
+			type="Empty";
+		};
+		class Item11
+		{
+			position[]={18303.73,47.790108,15562.603};
+			name="Charkia_Storage";
+			markerType="RECTANGLE";
+			type="Empty";
+			a=190;
+			b=110;
+		};
+		class Item12
+		{
+			position[]={17849.416,66.852127,15688.071};
+			name="Charkia_Storage_Start";
+			type="Empty";
+		};
+		class Item13
+		{
+			position[]={16592.662,11,12798.558};
+			name="Pyrgos_Offices";
+			markerType="RECTANGLE";
+			type="Empty";
+			a=75;
+			b=75;
+		};
+		class Item14
+		{
+			position[]={16789.434,20.300875,12857.251};
+			name="Pyrgos_Offices_Start";
+			type="Empty";
+		};
+		class Item15
+		{
+			position[]={6473.4995,59.619972,14472.428};
+			name="Chapel_Hill";
+			markerType="RECTANGLE";
+			type="Empty";
+			a=140;
+			b=190;
+		};
+		class Item16
+		{
+			position[]={6231.186,32.58147,14787.045};
+			name="Chapel_Hill_Start";
+			type="Empty";
+		};
+		class Item17
+		{
+			position[]={4027.4031,30.072598,13208.366};
+			name="Kavala_Suburbs";
+			markerType="RECTANGLE";
+			type="Empty";
+			a=150;
+			b=220;
+		};
+		class Item18
+		{
+			position[]={4366.8638,42.388138,13138.749};
+			name="Kavala_Suburbs_Start";
 			type="Empty";
 		};
 	};
