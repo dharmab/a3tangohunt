@@ -16,8 +16,6 @@ class Mission
 	{
 		"A3_Characters_F_BLUFOR",
 		"a3_characters_f",
-		"A3_Characters_F_Gamma",
-		"a3_uav_f_characters_f_gamma",
 		"A3_Modules_F_GroupModifiers",
 		"A3_Modules_F_HC",
 		"a3_map_altis"
@@ -36,7 +34,7 @@ class Mission
 		rainForced=1;
 		year=2035;
 		month=6;
-		day=24;
+		day=21;
 		hour=0;
 		minute=0;
 		startFogBase=0.001;
@@ -46,7 +44,7 @@ class Mission
 	};
 	class Groups
 	{
-		items=12;
+		items=13;
 		class Item0
 		{
 			side="WEST";
@@ -74,12 +72,12 @@ class Mission
 					special="FLY";
 					id=1;
 					side="WEST";
-					vehicle="B_soldier_UAV_F";
+					vehicle="B_Soldier_F";
 					player="PLAY CDG";
 					rank="CORPORAL";
 					skill=0.60000002;
 					init="group_hq = group this;";
-					description="HQ Element - JTAC";
+					description="HQ Element - Asst. Team Leader";
 				};
 				class Item2
 				{
@@ -541,10 +539,28 @@ class Mission
 				};
 			};
 		};
+		class Item12
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={14740.778,17.91,16818.408};
+					id=23;
+					side="LOGIC";
+					vehicle="Logic";
+					leader=1;
+					skill=0.60000002;
+					text="logic_radio";
+				};
+			};
+		};
 	};
 	class Markers
 	{
-		items=6;
+		items=7;
 		class Item0
 		{
 			position[]={14201.174,54.983635,22148.615};
@@ -588,6 +604,12 @@ class Mission
 		{
 			position[]={25380.182,14.468657,20774.043};
 			name="Power_Plant_Start";
+			type="Empty";
+		};
+		class Item6
+		{
+			position[]={14771.744,17.91,16827.846};
+			name="respawn_west";
 			type="Empty";
 		};
 	};

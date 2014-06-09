@@ -1,107 +1,268 @@
-author            = "Zaid";
-onLoadName        = "Tango Hunt";
-onLoadMission     = "Neutralize all hostiles";
-onLoadMissionTime = 1;
-respawn           = 0;
-disabledAI        = 0;
+onLoadName         = "Tango Hunt";
+author             = "Zaid";
+onLoadMission      = "Neutralize all hostiles";
+onLoadMissionTime  = 1;
+
+respawn = "BASE";
+respawnDelay = 10;
+respawnTemplates[] = {
+    "Tickets",
+    "MenuInventory",
+    "Spectator"
+};
+respawnOnStart = 1;
+
+disabledAI = 1;
+
 allowSubordinatesTakeWeapons = 1;
 class Header
 {
-	gameType = Coop;
+    gameType = Coop;
 };
+// Not functional in ArmA 3
 class Weapons
 {
-	class arifle_Katiba_C_F                  {count = 16;}; // Katiba Carbine
-	class arifle_Katiba_F                    {count = 16;}; // Katiba Rifle
-	class arifle_Katiba_GL_F                 {count = 16;}; // Katiba Rifle with Grenade Launcher
-	class arifle_MX_F                        {count = 16;}; // MX Rifle
-	class arifle_MX_GL_F                     {count = 16;}; // MX Rifle with Grenade Launcher
-	class arifle_MXC_F                       {count = 16;}; // MX Carbine
-	class arifle_MX_SW_F                     {count = 16;}; // MX Support Weaoon
-	class arifle_SDAR_F                      {count = 16;}; // SDAR Supercativating Rifle
-	class arifle_TRG20_F                     {count = 16;}; // TRG-20 (Carbine)
-	class arifle_TRG21_F                     {count = 16;}; // TRG-21 (Rifle)
-	class arifle_Mk20_F                      {count = 16;}; // Mk20 Carbine
-	class arifle_Mk20C_F                     {count = 16;}; // Mk20 Rifle
-	class arifle_Mk20_GL_F                   {count = 16;}; // Mk20 Rifle with Grenade Launcher
-	class hgun_ACPC2_F                       {count = 16;}; // ACP-C2 Pistol
-	class hgun_P07_F                         {count = 16;}; // P07 Pistol
-	class hgun_Rook40_F                      {count = 16;}; // Rook 40 Pistol
-	class LMG_Mk200_F                        {count = 16;}; // Mk200 LMG
-	class LMG_Zafir_F                        {count = 16;}; // Zafir LMG
-	class SMG_01_F                           {count = 16;}; // Vermin SMG
-	class SMG_02_F                           {count = 16;}; // Sting SMG
-	class srifle_EBR_F                       {count = 16;}; // Mk18 EBR (Marksman Rifle)
-	class srifle_GM6_F                       {count = 16;}; // GM6 Lynx (Sniper Rifle)
-	class srifle_LRR_F                       {count = 16;}; // M320 LRR (sniper Rifle)
+    class arifle_Katiba_C_F        {count = 16;}; // Katiba Carbine
+    class arifle_Katiba_F          {count = 16;}; // Katiba Rifle
+    class arifle_Katiba_GL_F       {count = 16;}; // Katiba Rifle with Grenade Launcher
+    class arifle_MX_F              {count = 16;}; // MX Rifle
+    class arifle_MX_GL_F           {count = 16;}; // MX Rifle with Grenade Launcher
+    class arifle_MXC_F             {count = 16;}; // MX Carbine
+    class arifle_MX_SW_F           {count = 16;}; // MX Support Weaoon
+    class arifle_SDAR_F            {count = 16;}; // SDAR Supercativating Rifle
+    class arifle_TRG20_F           {count = 16;}; // TRG-20 (Carbine)
+    class arifle_TRG21_F           {count = 16;}; // TRG-21 (Rifle)
+    class arifle_Mk20_F            {count = 16;}; // Mk20 Carbine
+    class arifle_Mk20C_F           {count = 16;}; // Mk20 Rifle
+    class arifle_Mk20_GL_F         {count = 16;}; // Mk20 Rifle with Grenade Launcher
+    class hgun_ACPC2_F             {count = 16;}; // ACP-C2 Pistol
+    class hgun_P07_F               {count = 16;}; // P07 Pistol
+    class hgun_Rook40_F            {count = 16;}; // Rook 40 Pistol
+    class LMG_Mk200_F              {count = 16;}; // Mk200 LMG
+    class LMG_Zafir_F              {count = 16;}; // Zafir LMG
+    class SMG_01_F                 {count = 16;}; // Vermin SMG
+    class SMG_02_F                 {count = 16;}; // Sting SMG
+    class srifle_EBR_F             {count = 16;}; // Mk18 EBR (Marksman Rifle)
+    class srifle_GM6_F             {count = 16;}; // GM6 Lynx (Sniper Rifle)
+    class srifle_LRR_F             {count = 16;}; // M320 LRR (sniper Rifle)
 };
+// Not functional in ArmA 3
 class Magazines
 {
-	class 30Rnd_556x45_Stanag                {count = 120;}; // 5.56x45, 30 rounds
-	class 20Rnd_556x45_UW_mag                {count = 120;}; // 5.56x45 supercavivating, 20 rounds
-	class 30Rnd_65x39_caseless_mag           {count = 120;}; // 6.5x39, 30 rounds
-	class 200Rnd_65x39_cased_Box             {count = 120;}; // 6.5x39, 200 rounds
-	class 20Rnd_762x51_Mag                   {count = 120;}; // 7.62x51, 20 rounds
-	class 7Rnd_408_Mag                       {count = 120;}; // .408, 7 rounds
-	class 5Rnd_127x108_Mag                   {count = 120;}; // 12.7x108, 5 rounds
-	class 16Rnd_9x21_Mag                     {count = 120;}; // 9x21, 16 rounds
-	class 30Rnd_45ACP_Mag_SMG_01             {count = 120;}; // .45 ACP, 30 rounds
-	class 1Rnd_HE_Grenade_shell              {count = 120;}; // Grenade launcher High Explosive round
-	class 1Rnd_Smoke_Grenade_shell           {count = 120;}; // Grenade launcher Smoke round
-	class HandGrenade                        {count = 120;}; // Frag grenade
-	class SmokeShell                         {count = 120;}; // Smoke grenade
-	// class ClaymoreDirectionalMine_Remote_Mag {count = 120}; // Claymore mine
+    class 30Rnd_556x45_Stanag      {count = 120;}; // 5.56x45, 30 rounds
+    class 20Rnd_556x45_UW_mag      {count = 120;}; // 5.56x45 supercavivating, 20 rounds
+    class 30Rnd_65x39_caseless_mag {count = 120;}; // 6.5x39, 30 rounds
+    class 200Rnd_65x39_cased_Box   {count = 120;}; // 6.5x39, 200 rounds
+    class 20Rnd_762x51_Mag         {count = 120;}; // 7.62x51, 20 rounds
+    class 7Rnd_408_Mag             {count = 120;}; // .408, 7 rounds
+    class 5Rnd_127x108_Mag         {count = 120;}; // 12.7x108, 5 rounds
+    class 16Rnd_9x21_Mag           {count = 120;}; // 9x21, 16 rounds
+    class 30Rnd_45ACP_Mag_SMG_01   {count = 120;}; // .45 ACP, 30 rounds
+    class 1Rnd_HE_Grenade_shell    {count = 120;}; // Grenade launcher High Explosive round
+    class 1Rnd_Smoke_Grenade_shell {count = 120;}; // Grenade launcher Smoke round
+    class HandGrenade              {count = 120;}; // Frag grenade
+    class SmokeShell               {count = 120;}; // Smoke grenade
 };
 class Params
 {
-	class Faction
-	{
-		title    = "Enemy Faction";
-		values[] = {0, 1, 2};
-		texts[]  = {"CSAT", "AAF", "FIA"};
-		default  = 0;
-	};
-	class Difficulty
-	{
-		title    = "Enemy Strength";
-		values[] = {-1, 8, 16, 24};
-		texts[]  = {"Auto-Balance", "Low", "Moderate", "High"};
-		default  = -1;
-	};
-	class Area
-	{
-		title    = "Area of Operations";
-		values[] = {-1};
-		texts[]  = {"Random"};
-		default  = -1;
-	};
-	class Time
-	{
-		title    = "Time of Day";
-		values[] = {-1, 0, 6, 9, 12, 15, 18};
-		texts[]  = {"Random", "Midnight", "Dawn", "Morning", "Noon", "Afternoon", "Evening"};
-		default  = -1;
-	};
-	class Weather
-	{
-		title    = "Weather Conditions";
-		values[] = {-1, 0.0, 0.3, 0.5, 0.7, 1.0};
-		texts[]  = {"Random", "Clear", "Partly Cloudy", "Cloudy", "Raining", "Thunderstorm"};
-		default  = -1;
-	};
+    class Faction
+    {
+        title    = "Enemy Faction";
+        values[] = {0, 1, 2};
+        texts[]  = {"CSAT", "AAF", "FIA"};
+        default  = 0;
+    };
+    class Difficulty
+    {
+        title    = "Enemy Strength";
+        values[] = {-1, 8, 16, 24};
+        texts[]  = {"Auto-Balance", "Low", "Moderate", "High"};
+        default  = -1;
+    };
+    class Area
+    {
+        title    = "Area of Operations";
+        values[] = {-1};
+        texts[]  = {"Random"};
+        default  = -1;
+    };
+    class Time
+    {
+        title    = "Time of Day";
+        values[] = {-1, 0, 6, 9, 12, 15, 18};
+        texts[]  = {"Random", "Midnight", "Dawn", "Morning", "Noon", "Afternoon", "Evening"};
+        default  = -1;
+    };
+    class Weather
+    {
+        title    = "Weather Conditions";
+        // todo only int values are allowed
+        values[] = {-1, 0.0, 0.3, 0.5, 0.7, 1.0};
+        texts[]  = {"Random", "Clear", "Partly Cloudy", "Cloudy", "Raining", "Thunderstorm"};
+        default  = -1;
+    };
+};
+class CfgRespawnInventory
+{
+    class NatoGrenadier
+    {
+        displayName = "Grenadier";
+        icon = "\A3\weapons_F_EPB\Rifles\MX_Black\Data\UI\gear_mx_rifle_gl_black_X_CA.paa";
+        weapons[] = {
+            "arifle_MX_GL_Black_F",
+            "hgun_Rook40_F",
+            "Binocular"
+        };
+        magazines[] = {
+            "30Rnd_65x39_caseless_mag",
+            "30Rnd_65x39_caseless_mag",
+            "30Rnd_65x39_caseless_mag",
+            "30Rnd_65x39_caseless_mag",
+            "30Rnd_65x39_caseless_mag",
+            "30Rnd_65x39_caseless_mag",
+            "30Rnd_65x39_caseless_mag",
+
+            "16Rnd_9x21_Mag",
+            "16Rnd_9x21_Mag",
+
+            "1Rnd_HE_Grenade_shell",
+            "1Rnd_HE_Grenade_shell",
+            "1Rnd_HE_Grenade_shell",
+            "1Rnd_HE_Grenade_shell",
+            "1Rnd_HE_Grenade_shell",
+            "1Rnd_HE_Grenade_shell",
+            "1Rnd_HE_Grenade_shell",
+            "1Rnd_HE_Grenade_shell",
+            "1Rnd_HE_Grenade_shell",
+            "1Rnd_HE_Grenade_shell",
+            "1Rnd_HE_Grenade_shell",
+            "1Rnd_HE_Grenade_shell",
+            "1Rnd_HE_Grenade_shell",
+            "1Rnd_HE_Grenade_shell",
+            "1Rnd_HE_Grenade_shell",
+            "1Rnd_HE_Grenade_shell",
+            "1Rnd_HE_Grenade_shell",
+            "1Rnd_HE_Grenade_shell",
+
+            "1Rnd_Smoke_Grenade_shell",
+            "1Rnd_Smoke_Grenade_shell",
+            "1Rnd_Smoke_Grenade_shell",
+            "1Rnd_Smoke_Grenade_shell",
+            "1Rnd_Smoke_Grenade_shell",
+            "1Rnd_Smoke_Grenade_shell",
+
+            "HandGrenade",
+            "SmokeShell"
+        };
+        items[] = {
+            "FirstAidKit"
+        };
+        linkedItems[] = {
+            "V_PlateCarrier2_rgr",
+            "H_HelmetB_light",
+            "optic_MRCO",
+            "acc_pointer_IR",
+            "NVGoggles",
+            "ItemMap",
+            "ItemCompass",
+            "ItemWatch",
+            "ItemRadio"
+        };
+        uniformClass = "U_B_CombatUniform_mcam";
+        backpack = "B_Kitbag_mcamo";
+    };
+    class NatoAutomaticRifleman
+    {
+        displayName = "Automatic Rifleman";
+        icon = "\A3\weapons_F\Machineguns\M200\Data\UI\gear_m200_X_CA.paa";
+        weapons[] = {
+            "LMG_Mk200_MRCO_F",
+            "hgun_Rook40_F",
+            "Binocular"
+        };
+        magazines[] = {
+            "200Rnd_65x39_cased_Box",
+            "200Rnd_65x39_cased_Box",
+            "200Rnd_65x39_cased_Box",
+            "200Rnd_65x39_cased_Box",
+            
+            "16Rnd_9x21_Mag",
+            "16Rnd_9x21_Mag",
+
+            "HandGrenade",
+            "SmokeShell"
+        };
+        items[] = {
+            "FirstAidKit"
+        };
+        linkedItems[] = {
+            "V_PlateCarrier2_rgr",
+            "H_HelmetB_light",
+            "optic_MRCO",
+            "acc_pointer_IR",
+            "NVGoggles",
+            "ItemMap",
+            "ItemCompass",
+            "ItemWatch",
+            "ItemRadio"
+        };
+        uniformClass = "U_B_CombatUniform_mcam";
+        backpack = "B_Kitbag_mcamo";
+    };
+    class NatoDesignatedMarksman
+    {
+        displayName = "Designated Marksman";
+        icon = "\A3\weapons_F_EPB\Rifles\MX_Black\Data\UI\gear_mx_dmr_black_X_CA.paa";
+        weapons[] = {
+            "arifle_MXM_Black_F",
+            "hgun_Rook40_F",
+            "Binocular"
+        };
+        magazines[] = {
+            "30Rnd_65x39_caseless_mag",
+            "30Rnd_65x39_caseless_mag",
+            "30Rnd_65x39_caseless_mag",
+            "30Rnd_65x39_caseless_mag",
+            "30Rnd_65x39_caseless_mag",
+            "30Rnd_65x39_caseless_mag",
+            "30Rnd_65x39_caseless_mag",
+            
+            "16Rnd_9x21_Mag",
+            "16Rnd_9x21_Mag",
+
+            "HandGrenade",
+            "SmokeShell"
+        };
+        items[] = {
+            "FirstAidKit"
+        };
+        linkedItems[] = {
+            "V_PlateCarrier2_rgr",
+            "H_HelmetB_light",
+            "optic_DMS",
+            "acc_pointer_IR",
+            "NVGoggles",
+            "ItemMap",
+            "ItemCompass",
+            "ItemWatch",
+            "ItemRadio"
+        };
+        uniformClass = "U_B_CombatUniform_mcam";
+        backpack = "B_Kitbag_mcamo";
+    };
 };
 class CfgDebriefing
 {  
-	class Victory
-	{
-		title = "Mission Completed";
-		subtitle = "Area Secure";
-		description = "The area has been secured and all enemy forces in the area have been neutralized.";
-	};
-	class Defeat
-	{
-		title = "Mission Failed";
-		subtitle = "Casualties too high";
-		description = "Friendly forces sustained high casualties and the mission was aborted.";
-	};
+    class Victory
+    {
+        title       = "Mission Completed";
+        subtitle    = "Area Secure";
+        description = "The area has been secured and all enemy forces in the area have been neutralized.";
+    };
+    class Defeat
+    {
+        title       = "Mission Failed";
+        subtitle    = "Casualties too high";
+        description = "Friendly forces sustained high casualties and the mission was aborted.";
+    };
 };
