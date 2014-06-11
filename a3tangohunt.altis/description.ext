@@ -7,8 +7,7 @@ respawn = "BASE";
 respawnDelay = 10;
 respawnTemplates[] = {
     "Tickets",
-    "MenuInventory",
-    "Spectator"
+    "MenuInventory"
 };
 respawnOnStart = 1;
 
