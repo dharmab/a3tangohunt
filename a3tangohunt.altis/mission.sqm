@@ -612,7 +612,7 @@ class Mission
 		class Item9
 		{
 			position[]={21840.422,16.063473,20965.783};
-			name="Ghost_Hotal";
+			name="Ghost_Hotel";
 			markerType="RECTANGLE";
 			type="Empty";
 			a=180;
