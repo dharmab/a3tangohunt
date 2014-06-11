@@ -96,8 +96,7 @@ class Params
     class Weather
     {
         title    = "Weather Conditions";
-        // todo only int values are allowed
-        values[] = {-1, 0.0, 0.3, 0.5, 0.7, 1.0};
+        values[] = {-1, 0, 1, 2, 3, 4};
         texts[]  = {"Random", "Clear", "Partly Cloudy", "Cloudy", "Raining", "Thunderstorm"};
         default  = -1;
     };
@@ -259,10 +258,16 @@ class CfgDebriefing
         subtitle    = "Area Secure";
         description = "The area has been secured and all enemy forces in the area have been neutralized.";
     };
-    class Defeat
+    // Classname "loser" overrides default screen shown when all players are dead
+    class loser
     {
         title       = "Mission Failed";
         subtitle    = "Casualties too high";
         description = "Friendly forces sustained high casualties and the mission was aborted.";
+    };
+    class SinglePlayer
+    {
+        title = "Multiplayer Only";
+        description = "This mission is not singleplayer-compatible. If you would like to play by yourself, host a multiplayer LAN session."
     };
 };

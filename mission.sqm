@@ -44,7 +44,7 @@ class Mission
 	};
 	class Groups
 	{
-		items=13;
+		items=12;
 		class Item0
 		{
 			side="WEST";
@@ -539,24 +539,6 @@ class Mission
 				};
 			};
 		};
-		class Item12
-		{
-			side="LOGIC";
-			class Vehicles
-			{
-				items=1;
-				class Item0
-				{
-					position[]={14740.778,17.91,16818.408};
-					id=23;
-					side="LOGIC";
-					vehicle="Logic";
-					leader=1;
-					skill=0.60000002;
-					text="logic_radio";
-				};
-			};
-		};
 	};
 	class Markers
 	{
@@ -603,7 +585,7 @@ class Mission
 		class Item5
 		{
 			position[]={25380.182,14.468657,20774.043};
-			name="Sofia_Plant_Start";
+			name="Sofia_Power_Plant_Start";
 			type="Empty";
 		};
 		class Item6
