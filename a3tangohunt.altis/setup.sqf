@@ -106,7 +106,7 @@ if (isServer) then {
 		};
 	};
 
-	_fog = if ((20 < _time) or (_time < 6)) then {
+	_fog = if ((22 < _time) or (_time < 5)) then {
 		0.0;
 	} else {
 		0.1 + (random 0.6);
