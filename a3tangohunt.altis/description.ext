@@ -32,8 +32,8 @@ class Weapons
     class arifle_SDAR_F            {count = 16;}; // SDAR Supercativating Rifle
     class arifle_TRG20_F           {count = 16;}; // TRG-20 (Carbine)
     class arifle_TRG21_F           {count = 16;}; // TRG-21 (Rifle)
-    class arifle_Mk20_F            {count = 16;}; // Mk20 Carbine
-    class arifle_Mk20C_F           {count = 16;}; // Mk20 Rifle
+    class arifle_Mk20_F            {count = 16;}; // Mk20 Rifle
+    class arifle_Mk20C_F           {count = 16;}; // Mk20 Carbine
     class arifle_Mk20_GL_F         {count = 16;}; // Mk20 Rifle with Grenade Launcher
     class hgun_ACPC2_F             {count = 16;}; // ACP-C2 Pistol
     class hgun_P07_F               {count = 16;}; // P07 Pistol
