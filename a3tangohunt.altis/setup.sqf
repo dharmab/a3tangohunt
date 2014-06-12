@@ -10,7 +10,10 @@ _area_markers_array = [
 	"Ghost_Hotel",
 	"Charkia_Storage",
 	"Chapel_Hill",
-	"Kavala_Suburbs"
+	"Kavala_Suburbs",
+	"Abdera",
+	"Abandoned_House",
+	"Junkyard"
 ];
 
 // Utility functions

@@ -542,7 +542,7 @@ class Mission
 	};
 	class Markers
 	{
-		items=19;
+		items=25;
 		class Item0
 		{
 			position[]={14201.174,54.983635,22148.615};
@@ -682,6 +682,51 @@ class Mission
 		{
 			position[]={4366.8638,42.388138,13138.749};
 			name="Kavala_Suburbs_Start";
+			type="Empty";
+		};
+		class Item19
+		{
+			position[]={6588.3325,167.59509,20027.326};
+			name="Abandoned_House";
+			markerType="RECTANGLE";
+			type="Empty";
+			a=130;
+			b=150;
+		};
+		class Item20
+		{
+			position[]={6601.1279,205.90289,19758.094};
+			name="Abandoned_House_Start";
+			type="Empty";
+		};
+		class Item21
+		{
+			position[]={9426.6641,118.64508,20228.139};
+			name="Abdera";
+			markerType="RECTANGLE";
+			type="Empty";
+			a=180;
+			b=120;
+		};
+		class Item22
+		{
+			position[]={9370.4902,87.455055,20539.324};
+			name="Abdera_Start";
+			type="Empty";
+		};
+		class Item23
+		{
+			position[]={8945.4941,69.746407,15525.065};
+			name="Junkyard";
+			markerType="RECTANGLE";
+			type="Empty";
+			a=60;
+			b=40;
+		};
+		class Item24
+		{
+			position[]={8709.2373,117.28165,15545.872};
+			name="Junkyard_Start";
 			type="Empty";
 		};
 	};
