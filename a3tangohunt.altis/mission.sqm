@@ -56,13 +56,13 @@ class Mission
 					position[]={14744.578,17.91,16797.334};
 					id=0;
 					side="WEST";
-					vehicle="B_Soldier_SL_F";
+					vehicle="B_medic_F";
 					player="PLAYER COMMANDER";
 					leader=1;
 					rank="CAPTAIN";
 					skill=0.60000002;
 					init="group_hq = group this;";
-					description="HQ Element - Team Leader";
+					description="HQ One";
 					syncId=0;
 					synchronizations[]={7,8};
 				};
@@ -72,12 +72,12 @@ class Mission
 					special="FLY";
 					id=1;
 					side="WEST";
-					vehicle="B_Soldier_F";
+					vehicle="B_medic_F";
 					player="PLAY CDG";
 					rank="CORPORAL";
 					skill=0.60000002;
 					init="group_hq = group this;";
-					description="HQ Element - Asst. Team Leader";
+					description="HQ Two";
 				};
 				class Item2
 				{
@@ -89,7 +89,7 @@ class Mission
 					player="PLAY CDG";
 					skill=0.60000002;
 					init="group_hq = group this;";
-					description="HQ Element - Corpsman";
+					description="HQ Three";
 				};
 			};
 		};
@@ -104,13 +104,13 @@ class Mission
 					position[]={14714.127,17.91,16783.412};
 					id=3;
 					side="WEST";
-					vehicle="B_Soldier_TL_F";
+					vehicle="B_medic_F";
 					player="PLAY CDG";
 					leader=1;
 					rank="SERGEANT";
 					skill=0.46666664;
 					init="group_alpha = group this;";
-					description="Fire Team Alpha - Fire Team Leader";
+					description="Alpha One";
 					syncId=1;
 					synchronizations[]={6,9};
 				};
@@ -119,35 +119,35 @@ class Mission
 					position[]={14719.127,17.91,16778.412};
 					id=4;
 					side="WEST";
-					vehicle="B_Soldier_F";
+					vehicle="B_medic_F";
 					player="PLAY CDG";
 					rank="CORPORAL";
 					skill=0.33333331;
 					init="group_alpha = group this;";
-					description="Fire Team Alpha - Rifleman";
+					description="Alpha Three";
 				};
 				class Item2
 				{
 					position[]={14709.127,17.91,16778.412};
 					id=5;
 					side="WEST";
-					vehicle="B_soldier_AR_F";
+					vehicle="B_medic_F";
 					player="PLAY CDG";
 					rank="CORPORAL";
 					skill=0.2;
 					init="group_alpha = group this;";
-					description="Fire Team Alpha - Automatic Rifleman";
+					description="Alpha Two";
 				};
 				class Item3
 				{
 					position[]={14724.127,17.91,16773.412};
 					id=6;
 					side="WEST";
-					vehicle="B_Soldier_F";
+					vehicle="B_medic_F";
 					player="PLAY CDG";
 					skill=0.2;
 					init="group_alpha = group this;";
-					description="Fire Team Alpha - Rifleman";
+					description="Alpha Four";
 				};
 			};
 		};
@@ -162,13 +162,13 @@ class Mission
 					position[]={14744.639,17.91,16783.502};
 					id=7;
 					side="WEST";
-					vehicle="B_Soldier_TL_F";
+					vehicle="B_medic_F";
 					player="PLAY CDG";
 					leader=1;
 					rank="SERGEANT";
 					skill=0.46666664;
 					init="group_bravo = group this;";
-					description="Fire Team Bravo - Fire Team Leader";
+					description="Bravo One";
 					syncId=2;
 					synchronizations[]={5,10};
 				};
@@ -177,35 +177,35 @@ class Mission
 					position[]={14749.639,17.91,16778.502};
 					id=8;
 					side="WEST";
-					vehicle="B_Soldier_F";
+					vehicle="B_medic_F";
 					player="PLAY CDG";
 					rank="CORPORAL";
 					skill=0.33333331;
 					init="group_bravo = group this;";
-					description="Fire Team Bravo - Rifleman";
+					description="Bravo Three";
 				};
 				class Item2
 				{
 					position[]={14739.639,17.91,16778.502};
 					id=9;
 					side="WEST";
-					vehicle="B_soldier_AR_F";
+					vehicle="B_medic_F";
 					player="PLAY CDG";
 					rank="CORPORAL";
 					skill=0.2;
 					init="group_bravo = group this;";
-					description="Fire Team Bravo - Automatic Rifleman";
+					description="Bravo Two";
 				};
 				class Item3
 				{
 					position[]={14754.639,17.91,16773.502};
 					id=10;
 					side="WEST";
-					vehicle="B_Soldier_F";
+					vehicle="B_medic_F";
 					player="PLAY CDG";
 					skill=0.2;
 					init="group_bravo = group this;";
-					description="Fire Team Bravo - Rifleman";
+					description="Bravo Four";
 				};
 			};
 		};
@@ -220,13 +220,13 @@ class Mission
 					position[]={14776.853,17.91,16783.102};
 					id=11;
 					side="WEST";
-					vehicle="B_Soldier_TL_F";
+					vehicle="B_medic_F";
 					player="PLAY CDG";
 					leader=1;
 					rank="SERGEANT";
 					skill=0.46666664;
 					init="group_charlie = group this;";
-					description="Fire Team Charlie - Fire Team Leader";
+					description="Charlie One";
 					syncId=3;
 					synchronizations[]={4,11};
 				};
@@ -235,35 +235,35 @@ class Mission
 					position[]={14781.853,17.91,16778.102};
 					id=12;
 					side="WEST";
-					vehicle="B_Soldier_F";
+					vehicle="B_medic_F";
 					player="PLAY CDG";
 					rank="CORPORAL";
 					skill=0.33333331;
 					init="group_charlie = group this;";
-					description="Fire Team Charlie - Rifleman";
+					description="Charlie Three";
 				};
 				class Item2
 				{
 					position[]={14771.853,17.91,16778.102};
 					id=13;
 					side="WEST";
-					vehicle="B_soldier_AR_F";
+					vehicle="B_medic_F";
 					player="PLAY CDG";
 					rank="CORPORAL";
 					skill=0.2;
 					init="group_charlie = group this;";
-					description="Fire Team Charlie -  Automatic Rifleman";
+					description="Charlie Two";
 				};
 				class Item3
 				{
 					position[]={14786.853,17.91,16773.102};
 					id=14;
 					side="WEST";
-					vehicle="B_Soldier_F";
+					vehicle="B_medic_F";
 					player="PLAY CDG";
 					skill=0.2;
 					init="group_charlie = group this;";
-					description="Fire Team Charlie - Rifleman";
+					description="Charlie Four";
 				};
 			};
 		};
