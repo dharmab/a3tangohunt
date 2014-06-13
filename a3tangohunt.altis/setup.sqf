@@ -134,7 +134,7 @@ if (isServer) then {
 	_enemy_faction = ["CSAT", "AAF", "FIA"] select _param_enemy_faction;
 	_enemy_strength = if (_param_enemy_strength == -1) then {
 	_player_count = count _all_players_array;
-		ceil (_player_count * 3) / 2;
+		ceil ((_player_count * 3) / 2);
 	} else {
 		_param_enemy_strength;
 	};
