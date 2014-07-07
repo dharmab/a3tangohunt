@@ -5,11 +5,9 @@ onLoadMissionTime  = 1;
 
 respawn = "BASE";
 respawnDelay = 10;
-respawnTemplates[] = {
-    "Tickets",
-    "MenuInventory"
-};
+respawnTemplates[] = {"MenuInventory"};
 respawnOnStart = 1;
+respawnButton = 0;
 
 disabledAI = 1;
 
@@ -402,5 +400,13 @@ class CfgDebriefing
     {
         title = "Multiplayer Only";
         description = "This mission is not singleplayer-compatible. If you would like to play by yourself, host a multiplayer LAN session."
+    };
+};
+#include "f\spect\config.hpp"
+class CfgFunctions
+{
+    class F
+    {
+        #include "f\spect\functions.hpp"
     };
 };

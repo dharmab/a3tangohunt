@@ -140,7 +140,6 @@ if (isServer) then {
 	};
 
 	[_area_marker, east, _enemy_faction, _enemy_strength] execVM "tangohunt.sqf";
-
 	// Export variables used for client-local commands below
 	missionNamespace setVariable ["mission_time", _time];
 	missionNamespace setVariable ["mission_overcast", _overcast];
