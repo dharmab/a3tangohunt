@@ -110,9 +110,9 @@ if (isServer) then {
 	};
 
 	_fog = if ((22 < _time) or (_time < 5)) then {
-		0.0;
-	} else {
 		0.1 + (random 0.6);
+	} else {
+		0.0;
 	};
 
 	_area_marker = if (_param_area == -1) then {
