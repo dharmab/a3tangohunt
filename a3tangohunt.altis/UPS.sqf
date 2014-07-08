@@ -1,5 +1,3 @@
-// UNLIKE THE OTHER FILES IN THIS PROJECT, THIS SCRIPT IS NOT RELEASED INTO THE PUBLIC DOMAIN.
-// © 2013 - Kronzky (kronzky@gmail.com / www.kronzky.info)
 // =========================================================================================================
 //  Urban Patrol Script  
 //  Version: 2.2.0
