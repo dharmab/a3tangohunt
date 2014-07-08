@@ -124,7 +124,7 @@ class Mission
 					rank="CORPORAL";
 					skill=0.33333331;
 					init="group_alpha = group this;";
-					description="Alpha Three";
+					description="Alpha Two";
 				};
 				class Item2
 				{
@@ -136,7 +136,7 @@ class Mission
 					rank="CORPORAL";
 					skill=0.2;
 					init="group_alpha = group this;";
-					description="Alpha Two";
+					description="Alpha Three";
 				};
 				class Item3
 				{
@@ -182,7 +182,7 @@ class Mission
 					rank="CORPORAL";
 					skill=0.33333331;
 					init="group_bravo = group this;";
-					description="Bravo Three";
+					description="Bravo Two";
 				};
 				class Item2
 				{
@@ -194,7 +194,7 @@ class Mission
 					rank="CORPORAL";
 					skill=0.2;
 					init="group_bravo = group this;";
-					description="Bravo Two";
+					description="Bravo Three";
 				};
 				class Item3
 				{
@@ -240,7 +240,7 @@ class Mission
 					rank="CORPORAL";
 					skill=0.33333331;
 					init="group_charlie = group this;";
-					description="Charlie Three";
+					description="Charlie Two";
 				};
 				class Item2
 				{
@@ -252,7 +252,7 @@ class Mission
 					rank="CORPORAL";
 					skill=0.2;
 					init="group_charlie = group this;";
-					description="Charlie Two";
+					description="Charlie Three";
 				};
 				class Item3
 				{
@@ -419,7 +419,7 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={14748.62,17.91,16797.4};
+					position[]={14748.527,17.91,16797.369};
 					class args
 					{
 						items=4;
