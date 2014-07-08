@@ -120,8 +120,8 @@ class CfgRespawnInventory
             "30Rnd_65x39_caseless_mag",
             "30Rnd_65x39_caseless_mag",
 
-            "9Rnd_45ACP_Mag",
-            "9Rnd_45ACP_Mag",
+            "16Rnd_9x21_Mag",
+            "16Rnd_9x21_Mag",
 
             "1Rnd_HE_Grenade_shell",
             "1Rnd_HE_Grenade_shell",
@@ -185,8 +185,8 @@ class CfgRespawnInventory
             "200Rnd_65x39_cased_Box",
             "200Rnd_65x39_cased_Box",
             
-            "9Rnd_45ACP_Mag",
-            "9Rnd_45ACP_Mag",
+            "16Rnd_9x21_Mag",
+            "16Rnd_9x21_Mag",
 
             "HandGrenade",
             "SmokeShell"
@@ -226,8 +226,8 @@ class CfgRespawnInventory
             "30Rnd_65x39_caseless_mag",
             "30Rnd_65x39_caseless_mag",
             
-            "9Rnd_45ACP_Mag",
-            "9Rnd_45ACP_Mag",
+            "16Rnd_9x21_Mag",
+            "16Rnd_9x21_Mag",
 
             "HandGrenade",
             "SmokeShell"
@@ -267,8 +267,8 @@ class CfgRespawnInventory
             "5Rnd_127x108_Mag",
             "5Rnd_127x108_Mag",
             
-            "9Rnd_45ACP_Mag",
-            "9Rnd_45ACP_Mag",
+            "16Rnd_9x21_Mag",
+            "16Rnd_9x21_Mag",
 
             "HandGrenade",
             "SmokeShell"
@@ -309,8 +309,8 @@ class CfgRespawnInventory
             "30Rnd_65x39_caseless_mag",
             "30Rnd_65x39_caseless_mag",
             
-            "9Rnd_45ACP_Mag",
-            "9Rnd_45ACP_Mag",
+            "16Rnd_9x21_Mag",
+            "16Rnd_9x21_Mag",
 
             "NLAW_F",
             
@@ -352,8 +352,8 @@ class CfgRespawnInventory
             "30Rnd_65x39_caseless_mag",
             "30Rnd_65x39_caseless_mag",
             
-            "9Rnd_45ACP_Mag",
-            "9Rnd_45ACP_Mag",
+            "16Rnd_9x21_Mag",
+            "16Rnd_9x21_Mag",
 
             "ClaymoreDirectionalMine_Remote_Mag",
             "ClaymoreDirectionalMine_Remote_Mag",
