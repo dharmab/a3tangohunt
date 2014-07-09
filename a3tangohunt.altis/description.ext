@@ -238,7 +238,7 @@ class CfgRespawnInventory
         linkedItems[] = {
             "V_PlateCarrier2_rgr",
             "H_HelmetB_light",
-            "optic_DMS",
+            "optic_Hamr",
             "acc_pointer_IR",
             "NVGoggles",
             "ItemMap",
@@ -273,12 +273,9 @@ class CfgRespawnInventory
             "HandGrenade",
             "SmokeShell"
         };
-        items[] = {
-            "FirstAidKit"
-        };
         linkedItems[] = {
             "V_BandollierB_rgr",
-            "optic_LRPS",
+            "optic_Nightstalker",
             "acc_pointer_IR",
             "NVGoggles",
             "B_UavTerminal",
@@ -357,6 +354,8 @@ class CfgRespawnInventory
 
             "ClaymoreDirectionalMine_Remote_Mag",
             "ClaymoreDirectionalMine_Remote_Mag",
+            "ClaymoreDirectionalMine_Remote_Mag",
+            "ClaymoreDirectionalMine_Remote_Mag",
 
             "SatchelCharge_Remote_Mag", 
 
@@ -369,6 +368,50 @@ class CfgRespawnInventory
         linkedItems[] = {
             "V_PlateCarrier2_rgr",
             "H_HelmetB",
+            "optic_ACO",
+            "acc_pointer_IR",
+            "NVGoggles",
+            "ItemMap",
+            "ItemCompass",
+            "ItemWatch",
+            "ItemRadio"
+        };
+        uniformClass = "U_B_CombatUniform_mcam";
+        backpack = "B_Kitbag_mcamo";
+    };
+    class NatoMedic
+    {
+        displayName = "Combat Medic";
+        icon = "\A3\weapons_F_EPB\Rifles\MX_Black\Data\UI\gear_mx_cqc_black_X_CA.paa";
+        weapons[] = {
+            "arifle_MXC_Black_F",
+            "hgun_Rook40_F",
+            "Binocular"
+        };
+        magazines[] = {
+            "30Rnd_65x39_caseless_mag",
+            "30Rnd_65x39_caseless_mag",
+            "30Rnd_65x39_caseless_mag",
+            "30Rnd_65x39_caseless_mag",
+            "30Rnd_65x39_caseless_mag",
+            "30Rnd_65x39_caseless_mag",
+            "30Rnd_65x39_caseless_mag",
+            
+            "16Rnd_9x21_Mag",
+            "16Rnd_9x21_Mag",
+            
+            "SmokeShell",
+            "SmokeShell"
+        };
+        items[] = {
+            "FirstAidKit",
+            "FirstAidKit",
+            "FirstAidKit",
+            "Medikit"
+        };
+        linkedItems[] = {
+            "V_PlateCarrier2_rgr",
+            "H_HelmetB_light",
             "optic_ACO",
             "acc_pointer_IR",
             "NVGoggles",

@@ -1,4 +1,3 @@
-waitUntil {!isNil "BIS_fnc_init"};
 if (!isMultiplayer) then {
 	["SinglePlayer", false, 0] spawn BIS_fnc_endMission;
 } else {
@@ -9,13 +8,9 @@ if (!isMultiplayer) then {
 	[west, "NatoAutomaticRifleman"] call BIS_fnc_addRespawnInventory;
 	[west, "NatoDesignatedMarksman"] call BIS_fnc_addRespawnInventory;
 	[west, "NatoAntiarmor"] call BIS_fnc_addRespawnInventory;
+	[west, "NatoMedic"] call BIS_fnc_addRespawnInventory;
 	[west, "NatoRecon"] call BIS_fnc_addRespawnInventory;
 	[west, "NatoExplosive"] call BIS_fnc_addRespawnInventory;
-
-	// Do not allow any additional respawns
-	if (isServer) then {
-		[missionNamespace, 1] call BIS_fnc_respawnTickets;
-	};
 
 	// Run the setup script
 	execVM "setup.sqf";
