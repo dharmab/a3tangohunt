@@ -1,21 +1,29 @@
-The following files are copyright 2013 Kronzky (kronzky@gmail.com / www.kronzky.info).
-UPS.sqf
+The following files are copyright 2013 Kronzky 
+(kronzky@gmail.com / www.kronzky.info).
 
-The following files are copyright 2007-2013 F3 contributors and are used with permission from the F3 project. See a3tangohunt.altis/f/LICENSE and https://github.com/ferstaberinde/F3/issues/391 for more information.
-f/spect/config.hpp
-f/spect/fn_CamInit.sqf
-f/spect/fn_DialogLoop.sqf
-f/spect/fn_DrawTags.sqf
-f/spect/fn_EventHandler.sqf
-f/spect/fn_FreeCam.sqf
-f/spect/fn_GetIcon.sqf
-f/spect/fn_GetPlayers.sqf
-f/spect/fn_HandleCamera.sqf
-f/spect/fn_ReloadModes.sqf
-f/spect/fn_UpdateValues.sqf
-f/spect/functions.hpp
+a3tangohunt.altis/UPS.sqf
 
-All other files are original work of Dharma Bellamkonda (dharma.bellamkonda@gmail.com / www.dharmab.com) are are released into the public domain under the following license.
+The following files are copyright 2007-2013 F3 contributors and are 
+used with permission from the F3 project. See 
+a3tangohunt.altis/f/LICENSE and 
+https://github.com/ferstaberinde/F3/issues/391 for more information.
+
+a3tangohunt.altis/f/spect/config.hpp
+a3tangohunt.altis/f/spect/fn_CamInit.sqf
+a3tangohunt.altis/f/spect/fn_DialogLoop.sqf
+a3tangohunt.altis/f/spect/fn_DrawTags.sqf
+a3tangohunt.altis/f/spect/fn_EventHandler.sqf
+a3tangohunt.altis/f/spect/fn_FreeCam.sqf
+a3tangohunt.altis/f/spect/fn_GetIcon.sqf
+a3tangohunt.altis/f/spect/fn_GetPlayers.sqf
+a3tangohunt.altis/f/spect/fn_HandleCamera.sqf
+a3tangohunt.altis/f/spect/fn_ReloadModes.sqf
+a3tangohunt.altis/f/spect/fn_UpdateValues.sqf
+a3tangohunt.altis/f/spect/functions.hpp
+
+All other files are original work of Dharma Bellamkonda 
+(dharma.bellamkonda@gmail.com / www.dharmab.com) and are released into
+the public domain under the following license.
 
 This is free and unencumbered software released into the public domain.
 
