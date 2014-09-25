@@ -5,5 +5,5 @@ if (isNil "_should_spectate") then {
 if (_should_spectate) then {
 	call F_fnc_CamInit;
 } else {
-	missionNamespace setVariable ["spectate_on_death", true];1
+	missionNamespace setVariable ["spectate_on_death", true];
 };
