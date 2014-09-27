@@ -1,5 +1,3 @@
-waitUntil {!isNil "bis_fnc_init"};
-
 _area_marker           = _this select 0; // marker
 _ai_side               = _this select 1; // west, east, resistance
 _ai_faction            = _this select 2; // "NATO", "FIA", "AAF", "CSAT"
@@ -58,25 +56,23 @@ _ai_group_count_distribution = [1, 2, 2, 3, 4, 4, 4, 4, 5, 6];
 // Possibilities for class of AI spawned in a group; Groups above a certain size always have a team leader
 _ai_group_class_distribution = [_ai_rifleman, _ai_rifleman, _ai_rifleman, _ai_rifleman, _ai_machinegunner, _ai_machinegunner, _ai_marksman, _ai_antitank]; 
 
-_ai_global_count = 0;
-
-while {_ai_global_count < _ai_global_count_total} do {
+_ai_units = [];
+while {(count _ai_units) < _ai_global_count_total} do {
 	_ai_count_group_total = _ai_group_count_distribution call BIS_fnc_selectRandom;
-	_ai_count_group = 0;
 
 	_new_group = createGroup _ai_side;
 
 	if (_ai_count_group_total >= 4) then {
 		_ai_team_leader createUnit [[0, 0, 0], _new_group];
-		_ai_count_group = _ai_count_group + 1;
 	};
 	
-	while {_ai_count_group < _ai_count_group_total} do {
+	while {(count (units _new_group)) < _ai_count_group_total} do {
 		(_ai_group_class_distribution call BIS_fnc_selectRandom) createUnit [[0, 0, 0], _new_group];
-		_ai_count_group = _ai_count_group + 1;
 	};
 
 	[leader _new_group, _area_marker, "random"] execVM "UPS.sqf";
 
-	_ai_global_count = _ai_global_count + _ai_count_group_total;
+	_ai_units = _ai_units + units _new_group;
 };
+
+_ai_units;

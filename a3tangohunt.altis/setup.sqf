@@ -1,8 +1,13 @@
 waitUntil {!isNil "BIS_fnc_init"};
+
+// Constants
+// Code indicating that a parameter from description.ext should be randomized
+_RANDOMIZE = -1;
+
 // Specify possible area markers here and in description.ext
 // Each marker must be an area marker with a corresponding point marker with the suffix "_Start"
 // e.g. "My_Town" must have a nearby "My_Town_Start" marker
-_area_markers_array = [
+_AREA_MARKERS = [
 	"Agrios_Forest",
 	"Panagia",
 	"Sofia_Power_Plant",
@@ -33,9 +38,22 @@ fnc_setWeather = {
 		sleep 0.1;
 		simulWeatherSync;
 	};
+	true;
 };
 
-{_x setMarkerAlpha 0.0;} forEach _area_markers_array;
+fnc_tangoHunt = {
+	_param_area_marker = _this select 0;
+	_param_enemy_side = _this select 1;
+	_param_enemy_faction = _this select 2;
+	_param_enemy_strength = _this select 3;
+	_param_player_faction = _this select 4;
+	// Initialize the mission
+	_all_enemies_array = [_area_marker, east, _enemy_faction, _enemy_strength] call compile preprocessFileLineNumbers "tangohunt.sqf";
+	// Spawn the victory/defeat condition loop in a new thread
+	[_param_player_faction, _all_enemies_array, _param_area_marker, 0.75] spawn {_this call compile preprocessFileLineNumbers "endCheck.sqf"};
+};
+
+{_x setMarkerAlpha 0.0;} forEach _AREA_MARKERS;
 
 // Flag that indicates when server init is complete
 missionNamespace setVariable ["mission_tangohunt_init", false];
@@ -46,29 +64,40 @@ if (isServer) then {
 	_param_enemy_strength = paramsArray select 1;
 	_param_area           = paramsArray select 2;
 	_param_time           = paramsArray select 3;
-	_param_weather        = paramsArray select 4;
+	_param_moon_phase     = paramsArray select 4;
+	_param_weather        = paramsArray select 5;
 
-	// Sync random parameters across network
-	_time = if (_param_time == -1) then {
+	// Set number of days to skip to force a certain moon phase
+	_day = if (_param_moon_phase == _RANDOMIZE) then {
+		[5, 9, 12, 15, 20] call BIS_fnc_selectRandom;
+	} else {
+		_param_moon_phase;
+	};
+
+	// Set numbers of hours to skip to force a certain time of day
+	_time = if (_param_time == _RANDOMIZE) then {
 		random 24;
 	} else {
 		_param_time;
 	};
 
+	// Set weather values
 	_overcast = 0.0;
 	_rain = 0.0;
 
-	if (_param_weather == -1) then {
+	if (_param_weather == _RANDOMIZE) then {
+		// Randomization
 		 _overcast = random 1;
 		 // Rain only works if overcast is at least 0.7
-		 // Also, 50% chance of rain even with clouds
-		 _var = random 1;
-		 _rain = if ((_overcast > 0.7) and (_var > 0.5))  then {
+		 // Also, we add a 50% chance of no rain for more variety
+		 _rain_chance = random 1;
+		 _rain = if ((_overcast > 0.7) and (_rain_chance > 0.5))  then {
 			random 1;
 		} else {
 			0.0;
 		};
 	} else {
+		// Manual selection
 		switch (_param_weather) do {
 			// Clear
 			case 0:
@@ -109,16 +138,18 @@ if (isServer) then {
 		};
 	};
 
+	// Fog only appears between dusk and dawn
 	_fog = if ((22 < _time) or (_time < 5)) then {
 		0.1 + (random 0.6);
 	} else {
 		0.0;
 	};
 
-	_area_marker = if (_param_area == -1) then {
-		_area_markers_array call BIS_fnc_selectRandom;
+	// Area selection
+	_area_marker = if (_param_area == _RANDOMIZE) then {
+		_AREA_MARKERS call BIS_fnc_selectRandom;
 	} else {
-		_area_markers_array select _param_area;
+		_AREA_MARKERS select _param_area;
 	};
 
 	// Get all playable units for enemy strength auto-balance
@@ -132,21 +163,27 @@ if (isServer) then {
 
 	// Spawn AI
 	_enemy_faction = ["CSAT", "AAF", "FIA"] select _param_enemy_faction;
-	_enemy_strength = if (_param_enemy_strength == -1) then {
+	_enemy_strength = if (_param_enemy_strength == _RANDOMIZE) then {
 	_player_count = count _all_players_array;
 		ceil ((_player_count * 3) / 2);
 	} else {
 		_param_enemy_strength;
 	};
 
-	[_area_marker, east, _enemy_faction, _enemy_strength] execVM "tangohunt.sqf";
+	[_area_marker, east, _enemy_faction, _enemy_strength, west] call fnc_tangoHunt;
+
+	// Start victory/defeat conditions in another thread
+	_all_enemies_array = [];
+
 	// Export variables used for client-local commands below
 	missionNamespace setVariable ["mission_time", _time];
+	missionNamespace setVariable ["mission_day", _day];
 	missionNamespace setVariable ["mission_overcast", _overcast];
 	missionNamespace setVariable ["mission_rain", _rain];
 	missionNamespace setVariable ["mission_fog", _fog];
 	missionNamespace setVariable ["mission_area_marker", _area_marker];
 	publicVariable "mission_time";
+	publicVariable "mission_day";
 	publicVariable "mission_overcast";
 	publicVariable "mission_rain";
 	publicVariable "mission_fog";
@@ -162,14 +199,15 @@ waitUntil {missionNamespace getVariable "mission_tangohunt_init";};
 
 // Retreive variables calculated on the server
 _time        = missionNamespace getVariable "mission_time";
+_day         = missionNamespace getVariable "mission_day";
 _overcast    = missionNamespace getVariable "mission_overcast";
 _rain        = missionNamespace getVariable "mission_rain";
 _fog         = missionNamespace getVariable "mission_fog";
 _area_marker = missionNamespace getVariable "mission_area_marker";
 
-// Initialize weather and time
+// Initialize weather, date and time
 [_overcast, _rain, _fog] call fnc_setWeather;
-skipTime _time;
+skipTime (_time + (24 * _day));
 
 // Create objective marker
 createMarker ["task_marker", (getMarkerPos _area_marker)];

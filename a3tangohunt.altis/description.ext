@@ -87,8 +87,16 @@ class Params
     class Time
     {
         title    = "Time of Day";
+        // Values are days in July 2035 with each moon phase
         values[] = {-1, 0, 6, 9, 12, 15, 18};
         texts[]  = {"Random", "Midnight", "Dawn", "Morning", "Noon", "Afternoon", "Evening"};
+        default  = -1;
+    };
+    class Moon
+    {
+        title    = "Phase of Moon";
+        values[] = {-1, 5, 9, 12, 15, 20};
+        texts[]  = {"Random", "New", "Crescent", "Quarter", "Gibbous", "Full"};
         default  = -1;
     };
     class Weather
@@ -255,7 +263,7 @@ class CfgRespawnInventory
         icon = "\A3\Weapons_F\LongRangeRifles\GM6\Data\UI\gear_gm6_X_CA.paa";
         weapons[] = {
             "srifle_GM6_F",
-            "hgun_ACPC2_snds_F",
+            "hgun_Rook40_snds_F",
             "Binocular"
         };
         magazines[] = {
@@ -430,7 +438,7 @@ class CfgDebriefing
     {
         title       = "Mission Completed";
         subtitle    = "Area Secure";
-        description = "The area has been secured and all enemy forces in the area have been neutralized.";
+        description = "The area has been secured and enemy forces in the area have been neutralized.";
     };
     // Classname "loser" overrides default screen shown when all players are dead
     class loser
