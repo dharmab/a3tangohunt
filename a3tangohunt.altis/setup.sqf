@@ -41,6 +41,39 @@ fnc_setWeather = {
 	true;
 };
 
+fnc_randomizeEnemyLocation = {
+	_random_position = [0, 0];
+	waitUntil {
+		_random_position = [random 25000, random 25000];
+		(getTerrainHeightASL _random_position) >= 10;
+	};
+
+	_location_type = ["NameCity", "NameVillage"] call BIS_fnc_selectRandom;
+	// "Name" is the parent class of all named locations
+	nearestLocation [_random_position, _location_type];
+};
+
+fnc_randomizePlayerPosition = {
+	_param_enemy_position = _this select 0;
+
+	_random_position = [0, 0];
+	waitUntil {
+		_x_offset = random 500;
+		_y_offset = 500 - _x_offset;
+		if (random 1 > 0.5) then {_x_offset = _x_offset * -1};
+		if (random 1 > 0.5) then {_y_offset = _y_offset * -1};
+
+		_random_position = [
+			(_param_enemy_position select 0) + _x_offset, 
+			(_param_enemy_position select 1) + _y_offset
+		];
+
+		(getTerrainHeightASL _random_position) >= 10;
+	};
+
+	_random_position;
+};
+
 fnc_tangoHunt = {
 	_param_area_marker = _this select 0;
 	_param_enemy_side = _this select 1;
@@ -146,11 +179,10 @@ if (isServer) then {
 	};
 
 	// Area selection
-	_area_marker = if (_param_area == _RANDOMIZE) then {
-		_AREA_MARKERS call BIS_fnc_selectRandom;
-	} else {
-		_AREA_MARKERS select _param_area;
-	};
+	_area_location = [] call fnc_randomizeEnemyLocation;
+	_area_position = [position _area_location select 0, position _area_location select 1];
+	_area_marker = createMarker ["enemy_area", _area_position];
+	_area_marker setMarkerSize (size _area_location);
 
 	// Get all playable units for enemy strength auto-balance
 	// We have to check dead units as well since players start out in the respawn menu
@@ -164,16 +196,13 @@ if (isServer) then {
 	// Spawn AI
 	_enemy_faction = ["CSAT", "AAF", "FIA"] select _param_enemy_faction;
 	_enemy_strength = if (_param_enemy_strength == _RANDOMIZE) then {
-	_player_count = count _all_players_array;
+		_player_count = count _all_players_array;
 		ceil ((_player_count * 3) / 2);
 	} else {
 		_param_enemy_strength;
 	};
 
 	[_area_marker, east, _enemy_faction, _enemy_strength, west] call fnc_tangoHunt;
-
-	// Start victory/defeat conditions in another thread
-	_all_enemies_array = [];
 
 	// Export variables used for client-local commands below
 	missionNamespace setVariable ["mission_time", _time];
@@ -217,7 +246,9 @@ createMarker ["task_marker", (getMarkerPos _area_marker)];
 "task_marker" setMarkerColor "ColorRed";
 
 // Grab the existing Start marker and make it visible
-_insertion_marker = format["%1_Start", _area_marker];
+
+_insertion_marker_position = [getMarkerPos _area_marker] call fnc_randomizePlayerPosition;
+_insertion_marker = createMarker ["player_start", _insertion_marker_position];
 _insertion_marker setMarkerShape "ICON";
 _insertion_marker setMarkerType "mil_start";
 _insertion_marker setMarkerColor "ColorBlue";

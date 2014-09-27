@@ -70,6 +70,7 @@ while {(count _ai_units) < _ai_global_count_total} do {
 		(_ai_group_class_distribution call BIS_fnc_selectRandom) createUnit [[0, 0, 0], _new_group];
 	};
 
+	// [_new_group, getMarkerPos _area_marker, 50] call BIS_fnc_taskPatrol;
 	[leader _new_group, _area_marker, "random"] execVM "UPS.sqf";
 
 	_ai_units = _ai_units + units _new_group;
