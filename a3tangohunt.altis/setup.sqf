@@ -46,11 +46,11 @@ fnc_tangoHunt = {
 	_param_enemy_side = _this select 1;
 	_param_enemy_faction = _this select 2;
 	_param_enemy_strength = _this select 3;
-	_param_player_faction = _this select 4;
+	_param_player_side = _this select 4;
 	// Initialize the mission
 	_all_enemies_array = [_area_marker, east, _enemy_faction, _enemy_strength] call compile preprocessFileLineNumbers "tangohunt.sqf";
 	// Spawn the victory/defeat condition loop in a new thread
-	[_param_player_faction, _all_enemies_array, _param_area_marker, 0.75] spawn {_this call compile preprocessFileLineNumbers "endCheck.sqf"};
+	[_param_player_side] spawn {_this call compile preprocessFileLineNumbers "endCheck.sqf"};
 };
 
 {_x setMarkerAlpha 0.0;} forEach _AREA_MARKERS;
