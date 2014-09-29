@@ -5,7 +5,7 @@ _RANDOMIZE = -1;
 // _param_overcast amount of overcast from 0.0 to 1.0. Higher values are more cloudy.
 // _param_rain amount of rain from 0.0 to 1.0. Has no effect unless overcast is at least 0.7. Higher values are more rainy.
 // _param_fog amount of fog from 0.0 to 1.0.
-fnc_setWeather = {
+_fnc_setWeather = {
 	// Make sure to turn off auto weather in the mission editor!
 	_param_overcast = _this select 0;
 	_param_rain     = _this select 1;
@@ -26,7 +26,7 @@ fnc_setWeather = {
 
 // Returns true marker is over water
 // _param_marker_pos marker to check
-fnc_isMarkerInWater = {
+_fnc_isMarkerInWater = {
 	_param_marker = _this select 0;
 
 	_marker_pos = getMarkerPos _param_marker;
@@ -36,7 +36,7 @@ fnc_isMarkerInWater = {
 
 // Helper method to randomize or select weather values
 // _param_weather -1 to randomize, or 0-4 for preset values
-fnc_getWeatherValues = {
+_fnc_getWeatherValues = {
 	_param_weather = _this select 0;
 
 	_overcast = 0.0;
@@ -70,7 +70,7 @@ fnc_getWeatherValues = {
 };
 
 // Returns a random location on the map.
-fnc_randomizeEnemyLocation = {
+_fnc_randomizeEnemyLocation = {
 	_locations = [];
 	waitUntil {
 		// Sample a random point
@@ -88,7 +88,7 @@ fnc_randomizeEnemyLocation = {
 
 // Returns a random position 500 meters away from the provided position.
 // _param_enemy_position position to base returned position on.
-fnc_randomizePlayerPosition = {
+_fnc_randomizePlayerPosition = {
 	_param_enemy_position = _this select 0;
 
 	_x_offset = random 500;
@@ -108,7 +108,7 @@ fnc_randomizePlayerPosition = {
 // _param_area_marker marker where enemies will spawn
 // _param_enemy_faction enemies from this faction will spawn
 // _param_enemy_strength minimum number of enemies to spawn
-fnc_tangoHunt = {
+_fnc_tangoHunt = {
 	_param_area_marker = _this select 0;
 	_param_enemy_side = _this select 1;
 	_param_enemy_faction = _this select 2;
@@ -122,7 +122,7 @@ fnc_tangoHunt = {
 // Expose a variable to the public mission namespace
 // _name variable name
 // _value variable value
-fnc_exportToPublicMissionNamespace = {
+_fnc_exportToPublicMissionNamespace = {
 	_name = _this select 0;
 	_value = _this select 1;
 	missionNamespace setVariable [_name, _value];
@@ -131,7 +131,7 @@ fnc_exportToPublicMissionNamespace = {
 
 // Server-side initialization
 // all parameters are from description.ext
-fnc_serverInit = {
+_fnc_serverInit = {
 	if (!isServer) exitWith {
 		true;
 	};
@@ -158,13 +158,13 @@ fnc_serverInit = {
 	};
 
 	// Set weather values
-	_weather_values = [_param_weather] call fnc_getWeatherValues;
+	_weather_values = [_param_weather] call _fnc_getWeatherValues;
 	_overcast = _weather_values select 0;
 	_rain = _weather_values select 1;
 	_fog = _weather_values select 2;
 
 	// Random area selection
-	_area_location = [] call fnc_randomizeEnemyLocation;
+	_area_location = [] call _fnc_randomizeEnemyLocation;
 	_area_marker = createMarker ["enemy_area", [position _area_location select 0, position _area_location select 1]];
 	_area_marker setMarkerSize (size _area_location);
 
@@ -175,7 +175,7 @@ fnc_serverInit = {
 	"task_marker" setMarkerColor "ColorRed";
 
 	// Create insertion marker and set symbology
-	_insertion_marker_position = [getMarkerPos _area_marker] call fnc_randomizePlayerPosition;
+	_insertion_marker_position = [getMarkerPos _area_marker] call _fnc_randomizePlayerPosition;
 	_insertion_marker = createMarker ["player_start", _insertion_marker_position];
 	_insertion_marker setMarkerShape "ICON";
 	_insertion_marker setMarkerType "mil_start";
@@ -199,23 +199,23 @@ fnc_serverInit = {
 
 	_enemy_strength = [_player_count, (ceil (_player_count * 1.5)), (_player_count * 2)] select _param_enemy_strength;
 
-	[_area_marker, east, _enemy_faction, _enemy_strength, west] call fnc_tangoHunt;
+	[_area_marker, east, _enemy_faction, _enemy_strength, west] call _fnc_tangoHunt;
 
 	// Export variables used for client-local commands
-	["mission_day",         _day        ] call fnc_exportToPublicMissionNamespace;
-	["mission_time",        _time       ] call fnc_exportToPublicMissionNamespace;
-	["mission_overcast",    _overcast   ] call fnc_exportToPublicMissionNamespace;
-	["mission_rain",        _rain       ] call fnc_exportToPublicMissionNamespace;
-	["mission_fog",         _fog        ] call fnc_exportToPublicMissionNamespace;
-	["mission_area_marker", _area_marker] call fnc_exportToPublicMissionNamespace;
+	["mission_day",         _day        ] call _fnc_exportToPublicMissionNamespace;
+	["mission_time",        _time       ] call _fnc_exportToPublicMissionNamespace;
+	["mission_overcast",    _overcast   ] call _fnc_exportToPublicMissionNamespace;
+	["mission_rain",        _rain       ] call _fnc_exportToPublicMissionNamespace;
+	["mission_fog",         _fog        ] call _fnc_exportToPublicMissionNamespace;
+	["mission_area_marker", _area_marker] call _fnc_exportToPublicMissionNamespace;
 
 	// Set flag for clients to continue
-	["mission_tangohunt_init", true] call fnc_exportToPublicMissionNamespace;
+	["mission_tangohunt_init", true] call _fnc_exportToPublicMissionNamespace;
 
 	true;
 };
 
-fnc_main = {
+_fnc_main = {
 	// Stop immediately if running in singleplayer
 	if (!isMultiplayer) exitWith {
 		["SinglePlayer", false, 0] spawn BIS_fnc_endMission;
@@ -226,7 +226,7 @@ fnc_main = {
 
 	// Perform server side init
 	if (isServer) then {
-		[] call fnc_serverInit;
+		[] call _fnc_serverInit;
 	};
 
 	// Process briefing
@@ -236,7 +236,7 @@ fnc_main = {
 	waitUntil {missionNamespace getVariable "mission_tangohunt_init";};
 
 	// Add loadouts from description.ext
-	if (["respawn_west"] call fnc_isMarkerInWater) then {
+	if (["respawn_west"] call _fnc_isMarkerInWater) then {
 		[west, "NatoDiver"              ] call BIS_fnc_addRespawnInventory;
 	} else {
 		[west, "NatoGrenadier"          ] call BIS_fnc_addRespawnInventory;
@@ -257,7 +257,7 @@ fnc_main = {
 	_area_marker      = missionNamespace getVariable "mission_area_marker";
 
 	// Initialize weather, date and time on each client
-	[_overcast, _rain, _fog] call fnc_setWeather;
+	[_overcast, _rain, _fog] call _fnc_setWeather;
 	skipTime ((24 * _day) + _time);
 
 	// Create task for objective
@@ -270,4 +270,4 @@ fnc_main = {
 	["TaskAssigned", ["Secure area"]] call BIS_fnc_showNotification;
 };
 
-[] call fnc_main;
+[] call _fnc_main;
