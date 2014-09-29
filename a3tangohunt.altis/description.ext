@@ -380,6 +380,46 @@ class CfgRespawnInventory
         uniformClass = "U_B_CombatUniform_mcam";
         backpack = "B_Kitbag_mcamo";
     };
+    class NatoDiver
+    {
+        displayName = "Combat Diver";
+        icon = "\A3\Weapons_F\Data\UI\icon_scuba_CA.paa";
+        weapons[] = {
+            "arifle_SDAR_F"
+        };
+        magazines[] = {
+            "20Rnd_556x45_UW_mag",
+            "20Rnd_556x45_UW_mag",
+            "20Rnd_556x45_UW_mag",
+            "20Rnd_556x45_UW_mag",
+            "20Rnd_556x45_UW_mag",
+            "20Rnd_556x45_UW_mag",
+            
+            "MiniGrenade",
+            "MiniGrenade",
+            "MiniGrenade",
+
+            "SmokeShell",
+            "SmokeShell",
+            "SmokeShell",
+
+            "Chemlight_green",
+            "Chemlight_green"
+        };
+        items[] = {
+            "FirstAidKit"
+        };
+        linkedItems[] = {
+            "V_RebreatherB",
+            "G_B_Diving",
+            "ItemMap",
+            "ItemCompass",
+            "ItemWatch",
+            "ItemRadio",
+            "ItemGPS"
+        };
+        uniformClass = "U_B_Wetsuit";
+    };
 };
 class CfgDebriefing
 {  

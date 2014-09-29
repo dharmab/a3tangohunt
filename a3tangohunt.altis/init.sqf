@@ -10,7 +10,7 @@ fnc_setWeather = {
 	_param_overcast = _this select 0;
 	_param_rain     = _this select 1;
 	_param_fog      = _this select 2;
-	
+
 	[_param_overcast] call BIS_fnc_setOvercast;
 
 	// todo BIS_fnc_setFog
@@ -22,6 +22,16 @@ fnc_setWeather = {
 		simulWeatherSync;
 	};
 	true;
+};
+
+// Returns true marker is over water
+// _param_marker_pos marker to check
+fnc_isMarkerInWater = {
+	_param_marker = _this select 0;
+
+	_marker_pos = getMarkerPos _param_marker;
+	_height = getTerrainHeightASL [_marker_pos select 0, _marker_pos select 1];
+	(_height <= -1)
 };
 
 // Helper method to randomize or select weather values
@@ -61,14 +71,19 @@ fnc_getWeatherValues = {
 
 // Returns a random location on the map.
 fnc_randomizeEnemyLocation = {
-	_random_position = [0, 0];
+	_locations = [];
 	waitUntil {
+		// Sample a random point
 		_random_position = [random 25000, random 25000];
-		(getTerrainHeightASL _random_position) >= 10;
-	};
 
-	_location_type = ["NameCity", "NameVillage"] call BIS_fnc_selectRandom;
-	nearestLocation [_random_position, _location_type];
+		// Get all viable locations within 1km
+		_locations = nearestLocations [_random_position, ["NameCity", "NameVillage", "NameLocal"], 1000];
+
+		// Ensure at least one location was found
+		count _locations > 0;
+	};
+	// Return a random location
+	_locations call BIS_fnc_selectRandom;
 };
 
 // Returns a random position 500 meters away from the provided position.
@@ -76,20 +91,15 @@ fnc_randomizeEnemyLocation = {
 fnc_randomizePlayerPosition = {
 	_param_enemy_position = _this select 0;
 
-	_random_position = [0, 0];
-	waitUntil {
-		_x_offset = random 500;
-		_y_offset = 500 - _x_offset;
-		if (random 1 > 0.5) then {_x_offset = _x_offset * -1};
-		if (random 1 > 0.5) then {_y_offset = _y_offset * -1};
+	_x_offset = random 500;
+	_y_offset = 500 - _x_offset;
+	if (random 1 > 0.5) then {_x_offset = _x_offset * -1};
+	if (random 1 > 0.5) then {_y_offset = _y_offset * -1};
 
-		_random_position = [
-			(_param_enemy_position select 0) + _x_offset, 
-			(_param_enemy_position select 1) + _y_offset
-		];
-
-		(getTerrainHeightASL _random_position) >= 10;
-	};
+	_random_position = [
+		(_param_enemy_position select 0) + _x_offset,
+		(_param_enemy_position select 1) + _y_offset
+	];
 
 	_random_position;
 };
@@ -215,24 +225,28 @@ fnc_main = {
 	missionNamespace setVariable ["mission_tangohunt_init", false];
 
 	// Perform server side init
-	if (isServer) then { 
+	if (isServer) then {
 		[] call fnc_serverInit;
 	};
-	
+
 	// Process briefing
 	execVM "briefing.sqf";
 
-	// Add loadouts from description.ext
-	[west, "NatoGrenadier"          ] call BIS_fnc_addRespawnInventory;
-	[west, "NatoAutomaticRifleman"  ] call BIS_fnc_addRespawnInventory;
-	[west, "NatoDesignatedMarksman" ] call BIS_fnc_addRespawnInventory;
-	[west, "NatoAntiarmor"          ] call BIS_fnc_addRespawnInventory;
-	[west, "NatoMedic"              ] call BIS_fnc_addRespawnInventory;
-	[west, "NatoRecon"              ] call BIS_fnc_addRespawnInventory;
-	[west, "NatoExplosive"          ] call BIS_fnc_addRespawnInventory;
-
 	// Wait for server to finish
 	waitUntil {missionNamespace getVariable "mission_tangohunt_init";};
+
+	// Add loadouts from description.ext
+	if (["respawn_west"] call fnc_isMarkerInWater) then {
+		[west, "NatoDiver"              ] call BIS_fnc_addRespawnInventory;
+	} else {
+		[west, "NatoGrenadier"          ] call BIS_fnc_addRespawnInventory;
+		[west, "NatoAutomaticRifleman"  ] call BIS_fnc_addRespawnInventory;
+		[west, "NatoDesignatedMarksman" ] call BIS_fnc_addRespawnInventory;
+		[west, "NatoAntiarmor"          ] call BIS_fnc_addRespawnInventory;
+		[west, "NatoMedic"              ] call BIS_fnc_addRespawnInventory;
+		[west, "NatoRecon"              ] call BIS_fnc_addRespawnInventory;
+		[west, "NatoExplosive"          ] call BIS_fnc_addRespawnInventory;
+	};
 
 	// Retreive variables calculated on the server
 	_day              = missionNamespace getVariable "mission_day";
