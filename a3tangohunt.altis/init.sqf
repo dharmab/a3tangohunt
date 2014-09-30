@@ -36,8 +36,10 @@ _fnc_isMarkerInWater = {
 
 // Helper method to randomize or select weather values
 // _param_weather -1 to randomize, or 0-4 for preset values
+// _param_time time of day in hours
 _fnc_getWeatherValues = {
 	_param_weather = _this select 0;
+	_param_time = _this select 1;
 
 	_overcast = 0.0;
 	_rain = 0.0;
@@ -60,7 +62,7 @@ _fnc_getWeatherValues = {
 	};
 
 	// Fog only appears between dusk and dawn
-	_fog = if ((22 < _time) or (_time < 5)) then {
+	_fog = if ((22 < _param_time) or (_param_time < 5)) then {
 		0.1 + (random 0.6);
 	} else {
 		0.0;
@@ -158,7 +160,7 @@ _fnc_serverInit = {
 	};
 
 	// Set weather values
-	_weather_values = [_param_weather] call _fnc_getWeatherValues;
+	_weather_values = [_param_weather, _time] call _fnc_getWeatherValues;
 	_overcast = _weather_values select 0;
 	_rain = _weather_values select 1;
 	_fog = _weather_values select 2;
