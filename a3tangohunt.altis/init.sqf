@@ -1,6 +1,86 @@
 // Code indicating that a parameter from description.ext should be randomized
 _RANDOMIZE = -1;
 
+_fnc_computeOffset = {
+	_param_origin = _this select 0;
+	_param_distance = _this select 1;
+	_param_angle = _this select 2;
+
+	// Sanitize angle
+	_angle = _param_angle % 360;
+	if (_angle < 0) then {
+	    _angle = 360 + _angle;
+	};
+
+	// use the quadrant and angle to determine ratio and sign of x and y offsets
+	_x_offset_direction = 1;
+	_y_offset_direction = 1;
+	_x_to_y_ratio = 0.0;
+	if (0 <= _angle && _angle < 90) then {
+	    _x_to_y_ratio = _angle / 90;
+	};
+	if (90 <= _angle && _angle < 180) then {
+	    _x_to_y_ratio = 1 - ((_angle - 90) / 90);
+	    _y_offset_direction = -1;
+	};
+	if (180 <= _angle && _angle < 270) then {
+	    _x_to_y_ratio = (_angle - 180) / 90;
+	    _x_offset_direction = -1;
+	    _y_offset_direction = -1;
+	};
+	if (270 <= _angle && _angle < 360) then {
+	    _x_to_y_ratio = 1 - ((_angle - 270) / 90);
+	    _x_offset_direction = -1;
+	};
+
+	// The square of the hypotenuse (distance from origin) equals the sum of the squares
+	// of the two legs (x and y offsets)
+	_offset_sum_of_squares = _param_distance * _param_distance;
+	_x_offset_square = _offset_sum_of_squares * _x_to_y_ratio;
+	_y_offset_square = _offset_sum_of_squares - _x_offset_square;
+
+	_x_offset = (sqrt _x_offset_square) * _x_offset_direction;
+	_y_offset = (sqrt _y_offset_square) * _y_offset_direction;
+
+	// Apply offset to origin
+	_position = [(_param_origin select 0) + _x_offset, (_param_origin select 1) + _y_offset];
+	_position;
+};
+
+_fnc_uavScan = {
+	_param_radius = _this select 0;
+	_param_interval = _this select 1;
+
+	_marker_names = [];
+	_marker_id_sequence = 0;
+
+	waitUntil {
+	    {
+	        deleteMarker _x;
+	        _marker_names = _marker_names - [_x];
+	    } forEach _marker_names;
+
+	    {
+	        if (alive _x && side _x == east) then {
+	            _marker_name = format ["uav_scan_%1", _marker_id_sequence];
+	            _marker_id_sequence = _marker_id_sequence + 1;
+
+	            _marker_position = position _x;
+	            
+	            _marker = createMarker [_marker_name, _marker_position];
+	            _marker_name setMarkerShape "ICON";
+	            _marker_name setMarkerType "hd_dot";
+	            _marker_name setMarkerColor "ColorRed";
+
+	            _marker_names = _marker_names + [_marker_name];
+	        };
+	    } forEach allUnits;
+
+	    sleep _param_interval;
+	    false;
+	};
+};
+
 // Returns true marker is over water
 // _param_marker marker to check
 _fnc_isMarkerInWater = {
@@ -45,9 +125,12 @@ _fnc_setWeather = {
 		0.0;
 	};
 
-	[_param_overcast] call BIS_fnc_setOvercast;
+	[_overcast] call BIS_fnc_setOvercast;
 	[_fog, _fog, 0] call BIS_fnc_setFog;
-	[{86400 setRain _param_rain;}, "BIS_fnc_spawn", true, true] call BIS_fnc_MP;
+
+	_fnc_setRain = compile (format ["86400 setRain %1", _rain]);
+	[_fnc_setRain, "BIS_fnc_spawn", true, true] call BIS_fnc_MP;
+
 	forceWeatherChange;
 };
 
@@ -122,6 +205,7 @@ _fnc_serverInit = {
 		_param_moon_phase = ["Phase of Moon", _RANDOMIZE] call BIS_fnc_getParamValue;
 		_param_weather = ["Weather Conditions", _RANDOMIZE] call BIS_fnc_getParamValue;
 
+
 		// Set number of days to skip to force a certain moon phase
         // Values are days in July 2035 with each moon phase
 		_day = if (_param_moon_phase == _RANDOMIZE) then {
@@ -192,6 +276,9 @@ _fnc_serverInit = {
 };
 
 _fnc_main = {
+	_param_uav_radius = 20;
+	_param_uav_interval = 5;
+
 	// Stop immediately if running in singleplayer
 	if (!isMultiplayer) exitWith {
 		["SinglePlayer", false, 0] spawn BIS_fnc_endMission;
@@ -203,6 +290,8 @@ _fnc_main = {
 	// Perform server side init
 	if (isServer) then {
 		[] call _fnc_serverInit;
+		// Start UAV scan on new thread
+		[_param_uav_radius, _param_uav_interval] spawn _fnc_uavScan;
 	};
 
 	// Process briefing
