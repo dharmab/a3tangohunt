@@ -34,8 +34,8 @@ _fnc_setWeather = {
 		};
 	} else {
 		// Preset values for clear, partly cloudly, cloudy, raining and thunderstorm
-		_overcast = [0.0, 0.3, 0.5, 0.7, 0.9] select _param_weather;
-		_rain     = [0.0, 0.0, 0.0, 0.5, 0.9] select _param_weather;
+		_overcast = [0.25, 0.5, 0.75, 0.85, 0.9] select _param_weather;
+		_rain     = [0.0,  0.0, 0.0,  0.67, 0.9] select _param_weather;
 	};
 
 	// Fog only appears between dusk and dawn
