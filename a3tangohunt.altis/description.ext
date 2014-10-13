@@ -43,8 +43,7 @@ class Params
     class Moon
     {
         title    = "Phase of Moon";
-        // Values are days in July 2035 with each moon phase
-        values[] = {-1, 5, 9, 12, 15, 20};
+        values[] = {-1, 0, 1, 2, 3, 4};
         texts[]  = {"Random", "New", "Crescent", "Quarter", "Gibbous", "Full"};
         default  = -1;
     };
