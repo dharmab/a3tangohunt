@@ -1,31 +1,8 @@
 // Code indicating that a parameter from description.ext should be randomized
 _RANDOMIZE = -1;
 
-// Set weather to given values.
-// _param_overcast amount of overcast from 0.0 to 1.0. Higher values are more cloudy.
-// _param_rain amount of rain from 0.0 to 1.0. Has no effect unless overcast is at least 0.7. Higher values are more rainy.
-// _param_fog amount of fog from 0.0 to 1.0.
-_fnc_setWeather = {
-	// Make sure to turn off auto weather in the mission editor!
-	_param_overcast = _this select 0;
-	_param_rain     = _this select 1;
-	_param_fog      = _this select 2;
-
-	[_param_overcast] call BIS_fnc_setOvercast;
-
-	// todo BIS_fnc_setFog
-	86400 setFog _param_fog;
-	86400 setRain _param_rain;
-	forceWeatherChange;
-	0 = [] spawn {
-		sleep 0.1;
-		simulWeatherSync;
-	};
-	true;
-};
-
 // Returns true marker is over water
-// _param_marker_pos marker to check
+// _param_marker marker to check
 _fnc_isMarkerInWater = {
 	_param_marker = _this select 0;
 
@@ -34,10 +11,10 @@ _fnc_isMarkerInWater = {
 	(_height <= -1)
 };
 
-// Helper method to randomize or select weather values
+// Helper method for setting weather values across network
 // _param_weather -1 to randomize, or 0-4 for preset values
 // _param_time time of day in hours
-_fnc_getWeatherValues = {
+_fnc_setWeather = {
 	_param_weather = _this select 0;
 	_param_time = _this select 1;
 
@@ -57,8 +34,8 @@ _fnc_getWeatherValues = {
 		};
 	} else {
 		// Preset values for clear, partly cloudly, cloudy, raining and thunderstorm
-		_overcast = [0.0, 0.3, 0.5, 0.7, 0.9] select _param_weather;
-		_rain     = [0.0, 0.0, 0.0, 0.5, 0.9] select _param_weather;
+		_overcast = [0.25, 0.5, 0.75, 0.85, 0.9] select _param_weather;
+		_rain     = [0.0,  0.0, 0.0,  0.67, 0.9] select _param_weather;
 	};
 
 	// Fog only appears between dusk and dawn
@@ -68,7 +45,13 @@ _fnc_getWeatherValues = {
 		0.0;
 	};
 
-	[_overcast, _rain, _fog];
+	[_overcast] call BIS_fnc_setOvercast;
+	[_fog, _fog, 0] call BIS_fnc_setFog;
+
+	_fnc_setRain = compile (format ["86400 setRain %1; skipTime 24; skipTime -24;", _rain]);
+	[_fnc_setRain, "BIS_fnc_spawn", true, true] call BIS_fnc_MP;
+
+	forceWeatherChange;
 };
 
 // Returns a random location on the map.
@@ -134,87 +117,81 @@ _fnc_exportToPublicMissionNamespace = {
 // Server-side initialization
 // all parameters are from description.ext
 _fnc_serverInit = {
-	if (!isServer) exitWith {
-		true;
-	};
+	if (isServer) then {
+		// Parameters from description.ext
+		_param_enemy_faction = ["Faction", 0] call BIS_fnc_getParamValue;
+		_param_enemy_strength = ["Difficulty", 1] call BIS_fnc_getParamValue;
+		_param_time = ["Time", _RANDOMIZE] call BIS_fnc_getParamValue;
+		_param_moon_phase = ["Moon", _RANDOMIZE] call BIS_fnc_getParamValue;
+		_param_weather = ["Weather", _RANDOMIZE] call BIS_fnc_getParamValue;
 
-	// Parameters from description.ext
-	_param_enemy_faction  = paramsArray select 0;
-	_param_enemy_strength = paramsArray select 1;
-	_param_time           = paramsArray select 2;
-	_param_moon_phase     = paramsArray select 3;
-	_param_weather        = paramsArray select 4;
-
-	// Set number of days to skip to force a certain moon phase
-	_day = if (_param_moon_phase == _RANDOMIZE) then {
-		[5, 9, 12, 15, 20] call BIS_fnc_selectRandom;
-	} else {
-		_param_moon_phase;
-	};
-
-	// Set numbers of hours to skip to force a certain time of day
-	_time = if (_param_time == _RANDOMIZE) then {
-		random 24;
-	} else {
-		_param_time;
-	};
-
-	// Set weather values
-	_weather_values = [_param_weather, _time] call _fnc_getWeatherValues;
-	_overcast = _weather_values select 0;
-	_rain = _weather_values select 1;
-	_fog = _weather_values select 2;
-
-	// Random area selection
-	_area_location = [] call _fnc_randomizeEnemyLocation;
-	_area_marker = createMarker ["enemy_area", [position _area_location select 0, position _area_location select 1]];
-	_area_marker setMarkerSize (size _area_location);
-
-	// Create objective marker and set symbology
-	createMarker ["task_marker", (getMarkerPos _area_marker)];
-	"task_marker" setMarkerShape "ICON";
-	"task_marker" setMarkerType "mil_objective";
-	"task_marker" setMarkerColor "ColorRed";
-
-	// Create insertion marker and set symbology
-	_insertion_marker_position = [getMarkerPos _area_marker] call _fnc_randomizePlayerPosition;
-	_insertion_marker = createMarker ["player_start", _insertion_marker_position];
-	_insertion_marker setMarkerShape "ICON";
-	_insertion_marker setMarkerType "mil_start";
-	_insertion_marker setMarkerColor "ColorBlue";
-
-	// Set the spawn location
-	"respawn_west" setMarkerPos (getMarkerPos _insertion_marker);
-
-	// Enemy faction lookup
-	_enemy_faction = ["CSAT", "AAF", "FIA"] select _param_enemy_faction;
-
-	// Get all playable units for enemy strength auto-balance
-	// We have to check dead units as well since players start out in the respawn menu
-	_all_players_array = playableUnits;
-	{
-		if (isPlayer _x) then {
-			_all_players_array = _all_players_array + [_x];
+		// Set number of days to skip to force a certain moon phase
+        // Values are days in July 2035 with each moon phase
+		_day = if (_param_moon_phase == _RANDOMIZE) then {
+			[5, 9, 12, 15, 20] call BIS_fnc_selectRandom;
+		} else {
+			[5, 9, 12, 15, 20] select _param_moon_phase;
 		};
-	} forEach allDeadMen;
-	_player_count = count _all_players_array;
 
-	_enemy_strength = [_player_count, (ceil (_player_count * 1.5)), (_player_count * 2)] select _param_enemy_strength;
+		// Set numbers of hours to skip to force a certain time of day
+		_time = if (_param_time == _RANDOMIZE) then {
+			random 24;
+		} else {
+			_param_time;
+		};
 
-	[_area_marker, east, _enemy_faction, _enemy_strength, west] call _fnc_tangoHunt;
+		// Set weather values
+		[_param_weather, _time] call _fnc_setWeather;
+		[(24 * _day) + _time, true, false] call BIS_fnc_setDate;
 
-	// Export variables used for client-local commands
-	["mission_day",         _day        ] call _fnc_exportToPublicMissionNamespace;
-	["mission_time",        _time       ] call _fnc_exportToPublicMissionNamespace;
-	["mission_overcast",    _overcast   ] call _fnc_exportToPublicMissionNamespace;
-	["mission_rain",        _rain       ] call _fnc_exportToPublicMissionNamespace;
-	["mission_fog",         _fog        ] call _fnc_exportToPublicMissionNamespace;
-	["mission_area_marker", _area_marker] call _fnc_exportToPublicMissionNamespace;
+		// Random area selection
+		_area_location = [] call _fnc_randomizeEnemyLocation;
+		_area_marker = createMarker ["enemy_area", [position _area_location select 0, position _area_location select 1]];
+		_area_marker setMarkerSize (size _area_location);
 
-	// Set flag for clients to continue
-	["mission_tangohunt_init", true] call _fnc_exportToPublicMissionNamespace;
+		// Create objective marker and set symbology
+		createMarker ["task_marker", (getMarkerPos _area_marker)];
+		"task_marker" setMarkerShape "ICON";
+		"task_marker" setMarkerType "mil_objective";
+		"task_marker" setMarkerColor "ColorRed";
 
-	true;
+		// Create insertion marker and set symbology
+		_insertion_marker_position = [getMarkerPos _area_marker] call _fnc_randomizePlayerPosition;
+		_insertion_marker = createMarker ["player_start", _insertion_marker_position];
+		_insertion_marker setMarkerShape "ICON";
+		_insertion_marker setMarkerType "mil_start";
+		_insertion_marker setMarkerColor "ColorBlue";
+
+		// Set the spawn location
+		"respawn_west" setMarkerPos (getMarkerPos _insertion_marker);
+
+		// Enemy faction lookup
+		_enemy_faction = ["CSAT", "AAF", "FIA"] select _param_enemy_faction;
+
+		// Get all playable units for enemy strength auto-balance
+		// We have to check dead units as well since players start out in the respawn menu
+		_all_players_array = playableUnits;
+		{
+			if (isPlayer _x) then {
+				_all_players_array = _all_players_array + [_x];
+			};
+		} forEach allDeadMen;
+		_player_count = count _all_players_array;
+
+		_enemy_strength = [_player_count, (ceil (_player_count * 1.5)), (_player_count * 2)] select _param_enemy_strength;
+
+		[_area_marker, east, _enemy_faction, _enemy_strength, west] call _fnc_tangoHunt;
+
+		// Export variables used for client-local commands
+		["mission_area_marker", _area_marker] call _fnc_exportToPublicMissionNamespace;
+
+		// Set flag for clients to continue
+		["mission_tangohunt_init", true] call _fnc_exportToPublicMissionNamespace;
+
+		true;
+	} else {
+		false;
+	};
 };
 
 _fnc_main = {
@@ -246,21 +223,10 @@ _fnc_main = {
 		[west, "NatoDesignatedMarksman" ] call BIS_fnc_addRespawnInventory;
 		[west, "NatoAntiarmor"          ] call BIS_fnc_addRespawnInventory;
 		[west, "NatoMedic"              ] call BIS_fnc_addRespawnInventory;
-		[west, "NatoRecon"              ] call BIS_fnc_addRespawnInventory;
-		[west, "NatoExplosive"          ] call BIS_fnc_addRespawnInventory;
 	};
 
 	// Retreive variables calculated on the server
-	_day              = missionNamespace getVariable "mission_day";
-	_time             = missionNamespace getVariable "mission_time";
-	_overcast         = missionNamespace getVariable "mission_overcast";
-	_rain             = missionNamespace getVariable "mission_rain";
-	_fog              = missionNamespace getVariable "mission_fog";
 	_area_marker      = missionNamespace getVariable "mission_area_marker";
-
-	// Initialize weather, date and time on each client
-	[_overcast, _rain, _fog] call _fnc_setWeather;
-	skipTime ((24 * _day) + _time);
 
 	// Create task for objective
 	[player, "task_objective", [
