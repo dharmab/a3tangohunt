@@ -223,8 +223,6 @@ _fnc_main = {
 		[west, "NatoDesignatedMarksman" ] call BIS_fnc_addRespawnInventory;
 		[west, "NatoAntiarmor"          ] call BIS_fnc_addRespawnInventory;
 		[west, "NatoMedic"              ] call BIS_fnc_addRespawnInventory;
-		[west, "NatoRecon"              ] call BIS_fnc_addRespawnInventory;
-		[west, "NatoExplosive"          ] call BIS_fnc_addRespawnInventory;
 	};
 
 	// Retreive variables calculated on the server

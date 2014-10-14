@@ -212,44 +212,6 @@ class CfgRespawnInventory
         uniformClass = "U_B_CombatUniform_mcam";
         backpack = "B_Kitbag_mcamo";
     };
-    class NatoRecon
-    {
-        displayName = "Recon Sniper";
-        icon = "\A3\Weapons_F\LongRangeRifles\GM6\Data\UI\gear_gm6_X_CA.paa";
-        weapons[] = {
-            "srifle_GM6_F",
-            "hgun_Rook40_snds_F",
-            "Binocular"
-        };
-        magazines[] = {
-            "5Rnd_127x108_Mag",
-            "5Rnd_127x108_Mag",
-            "5Rnd_127x108_Mag",
-            "5Rnd_127x108_Mag",
-            "5Rnd_127x108_Mag",
-            "5Rnd_127x108_Mag",
-            "5Rnd_127x108_Mag",
-            
-            "16Rnd_9x21_Mag",
-            "16Rnd_9x21_Mag",
-
-            "HandGrenade",
-            "SmokeShell"
-        };
-        linkedItems[] = {
-            "V_BandollierB_rgr",
-            "optic_Nightstalker",
-            "acc_pointer_IR",
-            "NVGoggles",
-            "B_UavTerminal",
-            "ItemMap",
-            "ItemCompass",
-            "ItemWatch",
-            "ItemRadio"
-        };
-        uniformClass = "U_B_CombatUniform_mcam_vest";
-        backpack = "B_UAV_01_backpack_F";
-    };
     class NatoAntiarmor
     {
         displayName = "Antiarmor Specialist";
@@ -283,54 +245,6 @@ class CfgRespawnInventory
         linkedItems[] = {
             "V_PlateCarrier2_rgr",
             "H_HelmetB_light",
-            "optic_ACO",
-            "acc_pointer_IR",
-            "NVGoggles",
-            "ItemMap",
-            "ItemCompass",
-            "ItemWatch",
-            "ItemRadio"
-        };
-        uniformClass = "U_B_CombatUniform_mcam";
-        backpack = "B_Kitbag_mcamo";
-    };
-    class NatoExplosive
-    {
-        displayName = "Combat Engineer";
-        icon = "\A3\weapons_F_EPB\Rifles\MX_Black\Data\UI\gear_mx_cqc_black_X_CA.paa";
-        weapons[] = {
-            "arifle_MXC_Black_F",
-            "hgun_Rook40_F",
-            "Binocular"
-        };
-        magazines[] = {
-            "30Rnd_65x39_caseless_mag",
-            "30Rnd_65x39_caseless_mag",
-            "30Rnd_65x39_caseless_mag",
-            "30Rnd_65x39_caseless_mag",
-            "30Rnd_65x39_caseless_mag",
-            "30Rnd_65x39_caseless_mag",
-            "30Rnd_65x39_caseless_mag",
-            
-            "16Rnd_9x21_Mag",
-            "16Rnd_9x21_Mag",
-
-            "ClaymoreDirectionalMine_Remote_Mag",
-            "ClaymoreDirectionalMine_Remote_Mag",
-            "ClaymoreDirectionalMine_Remote_Mag",
-            "ClaymoreDirectionalMine_Remote_Mag",
-
-            "SatchelCharge_Remote_Mag", 
-
-            "HandGrenade",
-            "SmokeShell"
-        };
-        items[] = {
-            "FirstAidKit"
-        };
-        linkedItems[] = {
-            "V_PlateCarrier2_rgr",
-            "H_HelmetB",
             "optic_ACO",
             "acc_pointer_IR",
             "NVGoggles",
