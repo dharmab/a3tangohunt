@@ -48,7 +48,7 @@ _fnc_setWeather = {
 	[_overcast] call BIS_fnc_setOvercast;
 	[_fog, _fog, 0] call BIS_fnc_setFog;
 
-	_fnc_setRain = compile (format ["86400 setRain %1", _rain]);
+	_fnc_setRain = compile (format ["86400 setRain %1; skipTime 24; skipTime -24;", _rain]);
 	[_fnc_setRain, "BIS_fnc_spawn", true, true] call BIS_fnc_MP;
 
 	forceWeatherChange;
