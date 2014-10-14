@@ -69,7 +69,7 @@ _fnc_uavScan = {
 	            
 	            _marker = createMarker [_marker_name, _marker_position];
 	            _marker_name setMarkerShape "ICON";
-	            _marker_name setMarkerType "hd_dot";
+	            _marker_name setMarkerType "mil_dot_noshadow";
 	            _marker_name setMarkerColor "ColorRed";
 
 	            _marker_names = _marker_names + [_marker_name];
