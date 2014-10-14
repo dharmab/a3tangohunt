@@ -10,7 +10,8 @@ class Mission
 		"A3_Characters_F_Gamma",
 		"a3_uav_f_characters_f_gamma",
 		"A3_Modules_F_Intel",
-		"a3_characters_f"
+		"a3_characters_f",
+		"A3_Modules_F"
 	};
 	addOnsAuto[]=
 	{
@@ -18,6 +19,7 @@ class Mission
 		"a3_characters_f",
 		"A3_Modules_F_GroupModifiers",
 		"A3_Modules_F_HC",
+		"A3_Modules_F",
 		"a3_map_altis"
 	};
 	randomSeed=652662;
@@ -524,7 +526,7 @@ class Mission
 			side="LOGIC";
 			class Vehicles
 			{
-				items=1;
+				items=2;
 				class Item0
 				{
 					position[]={14776.835,17.91,16791.365};
@@ -536,6 +538,16 @@ class Mission
 					skill=0.60000002;
 					syncId=11;
 					synchronizations[]={3,8};
+				};
+				class Item1
+				{
+					position[]={14790.563,17.91,16802.283};
+					id=23;
+					side="LOGIC";
+					vehicle="Logic";
+					skill=0.60000002;
+					text="uav_scan_logic";
+					init="0 = [20, 5] execVM ""uavScan.sqf"";";
 				};
 			};
 		};

@@ -54,6 +54,13 @@ class Params
         texts[]  = {"Random", "Clear", "Partly Cloudy", "Cloudy", "Raining", "Thunderstorm"};
         default  = -1;
     };
+    class Uav
+    {
+        title    = "UAV Scan Mode";
+        values[] = {0, 1, 2};
+        texts[]  = {"Disabled", "Intermittent", "Real Time"};
+        default  = 1;
+    };
 };
 class CfgRespawnInventory
 {
