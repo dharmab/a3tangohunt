@@ -404,7 +404,7 @@ class CfgDebriefing
     };
     class SinglePlayer
     {
-        title = "Multiplayer Only";
+        title       = "Multiplayer Only";
         description = "This mission is not singleplayer-compatible. If you would like to play by yourself, host a multiplayer LAN session."
     };
 };
