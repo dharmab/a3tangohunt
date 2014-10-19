@@ -46,7 +46,7 @@ class Mission
 	};
 	class Groups
 	{
-		items=12;
+		items=13;
 		class Item0
 		{
 			side="WEST";
@@ -551,6 +551,25 @@ class Mission
 				};
 			};
 		};
+		class Item12
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={14805.084,17.91,16800.83};
+					id=24;
+					side="LOGIC";
+					vehicle="Logic";
+					leader=1;
+					skill=0.60000002;
+					text="end_condition_logic";
+					init="0 = [] execVM ""endCondition.sqf"";";
+				};
+			};
+		};
 	};
 	class Markers
 	{
@@ -560,6 +579,23 @@ class Mission
 			position[]={14771.744,17.91,16827.846};
 			name="respawn_west";
 			type="Empty";
+		};
+	};
+	class Sensors
+	{
+		items=1;
+		class Item0
+		{
+			position[]={0.91458035,0.0023879991,-1.3209229};
+			a=200;
+			b=200;
+			rectangular=1;
+			interruptable=1;
+			age="UNKNOWN";
+			name="spectate_area";
+			class Effects
+			{
+			};
 		};
 	};
 };

@@ -39,7 +39,6 @@ if (!_exit_flag) then {
 	waitUntil {missionNamespace getVariable "mission_tangohunt_init";};
 
 	waitUntil {
-		_mission_end = true;
 		{
 			deleteMarker _x;
 			_marker_names = _marker_names - [_x];
@@ -47,7 +46,6 @@ if (!_exit_flag) then {
 
 		{
 			if (alive _x && side _x == east) then {
-				_mission_end = false;
 				_marker_name = format ["uav_scan_%1", _marker_id_sequence];
 				_marker_id_sequence = _marker_id_sequence + 1;
 
@@ -63,8 +61,6 @@ if (!_exit_flag) then {
 		} forEach allUnits;
 
 		sleep _uav_scan_interval;
-		_mission_end;
+		true;
 	};
-
-	["Victory", true, true] call BIS_fnc_endMission;
 };
