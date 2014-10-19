@@ -218,6 +218,7 @@ _fnc_main = {
 	// Add loadouts from description.ext
 	if ([getMarkerPos "respawn_west"] call _fnc_isPositionInWater) then {
 		[west, "NatoDiver"              ] call BIS_fnc_addRespawnInventory;
+		[west, "NatoDiverMedic"         ] call BIS_fnc_addRespawnInventory;
 	} else {
 		[west, "NatoGrenadier"          ] call BIS_fnc_addRespawnInventory;
 		[west, "NatoAutomaticRifleman"  ] call BIS_fnc_addRespawnInventory;

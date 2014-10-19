@@ -348,6 +348,44 @@ class CfgRespawnInventory
         };
         uniformClass = "U_B_Wetsuit";
     };
+    class NatoDiverMedic
+    {
+        displayName = "Combat Diver";
+        icon = "\A3\Weapons_F\Data\UI\icon_scuba_CA.paa";
+        weapons[] = {
+            "arifle_SDAR_F"
+        };
+        magazines[] = {
+            "20Rnd_556x45_UW_mag",
+            "20Rnd_556x45_UW_mag",
+            "20Rnd_556x45_UW_mag",
+            "20Rnd_556x45_UW_mag",
+
+            "SmokeShell",
+            "SmokeShell",
+            "SmokeShell",
+
+            "Chemlight_green",
+            "Chemlight_green"
+        };
+        items[] = {
+            "FirstAidKit",
+            "FirstAidKit",
+            "FirstAidKit",
+            "Medikit"
+        };
+        linkedItems[] = {
+            "V_RebreatherB",
+            "G_B_Diving",
+            "NVGoggles_OPFOR";
+            "ItemMap",
+            "ItemCompass",
+            "ItemWatch",
+            "ItemRadio",
+            "ItemGPS"
+        };
+        uniformClass = "U_B_Wetsuit";
+    };
 };
 class CfgDebriefing
 {  
