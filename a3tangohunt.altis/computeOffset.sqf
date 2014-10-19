@@ -5,7 +5,7 @@ _param_angle = _this select 2;
 // Sanitize angle
 _angle = _param_angle % 360;
 if (_angle < 0) then {
-    _angle = 360 + _angle;
+	_angle = 360 + _angle;
 };
 
 // use the quadrant and angle to determine ratio and sign of x and y offsets
@@ -13,20 +13,20 @@ _x_offset_direction = 1;
 _y_offset_direction = 1;
 _x_to_y_ratio = 0.0;
 if (0 <= _angle && _angle < 90) then {
-    _x_to_y_ratio = _angle / 90;
+	_x_to_y_ratio = _angle / 90;
 };
 if (90 <= _angle && _angle < 180) then {
-    _x_to_y_ratio = 1 - ((_angle - 90) / 90);
-    _y_offset_direction = -1;
+	_x_to_y_ratio = 1 - ((_angle - 90) / 90);
+	_y_offset_direction = -1;
 };
 if (180 <= _angle && _angle < 270) then {
-    _x_to_y_ratio = (_angle - 180) / 90;
-    _x_offset_direction = -1;
-    _y_offset_direction = -1;
+	_x_to_y_ratio = (_angle - 180) / 90;
+	_x_offset_direction = -1;
+	_y_offset_direction = -1;
 };
 if (270 <= _angle && _angle < 360) then {
-    _x_to_y_ratio = 1 - ((_angle - 270) / 90);
-    _x_offset_direction = -1;
+	_x_to_y_ratio = 1 - ((_angle - 270) / 90);
+	_x_offset_direction = -1;
 };
 
 // The square of the hypotenuse (distance from origin) equals the sum of the squares

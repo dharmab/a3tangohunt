@@ -127,7 +127,7 @@ _fnc_serverInit = {
 		_param_weather = ["Weather", _RANDOMIZE] call BIS_fnc_getParamValue;
 
 		// Set number of days to skip to force a certain moon phase
-        // Values are days in July 2035 with each moon phase
+		// Values are days in July 2035 with each moon phase
 		_day = if (_param_moon_phase == _RANDOMIZE) then {
 			[5, 9, 12, 15, 20] call BIS_fnc_selectRandom;
 		} else {

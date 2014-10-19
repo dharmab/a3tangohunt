@@ -14,405 +14,405 @@ disabledAI = 1;
 allowSubordinatesTakeWeapons = 1;
 class Header
 {
-    gameType = Coop;
+	gameType = Coop;
 };
 class Params
 {
-    class Faction
-    {
-        title    = "Enemy Faction";
-        values[] = {0, 1, 2};
-        texts[]  = {"CSAT", "AAF", "FIA"};
-        default  = 0;
-    };
-    class Difficulty
-    {
-        title    = "Enemy Scaling";
-        values[] = {0, 1, 2};
-        texts[]  = {"Low", "Moderate", "High"};
-        default  = 1;
-    };
-    class Time
-    {
-        title    = "Time of Day";
-        // Values are hours in day
-        values[] = {-1, 0, 6, 9, 12, 15, 18};
-        texts[]  = {"Random", "Midnight", "Dawn", "Morning", "Noon", "Afternoon", "Evening"};
-        default  = -1;
-    };
-    class Moon
-    {
-        title    = "Phase of Moon";
-        values[] = {-1, 0, 1, 2, 3, 4};
-        texts[]  = {"Random", "New", "Crescent", "Quarter", "Gibbous", "Full"};
-        default  = -1;
-    };
-    class Weather
-    {
-        title    = "Weather Conditions";
-        values[] = {-1, 0, 1, 2, 3, 4};
-        texts[]  = {"Random", "Clear", "Partly Cloudy", "Cloudy", "Raining", "Thunderstorm"};
-        default  = -1;
-    };
-    class Uav
-    {
-        title    = "UAV Scan Mode";
-        values[] = {0, 1, 2};
-        texts[]  = {"Disabled", "Intermittent", "Real Time"};
-        default  = 1;
-    };
-    class Underwater
-    {
-        title    = "Allow Underwater Insertion";
-        values[] = {0, 1};
-        texts[]  = {"Disabled", "Enabled"};
-        default  = 1;
-    };
+	class Faction
+	{
+		title    = "Enemy Faction";
+		values[] = {0, 1, 2};
+		texts[]  = {"CSAT", "AAF", "FIA"};
+		default  = 0;
+	};
+	class Difficulty
+	{
+		title    = "Enemy Scaling";
+		values[] = {0, 1, 2};
+		texts[]  = {"Low", "Moderate", "High"};
+		default  = 1;
+	};
+	class Time
+	{
+		title    = "Time of Day";
+		// Values are hours in day
+		values[] = {-1, 0, 6, 9, 12, 15, 18};
+		texts[]  = {"Random", "Midnight", "Dawn", "Morning", "Noon", "Afternoon", "Evening"};
+		default  = -1;
+	};
+	class Moon
+	{
+		title    = "Phase of Moon";
+		values[] = {-1, 0, 1, 2, 3, 4};
+		texts[]  = {"Random", "New", "Crescent", "Quarter", "Gibbous", "Full"};
+		default  = -1;
+	};
+	class Weather
+	{
+		title    = "Weather Conditions";
+		values[] = {-1, 0, 1, 2, 3, 4};
+		texts[]  = {"Random", "Clear", "Partly Cloudy", "Cloudy", "Raining", "Thunderstorm"};
+		default  = -1;
+	};
+	class Uav
+	{
+		title    = "UAV Scan Mode";
+		values[] = {0, 1, 2};
+		texts[]  = {"Disabled", "Intermittent", "Real Time"};
+		default  = 1;
+	};
+	class Underwater
+	{
+		title    = "Allow Underwater Insertion";
+		values[] = {0, 1};
+		texts[]  = {"Disabled", "Enabled"};
+		default  = 1;
+	};
 };
 class CfgRespawnInventory
 {
-    class NatoGrenadier
-    {
-        displayName = "Grenadier";
-        icon = "\A3\weapons_F_EPB\Rifles\MX_Black\Data\UI\gear_mx_rifle_gl_black_X_CA.paa";
-        weapons[] = {
-            "arifle_MX_GL_Black_F",
-            "hgun_Rook40_F",
-            "Binocular"
-        };
+	class NatoGrenadier
+	{
+		displayName = "Grenadier";
+		icon = "\A3\weapons_F_EPB\Rifles\MX_Black\Data\UI\gear_mx_rifle_gl_black_X_CA.paa";
+		weapons[] = {
+			"arifle_MX_GL_Black_F",
+			"hgun_Rook40_F",
+			"Binocular"
+		};
 
-        magazines[] = {
-            "30Rnd_65x39_caseless_mag",
-            "30Rnd_65x39_caseless_mag",
-            "30Rnd_65x39_caseless_mag",
-            "30Rnd_65x39_caseless_mag",
-            "30Rnd_65x39_caseless_mag",
-            "30Rnd_65x39_caseless_mag",
-            "30Rnd_65x39_caseless_mag",
+		magazines[] = {
+			"30Rnd_65x39_caseless_mag",
+			"30Rnd_65x39_caseless_mag",
+			"30Rnd_65x39_caseless_mag",
+			"30Rnd_65x39_caseless_mag",
+			"30Rnd_65x39_caseless_mag",
+			"30Rnd_65x39_caseless_mag",
+			"30Rnd_65x39_caseless_mag",
 
-            "16Rnd_9x21_Mag",
-            "16Rnd_9x21_Mag",
+			"16Rnd_9x21_Mag",
+			"16Rnd_9x21_Mag",
 
-            "1Rnd_HE_Grenade_shell",
-            "1Rnd_HE_Grenade_shell",
-            "1Rnd_HE_Grenade_shell",
-            "1Rnd_HE_Grenade_shell",
-            "1Rnd_HE_Grenade_shell",
-            "1Rnd_HE_Grenade_shell",
-            "1Rnd_HE_Grenade_shell",
-            "1Rnd_HE_Grenade_shell",
-            "1Rnd_HE_Grenade_shell",
-            "1Rnd_HE_Grenade_shell",
-            "1Rnd_HE_Grenade_shell",
-            "1Rnd_HE_Grenade_shell",
-            "1Rnd_HE_Grenade_shell",
-            "1Rnd_HE_Grenade_shell",
-            "1Rnd_HE_Grenade_shell",
-            "1Rnd_HE_Grenade_shell",
-            "1Rnd_HE_Grenade_shell",
-            "1Rnd_HE_Grenade_shell",
+			"1Rnd_HE_Grenade_shell",
+			"1Rnd_HE_Grenade_shell",
+			"1Rnd_HE_Grenade_shell",
+			"1Rnd_HE_Grenade_shell",
+			"1Rnd_HE_Grenade_shell",
+			"1Rnd_HE_Grenade_shell",
+			"1Rnd_HE_Grenade_shell",
+			"1Rnd_HE_Grenade_shell",
+			"1Rnd_HE_Grenade_shell",
+			"1Rnd_HE_Grenade_shell",
+			"1Rnd_HE_Grenade_shell",
+			"1Rnd_HE_Grenade_shell",
+			"1Rnd_HE_Grenade_shell",
+			"1Rnd_HE_Grenade_shell",
+			"1Rnd_HE_Grenade_shell",
+			"1Rnd_HE_Grenade_shell",
+			"1Rnd_HE_Grenade_shell",
+			"1Rnd_HE_Grenade_shell",
 
-            "1Rnd_Smoke_Grenade_shell",
-            "1Rnd_Smoke_Grenade_shell",
-            "1Rnd_Smoke_Grenade_shell",
-            "1Rnd_Smoke_Grenade_shell",
+			"1Rnd_Smoke_Grenade_shell",
+			"1Rnd_Smoke_Grenade_shell",
+			"1Rnd_Smoke_Grenade_shell",
+			"1Rnd_Smoke_Grenade_shell",
 
-            "UGL_FlareGreen_F",
-            "UGL_FlareGreen_F",
+			"UGL_FlareGreen_F",
+			"UGL_FlareGreen_F",
 
-            "HandGrenade",
-            "SmokeShell"
-        };
-        items[] = {
-            "FirstAidKit"
-        };
-        linkedItems[] = {
-            "V_PlateCarrierGL_rgr",
-            "H_HelmetB_light",
-            "optic_ACO",
-            "acc_pointer_IR",
-            "NVGoggles",
-            "ItemMap",
-            "ItemCompass",
-            "ItemWatch",
-            "ItemRadio"
-        };
-        uniformClass = "U_B_CombatUniform_mcam";
-        backpack = "B_Kitbag_mcamo";
-    };
-    class NatoAutomaticRifleman
-    {
-        displayName = "Automatic Rifleman";
-        icon = "\A3\weapons_F\Machineguns\M200\Data\UI\gear_m200_X_CA.paa";
-        weapons[] = {
-            "LMG_Mk200_MRCO_F",
-            "hgun_Rook40_F",
-            "Binocular"
-        };
-        magazines[] = {
-            "200Rnd_65x39_cased_Box",
-            "200Rnd_65x39_cased_Box",
-            "200Rnd_65x39_cased_Box",
-            "200Rnd_65x39_cased_Box",
-            
-            "16Rnd_9x21_Mag",
-            "16Rnd_9x21_Mag",
+			"HandGrenade",
+			"SmokeShell"
+		};
+		items[] = {
+			"FirstAidKit"
+		};
+		linkedItems[] = {
+			"V_PlateCarrierGL_rgr",
+			"H_HelmetB_light",
+			"optic_ACO",
+			"acc_pointer_IR",
+			"NVGoggles",
+			"ItemMap",
+			"ItemCompass",
+			"ItemWatch",
+			"ItemRadio"
+		};
+		uniformClass = "U_B_CombatUniform_mcam";
+		backpack = "B_Kitbag_mcamo";
+	};
+	class NatoAutomaticRifleman
+	{
+		displayName = "Automatic Rifleman";
+		icon = "\A3\weapons_F\Machineguns\M200\Data\UI\gear_m200_X_CA.paa";
+		weapons[] = {
+			"LMG_Mk200_MRCO_F",
+			"hgun_Rook40_F",
+			"Binocular"
+		};
+		magazines[] = {
+			"200Rnd_65x39_cased_Box",
+			"200Rnd_65x39_cased_Box",
+			"200Rnd_65x39_cased_Box",
+			"200Rnd_65x39_cased_Box",
+			
+			"16Rnd_9x21_Mag",
+			"16Rnd_9x21_Mag",
 
-            "HandGrenade",
-            "SmokeShell"
-        };
-        items[] = {
-            "FirstAidKit"
-        };
-        linkedItems[] = {
-            "V_PlateCarrier2_rgr",
-            "H_HelmetB_light",
-            "optic_ACO",
-            "acc_pointer_IR",
-            "NVGoggles",
-            "ItemMap",
-            "ItemCompass",
-            "ItemWatch",
-            "ItemRadio"
-        };
-        uniformClass = "U_B_CombatUniform_mcam";
-        backpack = "B_Kitbag_mcamo";
-    };
-    class NatoDesignatedMarksman
-    {
-        displayName = "Designated Marksman";
-        icon = "\A3\weapons_F_EPB\Rifles\MX_Black\Data\UI\gear_mx_dmr_black_X_CA.paa";
-        weapons[] = {
-            "arifle_MXM_Black_F",
-            "hgun_Rook40_F",
-            "Binocular"
-        };
-        magazines[] = {
-            "30Rnd_65x39_caseless_mag",
-            "30Rnd_65x39_caseless_mag",
-            "30Rnd_65x39_caseless_mag",
-            "30Rnd_65x39_caseless_mag",
-            "30Rnd_65x39_caseless_mag",
-            "30Rnd_65x39_caseless_mag",
-            "30Rnd_65x39_caseless_mag",
-            
-            "16Rnd_9x21_Mag",
-            "16Rnd_9x21_Mag",
+			"HandGrenade",
+			"SmokeShell"
+		};
+		items[] = {
+			"FirstAidKit"
+		};
+		linkedItems[] = {
+			"V_PlateCarrier2_rgr",
+			"H_HelmetB_light",
+			"optic_ACO",
+			"acc_pointer_IR",
+			"NVGoggles",
+			"ItemMap",
+			"ItemCompass",
+			"ItemWatch",
+			"ItemRadio"
+		};
+		uniformClass = "U_B_CombatUniform_mcam";
+		backpack = "B_Kitbag_mcamo";
+	};
+	class NatoDesignatedMarksman
+	{
+		displayName = "Designated Marksman";
+		icon = "\A3\weapons_F_EPB\Rifles\MX_Black\Data\UI\gear_mx_dmr_black_X_CA.paa";
+		weapons[] = {
+			"arifle_MXM_Black_F",
+			"hgun_Rook40_F",
+			"Binocular"
+		};
+		magazines[] = {
+			"30Rnd_65x39_caseless_mag",
+			"30Rnd_65x39_caseless_mag",
+			"30Rnd_65x39_caseless_mag",
+			"30Rnd_65x39_caseless_mag",
+			"30Rnd_65x39_caseless_mag",
+			"30Rnd_65x39_caseless_mag",
+			"30Rnd_65x39_caseless_mag",
+			
+			"16Rnd_9x21_Mag",
+			"16Rnd_9x21_Mag",
 
-            "HandGrenade",
-            "SmokeShell"
-        };
-        items[] = {
-            "FirstAidKit"
-        };
-        linkedItems[] = {
-            "V_PlateCarrier2_rgr",
-            "H_HelmetB_light",
-            "optic_Hamr",
-            "acc_pointer_IR",
-            "NVGoggles",
-            "ItemMap",
-            "ItemCompass",
-            "ItemWatch",
-            "ItemRadio"
-        };
-        uniformClass = "U_B_CombatUniform_mcam";
-        backpack = "B_Kitbag_mcamo";
-    };
-    class NatoAntiarmor
-    {
-        displayName = "Antiarmor Specialist";
-        icon = "\A3\weapons_F_EPB\Rifles\MX_Black\Data\UI\gear_mx_rifle_black_X_CA.paa";
-        weapons[] = {
-            "arifle_MX_Black_F",
-            "hgun_Rook40_F",
-            "launch_NLAW_F",
-            "Binocular"
-        };
-        magazines[] = {
-            "30Rnd_65x39_caseless_mag",
-            "30Rnd_65x39_caseless_mag",
-            "30Rnd_65x39_caseless_mag",
-            "30Rnd_65x39_caseless_mag",
-            "30Rnd_65x39_caseless_mag",
-            "30Rnd_65x39_caseless_mag",
-            "30Rnd_65x39_caseless_mag",
-            
-            "16Rnd_9x21_Mag",
-            "16Rnd_9x21_Mag",
+			"HandGrenade",
+			"SmokeShell"
+		};
+		items[] = {
+			"FirstAidKit"
+		};
+		linkedItems[] = {
+			"V_PlateCarrier2_rgr",
+			"H_HelmetB_light",
+			"optic_Hamr",
+			"acc_pointer_IR",
+			"NVGoggles",
+			"ItemMap",
+			"ItemCompass",
+			"ItemWatch",
+			"ItemRadio"
+		};
+		uniformClass = "U_B_CombatUniform_mcam";
+		backpack = "B_Kitbag_mcamo";
+	};
+	class NatoAntiarmor
+	{
+		displayName = "Antiarmor Specialist";
+		icon = "\A3\weapons_F_EPB\Rifles\MX_Black\Data\UI\gear_mx_rifle_black_X_CA.paa";
+		weapons[] = {
+			"arifle_MX_Black_F",
+			"hgun_Rook40_F",
+			"launch_NLAW_F",
+			"Binocular"
+		};
+		magazines[] = {
+			"30Rnd_65x39_caseless_mag",
+			"30Rnd_65x39_caseless_mag",
+			"30Rnd_65x39_caseless_mag",
+			"30Rnd_65x39_caseless_mag",
+			"30Rnd_65x39_caseless_mag",
+			"30Rnd_65x39_caseless_mag",
+			"30Rnd_65x39_caseless_mag",
+			
+			"16Rnd_9x21_Mag",
+			"16Rnd_9x21_Mag",
 
-            "NLAW_F",
-            
-            "HandGrenade",
-            "SmokeShell"
-        };
-        items[] = {
-            "FirstAidKit"
-        };
-        linkedItems[] = {
-            "V_PlateCarrier2_rgr",
-            "H_HelmetB_light",
-            "optic_ACO",
-            "acc_pointer_IR",
-            "NVGoggles",
-            "ItemMap",
-            "ItemCompass",
-            "ItemWatch",
-            "ItemRadio"
-        };
-        uniformClass = "U_B_CombatUniform_mcam";
-        backpack = "B_Kitbag_mcamo";
-    };
-    class NatoMedic
-    {
-        displayName = "Combat Medic";
-        icon = "\A3\weapons_F_EPB\Rifles\MX_Black\Data\UI\gear_mx_cqc_black_X_CA.paa";
-        weapons[] = {
-            "arifle_MXC_Black_F",
-            "hgun_Rook40_F",
-            "Binocular"
-        };
-        magazines[] = {
-            "30Rnd_65x39_caseless_mag",
-            "30Rnd_65x39_caseless_mag",
-            "30Rnd_65x39_caseless_mag",
-            "30Rnd_65x39_caseless_mag",
-            "30Rnd_65x39_caseless_mag",
-            "30Rnd_65x39_caseless_mag",
-            "30Rnd_65x39_caseless_mag",
-            
-            "16Rnd_9x21_Mag",
-            "16Rnd_9x21_Mag",
-            
-            "SmokeShell",
-            "SmokeShell"
-        };
-        items[] = {
-            "FirstAidKit",
-            "FirstAidKit",
-            "FirstAidKit",
-            "Medikit"
-        };
-        linkedItems[] = {
-            "V_PlateCarrier2_rgr",
-            "H_HelmetB_light",
-            "optic_ACO",
-            "acc_pointer_IR",
-            "NVGoggles",
-            "ItemMap",
-            "ItemCompass",
-            "ItemWatch",
-            "ItemRadio"
-        };
-        uniformClass = "U_B_CombatUniform_mcam";
-        backpack = "B_Kitbag_mcamo";
-    };
-    class NatoDiver
-    {
-        displayName = "Combat Diver (Assault)";
-        icon = "\A3\Weapons_F\Data\UI\icon_scuba_CA.paa";
-        weapons[] = {
-            "arifle_SDAR_F"
-        };
-        magazines[] = {
-            "20Rnd_556x45_UW_mag",
-            "20Rnd_556x45_UW_mag",
-            "20Rnd_556x45_UW_mag",
-            "20Rnd_556x45_UW_mag",
-            "20Rnd_556x45_UW_mag",
-            "20Rnd_556x45_UW_mag",
-            
-            "MiniGrenade",
-            "MiniGrenade",
-            "MiniGrenade",
+			"NLAW_F",
+			
+			"HandGrenade",
+			"SmokeShell"
+		};
+		items[] = {
+			"FirstAidKit"
+		};
+		linkedItems[] = {
+			"V_PlateCarrier2_rgr",
+			"H_HelmetB_light",
+			"optic_ACO",
+			"acc_pointer_IR",
+			"NVGoggles",
+			"ItemMap",
+			"ItemCompass",
+			"ItemWatch",
+			"ItemRadio"
+		};
+		uniformClass = "U_B_CombatUniform_mcam";
+		backpack = "B_Kitbag_mcamo";
+	};
+	class NatoMedic
+	{
+		displayName = "Combat Medic";
+		icon = "\A3\weapons_F_EPB\Rifles\MX_Black\Data\UI\gear_mx_cqc_black_X_CA.paa";
+		weapons[] = {
+			"arifle_MXC_Black_F",
+			"hgun_Rook40_F",
+			"Binocular"
+		};
+		magazines[] = {
+			"30Rnd_65x39_caseless_mag",
+			"30Rnd_65x39_caseless_mag",
+			"30Rnd_65x39_caseless_mag",
+			"30Rnd_65x39_caseless_mag",
+			"30Rnd_65x39_caseless_mag",
+			"30Rnd_65x39_caseless_mag",
+			"30Rnd_65x39_caseless_mag",
+			
+			"16Rnd_9x21_Mag",
+			"16Rnd_9x21_Mag",
+			
+			"SmokeShell",
+			"SmokeShell"
+		};
+		items[] = {
+			"FirstAidKit",
+			"FirstAidKit",
+			"FirstAidKit",
+			"Medikit"
+		};
+		linkedItems[] = {
+			"V_PlateCarrier2_rgr",
+			"H_HelmetB_light",
+			"optic_ACO",
+			"acc_pointer_IR",
+			"NVGoggles",
+			"ItemMap",
+			"ItemCompass",
+			"ItemWatch",
+			"ItemRadio"
+		};
+		uniformClass = "U_B_CombatUniform_mcam";
+		backpack = "B_Kitbag_mcamo";
+	};
+	class NatoDiver
+	{
+		displayName = "Combat Diver (Assault)";
+		icon = "\A3\Weapons_F\Data\UI\icon_scuba_CA.paa";
+		weapons[] = {
+			"arifle_SDAR_F"
+		};
+		magazines[] = {
+			"20Rnd_556x45_UW_mag",
+			"20Rnd_556x45_UW_mag",
+			"20Rnd_556x45_UW_mag",
+			"20Rnd_556x45_UW_mag",
+			"20Rnd_556x45_UW_mag",
+			"20Rnd_556x45_UW_mag",
+			
+			"MiniGrenade",
+			"MiniGrenade",
+			"MiniGrenade",
 
-            "SmokeShell",
-            "SmokeShell",
-            "SmokeShell",
+			"SmokeShell",
+			"SmokeShell",
+			"SmokeShell",
 
-            "Chemlight_green",
-            "Chemlight_green"
-        };
-        items[] = {
-            "FirstAidKit"
-        };
-        linkedItems[] = {
-            "V_RebreatherB",
-            "G_B_Diving",
-            "NVGoggles_OPFOR";
-            "ItemMap",
-            "ItemCompass",
-            "ItemWatch",
-            "ItemRadio",
-            "ItemGPS"
-        };
-        uniformClass = "U_B_Wetsuit";
-    };
-    class NatoDiverMedic
-    {
-        displayName = "Combat Diver (Medic)";
-        icon = "\A3\Weapons_F\Data\UI\icon_scuba_CA.paa";
-        weapons[] = {
-            "arifle_SDAR_F"
-        };
-        magazines[] = {
-            "20Rnd_556x45_UW_mag",
-            "20Rnd_556x45_UW_mag",
-            "20Rnd_556x45_UW_mag",
-            "20Rnd_556x45_UW_mag",
+			"Chemlight_green",
+			"Chemlight_green"
+		};
+		items[] = {
+			"FirstAidKit"
+		};
+		linkedItems[] = {
+			"V_RebreatherB",
+			"G_B_Diving",
+			"NVGoggles_OPFOR";
+			"ItemMap",
+			"ItemCompass",
+			"ItemWatch",
+			"ItemRadio",
+			"ItemGPS"
+		};
+		uniformClass = "U_B_Wetsuit";
+	};
+	class NatoDiverMedic
+	{
+		displayName = "Combat Diver (Medic)";
+		icon = "\A3\Weapons_F\Data\UI\icon_scuba_CA.paa";
+		weapons[] = {
+			"arifle_SDAR_F"
+		};
+		magazines[] = {
+			"20Rnd_556x45_UW_mag",
+			"20Rnd_556x45_UW_mag",
+			"20Rnd_556x45_UW_mag",
+			"20Rnd_556x45_UW_mag",
 
-            "SmokeShell",
-            "SmokeShell",
-            "SmokeShell",
+			"SmokeShell",
+			"SmokeShell",
+			"SmokeShell",
 
-            "Chemlight_green",
-            "Chemlight_green"
-        };
-        items[] = {
-            "FirstAidKit",
-            "FirstAidKit",
-            "FirstAidKit",
-            "Medikit"
-        };
-        linkedItems[] = {
-            "V_RebreatherB",
-            "G_B_Diving",
-            "NVGoggles_OPFOR";
-            "ItemMap",
-            "ItemCompass",
-            "ItemWatch",
-            "ItemRadio",
-            "ItemGPS"
-        };
-        uniformClass = "U_B_Wetsuit";
-    };
+			"Chemlight_green",
+			"Chemlight_green"
+		};
+		items[] = {
+			"FirstAidKit",
+			"FirstAidKit",
+			"FirstAidKit",
+			"Medikit"
+		};
+		linkedItems[] = {
+			"V_RebreatherB",
+			"G_B_Diving",
+			"NVGoggles_OPFOR";
+			"ItemMap",
+			"ItemCompass",
+			"ItemWatch",
+			"ItemRadio",
+			"ItemGPS"
+		};
+		uniformClass = "U_B_Wetsuit";
+	};
 };
 class CfgDebriefing
 {  
-    class Victory
-    {
-        title       = "Mission Completed";
-        subtitle    = "Area Secure";
-        description = "The area has been secured and enemy forces in the area have been neutralized.";
-    };
-    // Classname "loser" overrides default screen shown when all players are dead
-    class loser
-    {
-        title       = "Mission Failed";
-        subtitle    = "Casualties too high";
-        description = "Friendly forces sustained high casualties and the mission was aborted.";
-    };
-    class SinglePlayer
-    {
-        title       = "Multiplayer Only";
-        description = "This mission is not singleplayer-compatible. If you would like to play by yourself, host a multiplayer LAN session."
-    };
+	class Victory
+	{
+		title       = "Mission Completed";
+		subtitle    = "Area Secure";
+		description = "The area has been secured and enemy forces in the area have been neutralized.";
+	};
+	// Classname "loser" overrides default screen shown when all players are dead
+	class loser
+	{
+		title       = "Mission Failed";
+		subtitle    = "Casualties too high";
+		description = "Friendly forces sustained high casualties and the mission was aborted.";
+	};
+	class SinglePlayer
+	{
+		title       = "Multiplayer Only";
+		description = "This mission is not singleplayer-compatible. If you would like to play by yourself, host a multiplayer LAN session."
+	};
 };
 #include "f\spect\config.hpp"
 class CfgFunctions
 {
-    class F
-    {
-        #include "f\spect\functions.hpp"
-    };
+	class F
+	{
+		#include "f\spect\functions.hpp"
+	};
 };
