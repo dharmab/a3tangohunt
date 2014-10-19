@@ -309,7 +309,7 @@ class CfgRespawnInventory
     };
     class NatoDiver
     {
-        displayName = "Combat Diver";
+        displayName = "Combat Diver (Assault)";
         icon = "\A3\Weapons_F\Data\UI\icon_scuba_CA.paa";
         weapons[] = {
             "arifle_SDAR_F"
@@ -350,7 +350,7 @@ class CfgRespawnInventory
     };
     class NatoDiverMedic
     {
-        displayName = "Combat Diver";
+        displayName = "Combat Diver (Medic)";
         icon = "\A3\Weapons_F\Data\UI\icon_scuba_CA.paa";
         weapons[] = {
             "arifle_SDAR_F"
