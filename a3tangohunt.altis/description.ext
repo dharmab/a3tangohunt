@@ -61,6 +61,13 @@ class Params
         texts[]  = {"Disabled", "Intermittent", "Real Time"};
         default  = 1;
     };
+    class Underwater
+    {
+        title    = "Allow Underwater Insertion";
+        values[] = {0, 1};
+        texts[]  = {"Disabled", "Enabled"};
+        default  = 1;
+    };
 };
 class CfgRespawnInventory
 {
@@ -332,6 +339,7 @@ class CfgRespawnInventory
         linkedItems[] = {
             "V_RebreatherB",
             "G_B_Diving",
+            "NVGoggles_OPFOR";
             "ItemMap",
             "ItemCompass",
             "ItemWatch",

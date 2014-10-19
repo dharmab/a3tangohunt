@@ -1,13 +1,17 @@
 // Code indicating that a parameter from description.ext should be randomized
 _RANDOMIZE = -1;
+// True if players are allowed to spawn underwater, false otherwise
+_ALLOW_UNDERWATER_START = if ((["Underwater", 0] call BIS_fnc_getParamValue) == 0) then {
+	false;
+} else {
+	true;
+};
 
-// Returns true marker is over water
-// _param_marker marker to check
-_fnc_isMarkerInWater = {
-	_param_marker = _this select 0;
-
-	_marker_pos = getMarkerPos _param_marker;
-	_height = getTerrainHeightASL [_marker_pos select 0, _marker_pos select 1];
+// Returns true if position is over water
+// _param_position position to check
+_fnc_isPositionInWater = {
+	_param_position = _this select 0;
+	_height = getTerrainHeightASL _param_position;
 	(_height <= -1)
 };
 
@@ -71,20 +75,17 @@ _fnc_randomizeEnemyLocation = {
 	_locations call BIS_fnc_selectRandom;
 };
 
+_fnc_computeOffset = compile preprocessFileLineNumbers "computeOffset.sqf";
+
 // Returns a random position 500 meters away from the provided position.
 // _param_enemy_position position to base returned position on.
 _fnc_randomizePlayerPosition = {
 	_param_enemy_position = _this select 0;
-
-	_x_offset = random 500;
-	_y_offset = 500 - _x_offset;
-	if (random 1 > 0.5) then {_x_offset = _x_offset * -1};
-	if (random 1 > 0.5) then {_y_offset = _y_offset * -1};
-
-	_random_position = [
-		(_param_enemy_position select 0) + _x_offset,
-		(_param_enemy_position select 1) + _y_offset
-	];
+	_random_position = [0, 0];
+	waitUntil {
+		_random_position = [_param_enemy_position, 350 + (random 250), random 360] call _fnc_computeOffset;
+		((_ALLOW_UNDERWATER_START) or !([_random_position] call _fnc_isPositionInWater));
+	};
 
 	_random_position;
 };
@@ -215,7 +216,7 @@ _fnc_main = {
 	waitUntil {missionNamespace getVariable "mission_tangohunt_init";};
 
 	// Add loadouts from description.ext
-	if (["respawn_west"] call _fnc_isMarkerInWater) then {
+	if ([getMarkerPos "respawn_west"] call _fnc_isPositionInWater) then {
 		[west, "NatoDiver"              ] call BIS_fnc_addRespawnInventory;
 	} else {
 		[west, "NatoGrenadier"          ] call BIS_fnc_addRespawnInventory;
