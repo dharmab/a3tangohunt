@@ -26,7 +26,7 @@ class Mission
 	class Intel
 	{
 		briefingName="Tango Hunt";
-		overviewText="Assault and clear a town of enemies. Different every time!";
+		overviewText="Generates an infantry firefight using random parameters. Maximizes replay value and minimizes complex setup.";
 		resistanceWest=0;
 		startWeather=0.84999996;
 		startWind=0;
