@@ -1,3 +1,5 @@
+if (!isServer) exitWith {};
+
 _param_uav_scan_mode = ["Uav", 0] call BIS_fnc_getParamValue;
 
 _UAV_SCAN_DISABLE = 0;
