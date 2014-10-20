@@ -18,7 +18,6 @@ class Mission
 		"A3_Characters_F_BLUFOR",
 		"a3_characters_f",
 		"A3_Modules_F_GroupModifiers",
-		"A3_Modules_F_HC",
 		"A3_Modules_F",
 		"a3_map_altis"
 	};
@@ -46,7 +45,7 @@ class Mission
 	};
 	class Groups
 	{
-		items=13;
+		items=10;
 		class Item0
 		{
 			side="WEST";
@@ -66,7 +65,7 @@ class Mission
 					init="group_hq = group this;";
 					description="HQ One";
 					syncId=0;
-					synchronizations[]={7,8};
+					synchronizations[]={7};
 				};
 				class Item1
 				{
@@ -114,7 +113,7 @@ class Mission
 					init="group_alpha = group this;";
 					description="Alpha One";
 					syncId=1;
-					synchronizations[]={6,9};
+					synchronizations[]={6};
 				};
 				class Item1
 				{
@@ -172,7 +171,7 @@ class Mission
 					init="group_bravo = group this;";
 					description="Bravo One";
 					syncId=2;
-					synchronizations[]={5,10};
+					synchronizations[]={5};
 				};
 				class Item1
 				{
@@ -230,7 +229,7 @@ class Mission
 					init="group_charlie = group this;";
 					description="Charlie One";
 					syncId=3;
-					synchronizations[]={4,11};
+					synchronizations[]={4};
 				};
 				class Item1
 				{
@@ -469,15 +468,14 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={14744.633,17.91,16791.277};
+					position[]={14790.762,17.91,16801.889};
 					id=19;
 					side="LOGIC";
-					vehicle="HighCommand";
+					vehicle="Logic";
 					leader=1;
-					lock="UNLOCKED";
 					skill=0.60000002;
-					syncId=8;
-					synchronizations[]={0,9,10,11};
+					text="uav_scan_logic";
+					init="0 = [20, 5] execVM ""uavScan.sqf"";";
 				};
 			};
 		};
@@ -489,78 +487,8 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={14714.259,17.91,16791.291};
+					position[]={14794.139,17.91,16801.914};
 					id=20;
-					side="LOGIC";
-					vehicle="HighCommandSubordinate";
-					leader=1;
-					lock="UNLOCKED";
-					skill=0.60000002;
-					syncId=9;
-					synchronizations[]={1,8};
-				};
-			};
-		};
-		class Item10
-		{
-			side="LOGIC";
-			class Vehicles
-			{
-				items=1;
-				class Item0
-				{
-					position[]={14744.637,17.91,16788.014};
-					id=21;
-					side="LOGIC";
-					vehicle="HighCommandSubordinate";
-					leader=1;
-					lock="UNLOCKED";
-					skill=0.60000002;
-					syncId=10;
-					synchronizations[]={2,8};
-				};
-			};
-		};
-		class Item11
-		{
-			side="LOGIC";
-			class Vehicles
-			{
-				items=2;
-				class Item0
-				{
-					position[]={14776.835,17.91,16791.365};
-					id=22;
-					side="LOGIC";
-					vehicle="HighCommandSubordinate";
-					leader=1;
-					lock="UNLOCKED";
-					skill=0.60000002;
-					syncId=11;
-					synchronizations[]={3,8};
-				};
-				class Item1
-				{
-					position[]={14790.563,17.91,16802.283};
-					id=23;
-					side="LOGIC";
-					vehicle="Logic";
-					skill=0.60000002;
-					text="uav_scan_logic";
-					init="0 = [20, 5] execVM ""uavScan.sqf"";";
-				};
-			};
-		};
-		class Item12
-		{
-			side="LOGIC";
-			class Vehicles
-			{
-				items=1;
-				class Item0
-				{
-					position[]={14805.084,17.91,16800.83};
-					id=24;
 					side="LOGIC";
 					vehicle="Logic";
 					leader=1;
