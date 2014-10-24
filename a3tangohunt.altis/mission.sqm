@@ -475,7 +475,7 @@ class Mission
 					leader=1;
 					skill=0.60000002;
 					text="uav_scan_logic";
-					init="0 = [20, 5] execVM ""uavScan.sqf"";";
+					init="0 = this execVM ""uavScan.sqf"";";
 				};
 			};
 		};

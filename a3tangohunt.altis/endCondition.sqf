@@ -1,18 +1,34 @@
 if (!isServer) exitWith {};
 waitUntil {missionNamespace getVariable "mission_tangohunt_init";};
 
-// Wait for at least one player to spawn
+// Grace period for spawn scripts
+sleep 15;
+
+// Wait for at least one player and one enemy to spawn
 _player_spawned = false;
+_enemy_spawned = false;
 waitUntil {
 	{
-		if (alive _x) then {
-			_player_spawned = true;
-		}
-	} forEach playableUnits;
+		// Check if any enemies are alive
+		if (side _x == east) then {
+			if (alive _x) then {
+				_enemy_spawned = true;
+			};
+		};
+
+		// Check if any players are alive
+		if (side _x == west) then {
+			if (alive _x ) then {
+				_player_spawned = true;
+			};
+		};
+	} forEach allUnits;
+
 	sleep 1;
-	_player_spawned;
+	_player_spawned and _enemy_spawned
 };
 
+// Wait for either all players or all enemies to die
 _victory = false;
 _defeat = false;
 waitUntil {
@@ -38,8 +54,11 @@ waitUntil {
 	_victory or _defeat;
 };
 
+_args = [];
 if (_victory) then {
-	["Victory", true, true] call BIS_fnc_endMission;
+	_args = ["Victory", true, true]
 } else {
-	["loser", false, true] call BIS_fnc_endMission;
+	_args = ["loser", false, true]
 };
+
+[_args, "BIS_fnc_endMission", true, false, true] call BIS_fnc_MP;

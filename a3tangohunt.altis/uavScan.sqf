@@ -1,6 +1,6 @@
 if (!isServer) exitWith {};
 
-_param_uav_scan_mode = ["Uav", 0] call BIS_fnc_getParamValue;
+_param_uav_scan_mode = ["Uav", 1] call BIS_fnc_getParamValue;
 
 _UAV_SCAN_DISABLE = 0;
 _UAV_SCAN_INTERMITTENT = 1;
@@ -30,37 +30,38 @@ switch (_param_uav_scan_mode) do {
 	};
 };
 
-if (!_exit_flag) then {
-	_marker_names = [];
-	_marker_id_sequence = 0;
+if (_exit_flag) exitWith {};
 
-	_fnc_computeOffset = compile preprocessFileLineNumbers "computeOffset.sqf";
+_marker_names = [];
+_marker_id_sequence = 0;
 
-	waitUntil {missionNamespace getVariable "mission_tangohunt_init";};
+_fnc_computeOffset = compile preprocessFileLineNumbers "computeOffset.sqf";
 
-	waitUntil {
-		{
-			deleteMarker _x;
-			_marker_names = _marker_names - [_x];
-		} forEach _marker_names;
+waitUntil {missionNamespace getVariable "mission_tangohunt_init";};
 
-		{
-			if (alive _x && side _x == east) then {
-				_marker_name = format ["uav_scan_%1", _marker_id_sequence];
-				_marker_id_sequence = _marker_id_sequence + 1;
+waitUntil {
+	{
+		deleteMarker _x;
+		_marker_names = _marker_names - [_x];
+	} forEach _marker_names;
 
-				_marker_position = [position _x, random _uav_scan_radius, random 360] call _fnc_computeOffset;
-				
-				_marker = createMarker [_marker_name, _marker_position];
-				_marker_name setMarkerShape "ICON";
-				_marker_name setMarkerType "mil_dot_noshadow";
-				_marker_name setMarkerColor "ColorRed";
+	{
+		if (alive _x && side _x == east) then {
+			_marker_name = format ["uav_scan_%1", _marker_id_sequence];
+			_marker_id_sequence = _marker_id_sequence + 1;
 
-				_marker_names = _marker_names + [_marker_name];
-			};
-		} forEach allUnits;
+			_marker_position = [position _x, random _uav_scan_radius, random 360] call _fnc_computeOffset;
+			
+			_marker = createMarker [_marker_name, _marker_position];
+			_marker_name setMarkerShape "ICON";
+			_marker_name setMarkerType "mil_dot_noshadow";
+			_marker_name setMarkerColor "ColorRed";
 
-		sleep _uav_scan_interval;
-		true;
-	};
+			_marker_names = _marker_names + [_marker_name];
+
+		};
+	} forEach allUnits;
+
+	sleep _uav_scan_interval;
+	false;
 };
