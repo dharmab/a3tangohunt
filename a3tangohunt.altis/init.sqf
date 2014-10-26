@@ -1,58 +1,124 @@
-// Code indicating that a parameter from description.ext should be randomized
-_RANDOMIZE = -1;
-// True if players are allowed to spawn underwater, false otherwise
-_ALLOW_UNDERWATER_START = if ((["Underwater", 0] call BIS_fnc_getParamValue) == 0) then {
-	false;
-} else {
-	true;
-};
+// Constants
+_SOLDIER_LOADOUTS = ["NatoGrenadier", "NatoAutomaticRifleman", "NatoDesignatedMarksman", "NatoAntiarmor", "NatoMedic"];
+_DIVER_LOADOUTS = ["NatoDiver", "NatoDiverMedic"];
 
-// Returns true if position is over water
-// _param_position position to check
-_fnc_isPositionInWater = {
-	_param_position = _this select 0;
-	_height = getTerrainHeightASL _param_position;
-	(_height <= -1)
-};
+// Forward declare runtime constants (parameters)
+_ENEMY_FACTION = "";
+_ENEMY_SCALING_FACTOR = "";
+_ENEMY_BEHAVIOR = 0.0;
+_DAY = 0;
+_TIME = 0;
+_OVERCAST = 0.0;
+_RAIN = 0.0;
+_FOG = 0.0;
+_ALLOW_UNDERWATER_START = false;
 
-// Helper method for setting weather values across network
-// _param_weather -1 to randomize, or 0-4 for preset values
-// _param_time time of day in hours
-_fnc_setWeather = {
-	_param_weather = _this select 0;
-	_param_time = _this select 1;
+// Loads parameters from description.ext and initializes runtime constants
+_fnc_initParameters = {
+	// Value indicating that a parameter from description.ext should be randomized
+	_RANDOMIZE = -1;
 
-	_overcast = 0.0;
-	_rain = 0.0;
+	// Parameters from description.ext
+	_description_ext_faction    = ["Faction", 0] call BIS_fnc_getParamValue;
+	_description_ext_difficulty = ["Difficulty", 1] call BIS_fnc_getParamValue;
+	_description_ext_awareness  = ["Awareness", _RANDOMIZE] call BIS_fnc_getParamValue;
+	_description_ext_time       = ["Time", _RANDOMIZE] call BIS_fnc_getParamValue;
+	_description_ext_moon       = ["Moon", _RANDOMIZE] call BIS_fnc_getParamValue;
+	_description_ext_weather    = ["Weather", _RANDOMIZE] call BIS_fnc_getParamValue;
+	_description_ext_underwater = ["Underwater", 0] call BIS_fnc_getParamValue;
 
-	if (_param_weather == _RANDOMIZE) then {
-		// Randomization
-		 _overcast = random 1;
-		 // Rain only works if overcast is at least 0.7
-		 // Also, we add a 50% chance of no rain for more variety
-		 _rain_chance = random 1;
-		 _rain = if ((_overcast > 0.7) and (_rain_chance > 0.5))  then {
+	// Lookup tables - description.ext only supports int values, so we perform a lookup
+	// to convert the parameters into runtime types
+
+	// Enemy faction
+	_FACTION_TABLE = ["CSAT", "AAF", "FIA"];
+	// Enemy scaling factor
+	_DIFFICULTY_TABLE = [1.0, 1.5, 2.0];
+	// Enemy behavior
+	_AWARENESS_TABLE = ["SAFE", "AWARE", "COMBAT", "STEALTH"];
+	// Time of day (values are hours)
+	_TIME_TABLE = [0, 6, 9, 12, 15, 18];
+	// Moon phase (values are days in July 2035)
+	_MOON_TABLE = [5, 9, 12, 15, 20];
+	// Overcast
+	_OVERCAST_TABLE = [0.25, 0.5, 0.75, 0.85, 0.9];
+	// Rain
+	_RAIN_TABLE = [0.0,  0.0, 0.0,  0.67, 0.9];
+
+	// Reusable code snipper for selecting parameter
+	_fnc_selectParameter = {
+		_param_lookup_table = _this select 0;
+		_param_parameter_value = _this select 1;
+
+		if (_param_parameter_value == _RANDOMIZE) then {
+			_param_lookup_table call BIS_fnc_selectRandom;
+		} else {
+			_param_lookup_table select _param_parameter_value;
+		};
+	};
+
+	// Spawned enemies will be units of this faction
+	_ENEMY_FACTION = [_FACTION_TABLE, _description_ext_faction] call _fnc_selectParameter;
+
+	// Factor used to scale the number of spawned enemies in relation to the number of players
+	_ENEMY_SCALING_FACTOR = [_DIFFICULTY_TABLE, _description_ext_difficulty] call _fnc_selectParameter;
+
+	// Spawned enemies will be in this behavior mode at mission start
+	_ENEMY_BEHAVIOR = [_AWARENESS_TABLE, _description_ext_awareness] call _fnc_selectParameter;
+
+	_DAY = [_MOON_TABLE, _description_ext_moon] call _fnc_selectParameter;
+
+	// Time of day at which mission will start
+	_TIME = if (_description_ext_time == _RANDOMIZE) then {
+		random 24;
+	} else {
+		[_TIME_TABLE, _description_ext_time] call _fnc_selectParameter;
+	};
+
+	if (_description_ext_weather == _RANDOMIZE) then {
+		_OVERCAST = random 1;
+
+		// Weather engine only allows rain if overcast > 0.7
+		// In addition, we add a 50% precipitation chance
+		_RAIN = if ((_OVERCAST > 0.7) and ((random 1) > 0.5))  then {
 			random 1;
 		} else {
 			0.0;
 		};
 	} else {
-		// Preset values for clear, partly cloudly, cloudy, raining and thunderstorm
-		_overcast = [0.25, 0.5, 0.75, 0.85, 0.9] select _param_weather;
-		_rain     = [0.0,  0.0, 0.0,  0.67, 0.9] select _param_weather;
+		_OVERCAST = [_OVERCAST_TABLE, _description_ext_weather] call _fnc_selectParameter;
+		_RAIN = [_RAIN_TABLE, _description_ext_weather] call _fnc_selectParameter;
 	};
 
-	// Fog only appears between dusk and dawn
-	_fog = if ((22 < _param_time) or (_param_time < 5)) then {
+	// Realistically, fog should not appear during the day
+	// We limit fog to 0.7 because values above that are virtually unplayable "silent hill" values
+	_FOG = if ((22 < _TIME) or (_TIME < 5)) then {
 		0.1 + (random 0.6);
 	} else {
 		0.0;
 	};
 
-	[_overcast] call BIS_fnc_setOvercast;
-	[_fog, _fog, 0] call BIS_fnc_setFog;
+	// If set to true, players may spawn as scuba divers in water
+	// Otherwise, players will only spawn as soldiers on land
+	_ALLOW_UNDERWATER_START = (_description_ext_underwater != 0);
+};
 
-	_fnc_setRain = compile (format ["86400 setRain %1; skipTime 24; skipTime -24;", _rain]);
+
+_fnc_isPositionInWater = compile preprocessFileLineNumbers "isPositionInWater.sqf";
+
+// Set weather values across network
+// _param_overcast overcast value (0.0 to 1.0)
+// _param_rain rain value (0.0 to 1.0)
+// _param_fog fog value (0.0 to 1.0)
+_fnc_setWeather = {
+	_param_overcast = _this select 0;
+	_param_rain = _this select 1;
+	_param_fog = _this select 2;
+
+	[_param_overcast] call BIS_fnc_setOvercast;
+	[_param_fog, _param_fog, 0] call BIS_fnc_setFog;
+
+	_fnc_setRain = compile (format ["86400 setRain %1; skipTime 24; skipTime -24;", _param_rain]);
 	[_fnc_setRain, "BIS_fnc_spawn", true, true] call BIS_fnc_MP;
 
 	forceWeatherChange;
@@ -90,20 +156,7 @@ _fnc_randomizePlayerPosition = {
 	_random_position;
 };
 
-// wrapper function for Tango Hunt script
-// _param_area_marker marker where enemies will spawn
-// _param_enemy_faction enemies from this faction will spawn
-// _param_enemy_strength minimum number of enemies to spawn
-_fnc_tangoHunt = {
-	_param_area_marker = _this select 0;
-	_param_enemy_side = _this select 1;
-	_param_enemy_faction = _this select 2;
-	_param_enemy_strength = _this select 3;
-	_param_player_side = _this select 4;
-
-	// Initialize the mission
-	_all_enemies_array = [_area_marker, east, _enemy_faction, _enemy_strength] call compile preprocessFileLineNumbers "tangohunt.sqf";
-};
+_fnc_tangoHunt = compile preprocessFileLineNumbers "tangohunt.sqf";
 
 // Expose a variable to the public mission namespace
 // _name variable name
@@ -119,31 +172,12 @@ _fnc_exportToPublicMissionNamespace = {
 // all parameters are from description.ext
 _fnc_serverInit = {
 	if (isServer) then {
-		// Parameters from description.ext
-		_param_enemy_faction = ["Faction", 0] call BIS_fnc_getParamValue;
-		_param_enemy_strength = ["Difficulty", 1] call BIS_fnc_getParamValue;
-		_param_time = ["Time", _RANDOMIZE] call BIS_fnc_getParamValue;
-		_param_moon_phase = ["Moon", _RANDOMIZE] call BIS_fnc_getParamValue;
-		_param_weather = ["Weather", _RANDOMIZE] call BIS_fnc_getParamValue;
+		// Initialize parameters
+		[] call _fnc_initParameters;
 
-		// Set number of days to skip to force a certain moon phase
-		// Values are days in July 2035 with each moon phase
-		_day = if (_param_moon_phase == _RANDOMIZE) then {
-			[5, 9, 12, 15, 20] call BIS_fnc_selectRandom;
-		} else {
-			[5, 9, 12, 15, 20] select _param_moon_phase;
-		};
-
-		// Set numbers of hours to skip to force a certain time of day
-		_time = if (_param_time == _RANDOMIZE) then {
-			random 24;
-		} else {
-			_param_time;
-		};
-
-		// Set weather values
-		[_param_weather, _time] call _fnc_setWeather;
-		[(24 * _day) + _time, true, false] call BIS_fnc_setDate;
+		// Set weather, date and time
+		[_OVERCAST, _RAIN, _FOG] call _fnc_setWeather;
+		[(24 * _DAY) + _TIME, true, false] call BIS_fnc_setDate;
 
 		// Random area selection
 		_area_location = [] call _fnc_randomizeEnemyLocation;
@@ -166,12 +200,15 @@ _fnc_serverInit = {
 		// Set the spawn location
 		"respawn_west" setMarkerPos (getMarkerPos _insertion_marker);
 
-		// Enemy faction lookup
-		_enemy_faction = ["CSAT", "AAF", "FIA"] select _param_enemy_faction;
-
 		// Get all playable units for enemy strength auto-balance
 		// We have to check dead units as well since players start out in the respawn menu
-		_all_players_array = playableUnits;
+		_all_players_array = [];
+		if (isMultiplayer) then {
+			_all_players_array = playableUnits;
+		} else {
+			_all_players_array = [player];
+		};
+
 		{
 			if (isPlayer _x) then {
 				_all_players_array = _all_players_array + [_x];
@@ -179,14 +216,14 @@ _fnc_serverInit = {
 		} forEach allDeadMen;
 		_player_count = count _all_players_array;
 
-		_enemy_strength = [_player_count, (ceil (_player_count * 1.5)), (_player_count * 2)] select _param_enemy_strength;
+		_number_of_enemies = ceil (_player_count * _ENEMY_SCALING_FACTOR);
 
-		[_area_marker, east, _enemy_faction, _enemy_strength, west] call _fnc_tangoHunt;
+		[_area_marker, east, _ENEMY_FACTION, _number_of_enemies, _ENEMY_BEHAVIOR] call _fnc_tangoHunt;
 
 		// Export variables used for client-local commands
 		["mission_area_marker", _area_marker] call _fnc_exportToPublicMissionNamespace;
 
-		// Set flag for clients to continue
+		// Set flag for clients and other scripts to continue
 		["mission_tangohunt_init", true] call _fnc_exportToPublicMissionNamespace;
 
 		true;
@@ -216,16 +253,14 @@ _fnc_main = {
 	waitUntil {missionNamespace getVariable "mission_tangohunt_init";};
 
 	// Add loadouts from description.ext
-	if ([getMarkerPos "respawn_west"] call _fnc_isPositionInWater) then {
-		[west, "NatoDiver"              ] call BIS_fnc_addRespawnInventory;
-		[west, "NatoDiverMedic"         ] call BIS_fnc_addRespawnInventory;
+	_loadouts = if ([getMarkerPos "respawn_west"] call _fnc_isPositionInWater) then {
+		_DIVER_LOADOUTS;
 	} else {
-		[west, "NatoGrenadier"          ] call BIS_fnc_addRespawnInventory;
-		[west, "NatoAutomaticRifleman"  ] call BIS_fnc_addRespawnInventory;
-		[west, "NatoDesignatedMarksman" ] call BIS_fnc_addRespawnInventory;
-		[west, "NatoAntiarmor"          ] call BIS_fnc_addRespawnInventory;
-		[west, "NatoMedic"              ] call BIS_fnc_addRespawnInventory;
+		_SOLDIER_LOADOUTS;
 	};
+	{
+		[west, _x] call BIS_fnc_addRespawnInventory;
+	} forEach _loadouts;
 
 	// Retreive variables calculated on the server
 	_area_marker      = missionNamespace getVariable "mission_area_marker";
@@ -236,8 +271,6 @@ _fnc_main = {
 		"Secure the area",
 		_area_marker
 	], objNull, true] call BIS_fnc_taskCreate;
-
-	["TaskAssigned", ["Secure area"]] call BIS_fnc_showNotification;
 };
 
 [] call _fnc_main;

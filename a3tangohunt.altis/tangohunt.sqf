@@ -2,6 +2,7 @@ _area_marker           = _this select 0; // marker
 _ai_side               = _this select 1; // west, east, resistance
 _ai_faction            = _this select 2; // "NATO", "FIA", "AAF", "CSAT"
 _ai_global_count_total = _this select 3; // integer > 0
+_ai_behavior           = _this select 4; // "CARELESS", "SAFE, AWARE", "COMBAT", "STEALTH"
 
 _ai_team_leader = "";
 _ai_rifleman = "";
@@ -51,10 +52,16 @@ if (_ai_global_count_total < 1) then {
 	hint "Error: _ai_global_count_total parameter invalid";
 };
 
+_fnc_computeOffset = compile preprocessFileLineNumbers "computeOffset.sqf";
+_fnc_isPositionInWater = compile preprocessFileLineNumbers "isPositionInWater.sqf";
+
 // Possibilities for number of AI spawned in a group
 _ai_group_count_distribution = [1, 2, 2, 3, 4, 4, 4, 4, 5, 6];
 // Possibilities for class of AI spawned in a group; Groups above a certain size always have a team leader
 _ai_group_class_distribution = [_ai_rifleman, _ai_rifleman, _ai_rifleman, _ai_rifleman, _ai_machinegunner, _ai_machinegunner, _ai_marksman, _ai_antitank]; 
+
+_area_marker_position = getMarkerPos _area_marker;
+_area_marker_size = ((getMarkerSize _area_marker select 0) + (getMarkerSize _area_marker select 1)) / 2.0;
 
 _ai_units = [];
 while {(count _ai_units) < _ai_global_count_total} do {
@@ -62,16 +69,31 @@ while {(count _ai_units) < _ai_global_count_total} do {
 
 	_new_group = createGroup _ai_side;
 
+	// Select a random spawn point and ensure it is not in water
+	_new_group_position = [0, 0];
+	waitUntil {
+		_new_group_position = [_area_marker_position, _area_marker_size, random 360] call _fnc_computeOffset;
+		!([_new_group_position] call _fnc_isPositionInWater);
+	};
+
+	// Groups with 4 or more members have a team leader
 	if (_ai_count_group_total >= 4) then {
-		_ai_team_leader createUnit [[0, 0, 0], _new_group];
+		_ai_team_leader createUnit [_new_group_position, _new_group];
 	};
 	
 	while {(count (units _new_group)) < _ai_count_group_total} do {
-		(_ai_group_class_distribution call BIS_fnc_selectRandom) createUnit [[0, 0, 0], _new_group];
+		(_ai_group_class_distribution call BIS_fnc_selectRandom) createUnit [_new_group_position, _new_group];
 	};
 
-	[leader _new_group, _area_marker, "random"] execVM "UPS.sqf";
 
+	// Add several patrol waypoints and a final defend waypoint to the new group
+	[_new_group, getPos leader _new_group, 250] call BIS_fnc_taskPatrol;
+	_defend_waypoint = _new_group addWaypoint [_area_marker_position, _area_marker_size];
+	_defend_waypoint setWaypointType "MOVE";
+	_defend_waypoint setWaypointStatements ["true", "nul = [group this, position this] call BIS_fnc_taskDefend;"];
+
+	_new_group setBehaviour _ai_behavior;
+	
 	_ai_units = _ai_units + units _new_group;
 };
 

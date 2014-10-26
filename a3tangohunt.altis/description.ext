@@ -32,11 +32,18 @@ class Params
 		texts[]  = {"Low", "Moderate", "High"};
 		default  = 1;
 	};
+	class Awareness
+	{
+		title    = "Enemy Behavior";
+		values[] = {-1, 0, 1, 2, 3};
+		texts[]  = {"Random", "Safe", "Aware", "Combat", "Stealth"};
+		default  = -1;
+	};
 	class Time
 	{
 		title    = "Time of Day";
 		// Values are hours in day
-		values[] = {-1, 0, 6, 9, 12, 15, 18};
+		values[] = {-1, 0, 1, 2, 3, 4, 5};
 		texts[]  = {"Random", "Midnight", "Dawn", "Morning", "Noon", "Afternoon", "Evening"};
 		default  = -1;
 	};
