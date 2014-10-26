@@ -56,7 +56,11 @@ _fnc_computeOffset = compile preprocessFileLineNumbers "computeOffset.sqf";
 _fnc_isPositionInWater = compile preprocessFileLineNumbers "isPositionInWater.sqf";
 
 // Possibilities for number of AI spawned in a group
-_ai_group_count_distribution = [1, 2, 2, 3, 4, 4, 4, 4, 5, 6];
+_ai_group_count_distribution = if (_ai_global_count_total <= 5) then {
+	[1, 2, 2, 3];
+} else {
+	[1, 2, 2, 3, 4, 4, 4, 4, 5, 6];
+};
 // Possibilities for class of AI spawned in a group; Groups above a certain size always have a team leader
 _ai_group_class_distribution = [_ai_rifleman, _ai_rifleman, _ai_rifleman, _ai_rifleman, _ai_machinegunner, _ai_machinegunner, _ai_marksman, _ai_antitank]; 
 
