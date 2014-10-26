@@ -61,6 +61,7 @@ _ai_group_count_distribution = [1, 2, 2, 3, 4, 4, 4, 4, 5, 6];
 _ai_group_class_distribution = [_ai_rifleman, _ai_rifleman, _ai_rifleman, _ai_rifleman, _ai_machinegunner, _ai_machinegunner, _ai_marksman, _ai_antitank]; 
 
 _area_marker_position = getMarkerPos _area_marker;
+_area_marker_size = ((getMarkerSize _area_marker select 0) + (getMarkerSize _area_marker select 1)) / 2.0;
 
 _ai_units = [];
 while {(count _ai_units) < _ai_global_count_total} do {
