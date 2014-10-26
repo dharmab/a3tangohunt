@@ -6,6 +6,7 @@ _DIVER_LOADOUTS = ["NatoDiver", "NatoDiverMedic"];
 _ENEMY_FACTION = "";
 _ENEMY_SCALING_FACTOR = "";
 _ENEMY_BEHAVIOR = 0.0;
+_LOCATION_CLASSES = [];
 _DAY = 0;
 _TIME = 0;
 _OVERCAST = 0.0;
@@ -22,6 +23,7 @@ _fnc_initParameters = {
 	_description_ext_faction    = ["Faction", 0] call BIS_fnc_getParamValue;
 	_description_ext_difficulty = ["Difficulty", 1] call BIS_fnc_getParamValue;
 	_description_ext_awareness  = ["Awareness", _RANDOMIZE] call BIS_fnc_getParamValue;
+	_description_ext_location   = ["Location", 0] call BIS_fnc_getParamValue;
 	_description_ext_time       = ["Time", _RANDOMIZE] call BIS_fnc_getParamValue;
 	_description_ext_moon       = ["Moon", _RANDOMIZE] call BIS_fnc_getParamValue;
 	_description_ext_weather    = ["Weather", _RANDOMIZE] call BIS_fnc_getParamValue;
@@ -36,6 +38,8 @@ _fnc_initParameters = {
 	_DIFFICULTY_TABLE = [1.0, 1.5, 2.0, 3.0, 4.5];
 	// Enemy behavior
 	_AWARENESS_TABLE = ["SAFE", "AWARE", "COMBAT", "STEALTH"];
+	// Location types - values are an array of location classnames, or empty array for a totally random position
+	_LOCATION_TABLE = [[], ["NameCity","NameLocal", "NameVillage"], ["NameVillage"], ["NameCity"], ["NameLocal"]];
 	// Time of day (values are hours)
 	_TIME_TABLE = [0, 6, 9, 12, 15, 18];
 	// Moon phase (values are days in July 2035)
@@ -66,6 +70,10 @@ _fnc_initParameters = {
 	// Spawned enemies will be in this behavior mode at mission start
 	_ENEMY_BEHAVIOR = [_AWARENESS_TABLE, _description_ext_awareness] call _fnc_selectParameter;
 
+	// Types of mission locations
+	_LOCATION_CLASSES = [_LOCATION_TABLE, _description_ext_location] call _fnc_selectParameter;
+
+	// Day when mission will occur
 	_DAY = [_MOON_TABLE, _description_ext_moon] call _fnc_selectParameter;
 
 	// Time of day at which mission will start
@@ -124,21 +132,42 @@ _fnc_setWeather = {
 	forceWeatherChange;
 };
 
-// Returns a random location on the map.
-_fnc_randomizeEnemyLocation = {
-	_locations = [];
+// Returns a random position on land;
+_fnc_randomPositionOnLand = {
+	_random_position = [0, 0];
 	waitUntil {
-		// Sample a random point
 		_random_position = [random 25000, random 25000];
-
-		// Get all viable locations within 1km
-		_locations = nearestLocations [_random_position, ["NameCity", "NameVillage", "NameLocal"], 1000];
-
-		// Ensure at least one location was found
-		count _locations > 0;
+		!([_random_position] call _fnc_isPositionInWater);
 	};
-	// Return a random location
-	_locations call BIS_fnc_selectRandom;
+	_random_position;
+};
+
+// Returns a random location on the map.
+// _param_location_classes array of valid location classes
+_fnc_randomizeEnemyLocation = {
+	_param_location_classes = _this select 0;
+
+	_location = "";
+	if (count _param_location_classes == 0) then {
+		// If no location classes were provided, create a new location 
+		_location_position = [] call _fnc_randomPositionOnLand;
+		_location_position = _location_position + [0];
+		_location = createLocation ["NameLocal", _location_position, 150 + random 200, 150 + random 200];
+	} else {
+		_locations = [];
+		waitUntil {
+			_random_position = [] call _fnc_randomPositionOnLand;
+
+			// Get all viable locations within 1km of the random position
+			_locations = nearestLocations [_random_position, _param_location_classes, 1000];
+
+			// Ensure at least one location was found
+			count _locations > 0;
+		};
+		// Return a random location
+		_location = _locations call BIS_fnc_selectRandom;
+	};
+	_location;
 };
 
 _fnc_computeOffset = compile preprocessFileLineNumbers "computeOffset.sqf";
@@ -180,8 +209,8 @@ _fnc_serverInit = {
 		[(24 * _DAY) + _TIME, true, false] call BIS_fnc_setDate;
 
 		// Random area selection
-		_area_location = [] call _fnc_randomizeEnemyLocation;
-		_area_marker = createMarker ["enemy_area", [position _area_location select 0, position _area_location select 1]];
+		_area_location = [_LOCATION_CLASSES] call _fnc_randomizeEnemyLocation;
+		_area_marker = createMarker ["enemy_area", position _area_location];
 		_area_marker setMarkerSize (size _area_location);
 
 		// Create objective marker and set symbology

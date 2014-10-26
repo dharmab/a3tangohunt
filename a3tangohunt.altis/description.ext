@@ -39,6 +39,13 @@ class Params
 		texts[]  = {"Random", "Safe", "Aware", "Combat", "Stealth"};
 		default  = -1;
 	};
+	class Location
+	{
+		title    = "Enemy Location";
+		values[] = {0, 1, 2, 3, 4};
+		texts[]  = {"Anywhere", "Any Landmark", "Village", "Town", "Local Landmark"};
+		default  = 0;
+	};
 	class Time
 	{
 		title    = "Time of Day";
