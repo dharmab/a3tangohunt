@@ -33,7 +33,7 @@ _fnc_initParameters = {
 	// Enemy faction
 	_FACTION_TABLE = ["CSAT", "AAF", "FIA"];
 	// Enemy scaling factor
-	_DIFFICULTY_TABLE = [1.0, 1.5, 2.0];
+	_DIFFICULTY_TABLE = [1.0, 1.5, 2.0, 3.0, 4.5];
 	// Enemy behavior
 	_AWARENESS_TABLE = ["SAFE", "AWARE", "COMBAT", "STEALTH"];
 	// Time of day (values are hours)
