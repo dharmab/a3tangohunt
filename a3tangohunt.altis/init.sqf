@@ -45,7 +45,7 @@ _fnc_initParameters = {
 	// Rain
 	_RAIN_TABLE = [0.0,  0.0, 0.0,  0.67, 0.9];
 
-	// Reusable code snipper for selecting parameter
+	// Reusable code snippet for selecting parameter
 	_fnc_selectParameter = {
 		_param_lookup_table = _this select 0;
 		_param_parameter_value = _this select 1;
