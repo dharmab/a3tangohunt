@@ -28,7 +28,7 @@ class Params
 	class Difficulty
 	{
 		title    = "Enemy Scaling";
-		values[] = {0, 1, 2};
+		values[] = {0, 1, 2, 3, 4};
 		texts[]  = {"Easy (1.0x)", "Normal (1.5x)", "Hard (2.0x)", "Very Hard (3.0x)", "Ultra Hard (4.5x)"};
 		default  = 1;
 	};
