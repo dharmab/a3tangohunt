@@ -321,6 +321,46 @@ class CfgRespawnInventory
 		uniformClass = "U_B_CombatUniform_mcam";
 		backpack = "B_Kitbag_mcamo";
 	};
+	class NatoSniper
+	{
+		displayName = "Sniper";
+		icon = "\A3\weapons_F\LongRangeRifles\M320\Data\UI\gear_M320_LRR_X_CA.paa";
+		weapons[] = {
+			"srifle_LRR_F",
+			"hgun_Rook40_F",
+			"Rangefinder"
+		};
+		magazines[] = {
+			"7Rnd_408_Mag",
+			"7Rnd_408_Mag",
+			"7Rnd_408_Mag",
+			"7Rnd_408_Mag",
+			"7Rnd_408_Mag",
+			"7Rnd_408_Mag",
+			"7Rnd_408_Mag",
+			
+			"16Rnd_9x21_Mag",
+			"16Rnd_9x21_Mag",
+
+			"SmokeShell"
+		};
+		items[] = {
+			"optic_NVS",
+			"FirstAidKit"
+		};
+		linkedItems[] = {
+			"V_PlateCarrier2_rgr",
+			"H_HelmetB_light",
+			"optic_LRPS",
+			"NVGoggles",
+			"ItemMap",
+			"ItemCompass",
+			"ItemWatch",
+			"ItemRadio"
+		};
+		uniformClass = "U_B_CombatUniform_mcam";
+		backpack = "B_Kitbag_mcamo";
+	};
 	class NatoDiver
 	{
 		displayName = "Combat Diver (Assault)";
