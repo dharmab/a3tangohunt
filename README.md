@@ -1,7 +1,7 @@
 ArmA 3: Tango Hunt
 ============
 
-An ArmA 3 mission that generates a random firefight each time. The time of day, weather, location, and number and distribution of enemies is randomized on every playthrough. It's great fun for quick multiplayer games of 4-15 players. You can download a PBO from https://github.com/dharmab/a3tangohunt/releases.
+An ArmA 3 mission that generates a random firefight each time. The time of day, weather, location, and number and distribution of enemies is randomized on every playthrough. It's great fun for quick multiplayer games of 4-15 players. You can download a PBO from https://github.com/dharmab/a3tangohunt/releases, or subscribe to releases on [Steam Workshop](http://steamcommunity.com/sharedfiles/filedetails/?id=332544964).
 
 Building from source: Place the a3tangohunt.altis folder folder in your ArmA 3 missions folder. Open the mission in the ArmA 3 mission editor and export the mission to multiplayer missions. You can then use the mission in LAN or Internet hosted or dedicated servers.
 
