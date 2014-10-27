@@ -2,7 +2,7 @@ _area_marker           = _this select 0; // marker
 _ai_side               = _this select 1; // west, east, resistance
 _ai_faction            = _this select 2; // "NATO", "FIA", "AAF", "CSAT"
 _ai_global_count_total = _this select 3; // integer > 0
-_ai_behavior           = _this select 4; // "CARELESS", "SAFE, AWARE", "COMBAT", "STEALTH"
+_ai_behavior           = _this select 4; // "CARELESS", "SAFE", "AWARE", "COMBAT", "STEALTH"
 
 _ai_team_leader = "";
 _ai_rifleman = "";
