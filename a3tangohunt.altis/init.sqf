@@ -262,7 +262,7 @@ _fnc_serverInit = {
 };
 
 _fnc_main = {
-	// Stop immediately if running in singleplayer
+	Stop immediately if running in singleplayer
 	if (!isMultiplayer) exitWith {
 		["SinglePlayer", false, 0] spawn BIS_fnc_endMission;
 	};
@@ -300,6 +300,8 @@ _fnc_main = {
 		"Secure the area",
 		_area_marker
 	], objNull, true] call BIS_fnc_taskCreate;
+
+	[] execVM "loadouts\loadouts.sqf";
 };
 
 [] call _fnc_main;

@@ -6,7 +6,7 @@ onLoadMissionTime  = 1;
 respawn = "BASE";
 respawnDelay = 10;
 respawnTemplates[] = {"MenuInventory"};
-respawnOnStart = 1;
+respawnOnStart = 0;
 respawnButton = 0;
 
 disabledAI = 1;
@@ -168,7 +168,7 @@ class CfgRespawnInventory
 			"200Rnd_65x39_cased_Box",
 			"200Rnd_65x39_cased_Box",
 			"200Rnd_65x39_cased_Box",
-			
+
 			"16Rnd_9x21_Mag",
 			"16Rnd_9x21_Mag",
 
@@ -209,7 +209,7 @@ class CfgRespawnInventory
 			"30Rnd_65x39_caseless_mag",
 			"30Rnd_65x39_caseless_mag",
 			"30Rnd_65x39_caseless_mag",
-			
+
 			"16Rnd_9x21_Mag",
 			"16Rnd_9x21_Mag",
 
@@ -251,12 +251,12 @@ class CfgRespawnInventory
 			"30Rnd_65x39_caseless_mag",
 			"30Rnd_65x39_caseless_mag",
 			"30Rnd_65x39_caseless_mag",
-			
+
 			"16Rnd_9x21_Mag",
 			"16Rnd_9x21_Mag",
 
 			"NLAW_F",
-			
+
 			"HandGrenade",
 			"SmokeShell"
 		};
@@ -294,10 +294,10 @@ class CfgRespawnInventory
 			"30Rnd_65x39_caseless_mag",
 			"30Rnd_65x39_caseless_mag",
 			"30Rnd_65x39_caseless_mag",
-			
+
 			"16Rnd_9x21_Mag",
 			"16Rnd_9x21_Mag",
-			
+
 			"SmokeShell",
 			"SmokeShell"
 		};
@@ -335,7 +335,7 @@ class CfgRespawnInventory
 			"20Rnd_556x45_UW_mag",
 			"20Rnd_556x45_UW_mag",
 			"20Rnd_556x45_UW_mag",
-			
+
 			"MiniGrenade",
 			"MiniGrenade",
 			"MiniGrenade",
@@ -402,7 +402,7 @@ class CfgRespawnInventory
 	};
 };
 class CfgDebriefing
-{  
+{
 	class Victory
 	{
 		title       = "Mission Completed";
@@ -430,3 +430,4 @@ class CfgFunctions
 		#include "f\spect\functions.hpp"
 	};
 };
+#include "loadouts\config.hpp"
