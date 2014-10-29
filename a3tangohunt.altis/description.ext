@@ -3,7 +3,10 @@ author             = "Zaid";
 onLoadMission      = "Neutralize all hostiles";
 onLoadMissionTime  = 1;
 
-respawn = "NONE";
+respawn = "BIRD";
+respawndelay = 10;
+respawnOnStart = 0;
+respawnTemplates[] {"f_Spectator"}
 
 disabledAI = 1;
 
@@ -124,3 +127,10 @@ class CfgFunctions
 	};
 };
 #include "loadouts\config.hpp"
+class CfgRespawnTemplates
+{
+	class f_Spectator
+	{
+		onPlayerRespawn = "f_fnc_CamInit";
+	};
+};
