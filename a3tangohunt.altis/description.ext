@@ -28,7 +28,7 @@ class Params
 	{
 		title    = "Enemy Faction";
 		values[] = {0, 1, 2, 3};
-		texts[]  = {"NATO", CSAT", "AAF", "FIA"};
+		texts[]  = {"NATO", "CSAT", "AAF", "FIA"};
 		default  = 1;
 	};
 	class Difficulty
@@ -55,7 +55,6 @@ class Params
 	class Time
 	{
 		title    = "Time of Day";
-		// Values are hours in day
 		values[] = {-1, 0, 1, 2, 3, 4, 5};
 		texts[]  = {"Random", "Midnight", "Dawn", "Morning", "Noon", "Afternoon", "Evening"};
 		default  = -1;
