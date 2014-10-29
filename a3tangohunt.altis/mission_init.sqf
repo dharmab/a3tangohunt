@@ -154,22 +154,18 @@ _fnc_randomizeEnemyLocation = {
 	_location;
 };
 
-_fnc_computeOffset = compile preprocessFileLineNumbers "computeOffset.sqf";
-
 // Returns a random position 500 meters away from the provided position.
 // _param_enemy_position position to base returned position on.
 _fnc_randomizePlayerPosition = {
 	_param_enemy_position = _this select 0;
 	_random_position = [0, 0];
 	waitUntil {
-		_random_position = [_param_enemy_position, 350 + (random 250), random 360] call _fnc_computeOffset;
+		_random_position = [_param_enemy_position, 350 + (random 250), random 360] call TH_fnc_computeOffset;
 		((_ALLOW_UNDERWATER_START) or !([_random_position] call TH_fnc_isPositionInWater));
 	};
 
 	_random_position;
 };
-
-_fnc_tangoHunt = compile preprocessFileLineNumbers "tangohunt.sqf";
 
 // Expose a variable to the public mission namespace
 // _name variable name
@@ -225,7 +221,7 @@ _player_count = count _all_players_array;
 
 _number_of_enemies = ceil (_player_count * _ENEMY_SCALING_FACTOR);
 
-[_area_marker, east, _ENEMY_FACTION, _number_of_enemies, _ENEMY_BEHAVIOR] call _fnc_tangoHunt;
+[_area_marker, east, _ENEMY_FACTION, _number_of_enemies, _ENEMY_BEHAVIOR] call TH_fnc_spawnEnemies;
 
 // Export variables used for client-local commands
 ["mission_area_marker", _area_marker] call _fnc_exportToPublicMissionNamespace;

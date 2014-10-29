@@ -124,6 +124,8 @@ class CfgFunctions
 			class addItem{};
 			class isPositionInWater{};
 			class getRandomLandPosition{};
+			class computeOffset{};
+			class spawnEnemies{};
 		};
 	};
 };

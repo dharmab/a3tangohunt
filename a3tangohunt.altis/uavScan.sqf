@@ -35,8 +35,6 @@ if (_exit_flag) exitWith {};
 _marker_names = [];
 _marker_id_sequence = 0;
 
-_fnc_computeOffset = compile preprocessFileLineNumbers "computeOffset.sqf";
-
 waitUntil {missionNamespace getVariable "mission_tangohunt_init";};
 
 waitUntil {
@@ -50,7 +48,7 @@ waitUntil {
 			_marker_name = format ["uav_scan_%1", _marker_id_sequence];
 			_marker_id_sequence = _marker_id_sequence + 1;
 
-			_marker_position = [position _x, random _uav_scan_radius, random 360] call _fnc_computeOffset;
+			_marker_position = [position _x, random _uav_scan_radius, random 360] call TH_fnc_computeOffset;
 			
 			_marker = createMarker [_marker_name, _marker_position];
 			_marker_name setMarkerShape "ICON";
