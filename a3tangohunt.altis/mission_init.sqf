@@ -208,18 +208,7 @@ _insertion_marker setMarkerColor "ColorBlue";
 // Set the spawn location
 "respawn_west" setMarkerPos (getMarkerPos _insertion_marker);
 
-// Get all playable units for enemy strength auto-balance
-// We have to check dead units as well since players start out in the respawn menu
-_all_players_array = [];
-if (isMultiplayer) then {
-	_all_players_array = playableUnits;
-} else {
-	_all_players_array = [player];
-};
-
-_player_count = count _all_players_array;
-
-_number_of_enemies = ceil (_player_count * _ENEMY_SCALING_FACTOR);
+_number_of_enemies = ceil (playersNumber * _ENEMY_SCALING_FACTOR);
 
 [_area_marker, east, _ENEMY_FACTION, _number_of_enemies, _ENEMY_BEHAVIOR] call TH_fnc_spawnEnemies;
 
