@@ -1,5 +1,5 @@
 // Constants
-_SOLDIER_LOADOUTS = ["NatoGrenadier", "NatoAutomaticRifleman", "NatoDesignatedMarksman", "NatoAntiarmor", "NatoMedic", "NatoSniper"];
+_SOLDIER_LOADOUTS = ["NatoGrenadier", "NatoAutomaticRifleman", "NatoDesignatedMarksman", "NatoAntiarmor", "NatoMedic"];
 _DIVER_LOADOUTS = ["NatoDiver", "NatoDiverMedic"];
 
 // Forward declare runtime constants (parameters)
