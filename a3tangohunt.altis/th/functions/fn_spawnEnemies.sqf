@@ -43,6 +43,22 @@ switch (_ai_faction) do  {
 		_ai_marksman      = "O_soldier_M_F";
 		_ai_antitank      = "O_soldier_LAT_F";
 	};
+	case "RHS AFRF":
+	{
+		_ai_team_leader   = "rhs_vdv_sergeant";
+		_ai_rifleman      = "rhs_vdv_rifleman";
+		_ai_machinegunner = "rhs_vdv_machinegunner";
+		_ai_marksman      = "rhs_vdv_marksman";
+		_ai_antitank      = "rhs_vdv_LAT";
+	};
+	case "RHS USA":
+	{
+		_ai_team_leader   = "rhsusf_army_ocp_teamleader";
+		_ai_rifleman      = "rhsusf_army_ocp_rifleman";
+		_ai_machinegunner = "rhsusf_army_ocp_autorifleman";
+		_ai_marksman      = "rhsusf_army_ocp_marksman";
+		_ai_antitank      = "rhsusf_army_ocp_LAT";
+	};
 	default {
 		hint "Error: _ai_faction parameter invalid";
 	};
