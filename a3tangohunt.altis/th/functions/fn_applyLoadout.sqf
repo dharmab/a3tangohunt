@@ -40,6 +40,7 @@ removeBackpack player;
 removeHeadgear player;
 removeGoggles player;
 
+// Add uniform, vest, backpack and headgear
 player forceAddUniform _uniform;
 if (_loadout == "Grenadier") then {
     player addVest _vest_gl;
@@ -51,6 +52,7 @@ if (_headgear != "") then {
     player addHeadgear _headgear;
 };
 
+// Add basic items
 player linkItem "ItemMap";
 player linkItem "ItemCompass";
 player linkItem "ItemWatch";
@@ -59,6 +61,7 @@ if (_goggles != "") then {
     player linkItem _goggles;
 };
 
+// Add common items
 ["FirstAidKit", 1, "uniform"] call TH_fnc_addItem;
 [_pistol_ammo, 2, "vest"] call TH_fnc_addItem;
 [_smoke_grenade, 2, "vest"] call TH_fnc_addItem;
@@ -67,6 +70,7 @@ if (_ir_grenade != "") then {
     [_ir_grenade, 1, "vest"] call TH_fnc_addItem;
 };
 
+// Add loadout-specific items (primary weapon and ammo, frag grenades, etc.)
 switch (_loadout) do {
     case "Grenadier":
     {
@@ -83,7 +87,6 @@ switch (_loadout) do {
     case "Automatic Rifleman":
     {
         [_automatic_rifle_ammo, 1, "vest"] call TH_fnc_addItem;
-        [_frag_grenade, 2, "vest"] call TH_fnc_addItem;
         [_automatic_rifle_ammo, 2, "backpack"] call TH_fnc_addItem;
         player addWeapon _automatic_rifle;
     };
@@ -115,9 +118,11 @@ switch (_loadout) do {
     }
 };
 
+// Add secondary weapons after primary weapons so that primary weapon is selected
 player addWeapon "Binocular";
 player addWeapon _pistol;
 
+// Add weapon attachements
 if (_loadout == "Designated Marksman" and _rifle_dmr_optic != "") then {
     player addPrimaryWeaponItem _rifle_dmr_optic;
 } else {
@@ -125,3 +130,7 @@ if (_loadout == "Designated Marksman" and _rifle_dmr_optic != "") then {
         player addPrimaryWeaponItem _rifle_optic;
     };
 };
+
+if (_rifle_accessory != "") then {
+    player addPrimaryWeaponItem _rifle_accessory;
+}

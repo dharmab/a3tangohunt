@@ -43,6 +43,7 @@ _light_at_ammo = "NLAW_F";
 _rifle_optic = "optic_Aco";
 // Optic used on Designated Marksman primary weapon. Set to empty string for iron sights.
 _rifle_dmr_optic = "optic_Hamr";
+// Primary weapon accessory, e.g. IR pointer or flashlight. Set to empty string for no accessory.
 _rifle_accessory = "acc_pointer_IR";
 
 // Fragmentation grenade
