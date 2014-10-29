@@ -53,7 +53,6 @@ if (_ai_global_count_total < 1) then {
 };
 
 _fnc_computeOffset = compile preprocessFileLineNumbers "computeOffset.sqf";
-_fnc_isPositionInWater = compile preprocessFileLineNumbers "isPositionInWater.sqf";
 
 // Possibilities for number of AI spawned in a group
 _ai_group_count_distribution = if (_ai_global_count_total <= 5) then {
@@ -77,7 +76,7 @@ while {(count _ai_units) < _ai_global_count_total} do {
 	_new_group_position = [0, 0];
 	waitUntil {
 		_new_group_position = [_area_marker_position, random 120, random 360] call _fnc_computeOffset;
-		!([_new_group_position] call _fnc_isPositionInWater);
+		!([_new_group_position] call TH_fnc_isPositionInWater);
 	};
 
 	// Groups with 4 or more members have a team leader
