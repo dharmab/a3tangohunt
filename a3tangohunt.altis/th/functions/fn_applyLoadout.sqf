@@ -36,19 +36,6 @@ _gl_smoke_green       = _this select 34;
 
 _is_diver = (_loadout == "Diver (Assault)" or _loadout == "Diver (Medic)");
 
-// If the player is in water, we need to move them onto land to change their equipped gear
-_player_position = getPos player;
-_map_size = [] call BIS_fnc_mapSize;
-
-_safe_position = [0, 0];
-if (_is_diver) then {
-    waitUntil {
-        _safe_position = [random _map_size, random _map_size];
-        (getTerrainHeightASL _safe_position) > 0;
-    };
-    player setPos _safe_position;
-};
-
 // Remove existing items
 removeAllWeapons player;
 removeAllItems player;
@@ -177,9 +164,3 @@ if (!_is_diver) then {
         player addPrimaryWeaponItem _rifle_accessory;
     };
 };
-
-// If we moved the player out of the water eariler, move them back.
-if (_is_diver) then {
-    player setPosASL _player_position;
-};
-

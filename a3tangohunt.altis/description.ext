@@ -27,9 +27,9 @@ class Params
 	class Faction
 	{
 		title    = "Enemy Faction";
-		values[] = {0, 1, 2};
-		texts[]  = {"CSAT", "AAF", "FIA"};
-		default  = 0;
+		values[] = {0, 1, 2, 3};
+		texts[]  = {"NATO", CSAT", "AAF", "FIA"};
+		default  = 1;
 	};
 	class Difficulty
 	{
@@ -79,13 +79,6 @@ class Params
 		title    = "UAV Scan Mode";
 		values[] = {0, 1, 2};
 		texts[]  = {"Disabled", "Intermittent", "Real Time"};
-		default  = 1;
-	};
-	class Underwater
-	{
-		title    = "Allow Underwater Insertion";
-		values[] = {0, 1};
-		texts[]  = {"Disabled", "Enabled"};
 		default  = 1;
 	};
 };

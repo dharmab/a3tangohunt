@@ -29,7 +29,7 @@ _fnc_initParameters = {
     // to convert the parameters into runtime types
 
     // Enemy faction
-    _FACTION_TABLE = ["CSAT", "AAF", "FIA"];
+    _FACTION_TABLE = ["NATO", "CSAT", "AAF", "FIA"];
     // Enemy scaling factor
     _DIFFICULTY_TABLE = [1.0, 1.5, 2.0, 3.0, 4.5];
     // Enemy behavior
@@ -104,7 +104,8 @@ _fnc_initParameters = {
 
     // If set to true, players may spawn as scuba divers in water
     // Otherwise, players will only spawn as soldiers on land
-    _ALLOW_UNDERWATER_START = (_description_ext_underwater != 0);
+    // 2014-10-29 disabled underwater starts due to incompatibility with new loadouts system
+    _ALLOW_UNDERWATER_START = false;
 };
 
 // Set weather values across network
