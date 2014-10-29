@@ -114,7 +114,9 @@ switch (_loadout) do {
 	{
 		[_rifle_ammo, 6, "vest"] call TH_fnc_addItem;
 		[_frag_grenade, 2, "vest"] call TH_fnc_addItem;
-		[_light_at_ammo, 1, "backpack"] call TH_fnc_addItem;
+		if (_light_at_ammo != "") then {
+			[_light_at_ammo, 1, "backpack"] call TH_fnc_addItem;
+		};
 		player addWeapon _rifle;
 		player addWeapon _light_at;
 	};
