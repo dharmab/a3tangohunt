@@ -5,7 +5,7 @@ _uniform = "U_O_CombatUniform_ocamo";
 // Armor vest/ammo rig
 _vest = "V_HarnessO_brn";
 // Armor vest/ammo rig for Grenadier
-_vest_gl = "V_PlateCarrierIAGL_dgtl";
+_vest_gl = "V_HarnessOGL_brn";
 // Backpack
 _backpack = "B_AssaultPack_dgtl";
 // Helmet or headgear. Set to empty string for no headgear.
