@@ -11,7 +11,7 @@ _backpack = "B_AssaultPack_mcamo";
 // Helmet or headgear. Set to empty string for no headgear.
 _headgear = "H_HelmetB";
 // Night vision goggles. Set to empty string for no night vision goggles.
-_goggles = "NVGoggles";
+_goggles = "";
 
 // Primary weapon for Light Anti-Tank
 _rifle = "arifle_MX_Black_F";
