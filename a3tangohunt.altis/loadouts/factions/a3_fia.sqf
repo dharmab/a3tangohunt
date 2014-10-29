@@ -1,50 +1,50 @@
 _loadout = _this select 1;
 
 // Uniform
-_uniform = "U_B_CombatUniform_mcam";
+_uniform = "U_BG_Guerrilla_6_1";
 // Armor vest/ammo rig
-_vest = "V_PlateCarrier2_rgr";
+_vest = "V_Chestrig_oli";
 // Armor vest/ammo rig for Grenadier
-_vest_gl = "V_PlateCarrierGL_rgr";
+_vest_gl = "V_Chestrig_oli";
 // Backpack
-_backpack = "B_AssaultPack_mcamo";
+_backpack = "B_FieldPack_oli";
 // Helmet or headgear. Set to empty string for no headgear.
-_headgear = "H_HelmetB";
+_headgear = "H_Cap_oli";
 // Night vision goggles. Set to empty string for no night vision goggles.
-_goggles = "NVGoggles";
+_goggles = "";
 
 // Primary weapon for Light Anti-Tank
-_rifle = "arifle_MX_Black_F";
+_rifle = "arifle_Mk20C_F";
 // Primary weapon for Grenadier 
-_rifle_gl = "arifle_MX_GL_Black_F";
+_rifle_gl = "arifle_Mk20_GL_F";
 // Primary weapon for Medic
-_rifle_carbine = "arifle_MXC_Black_F";
+_rifle_carbine = "arifle_Mk20C_F";
 // Primary weapon for Designated Marksman
-_rifle_dmr = "arifle_MXM_Black_F";
+_rifle_dmr = "arifle_Mk20_F";
 // Primary weapon for Automatic Rifleman
 _automatic_rifle = "LMG_Mk200_F";
 // Secondary weapon for all loadouts
-_pistol = "hgun_P07_F";
+_pistol = "hgun_ACPC2_F";
 // Launcher for Light Anti-Tank
-_light_at = "launch_NLAW_F";
+_light_at = "RPG32_F";
 
 // Ammo for Light Anti-Tank and Grenadier primary weapon
-_rifle_ammo = "30Rnd_65x39_caseless_mag";
+_rifle_ammo = "30Rnd_556x45_Stanag";
 // Ammo for Designated Marksman primary weapon
-_rifle_dmr_ammo = "30Rnd_65x39_caseless_mag";
+_rifle_dmr_ammo = "30Rnd_556x45_Stanag";
 // Ammo for Automatic Rifleman primary weapon
 _automatic_rifle_ammo = "200Rnd_65x39_cased_Box";
 // Ammo for secondary weapon
-_pistol_ammo = "16Rnd_9x21_Mag";
+_pistol_ammo = "9Rnd_45ACP_Mag";
 // Ammo for Light Anti-Tank launcher
-_light_at_ammo = "NLAW_F";
+_light_at_ammo = "launch_RPG32_F";
 
 // Optic used on all primary weapons except Designated Marksman. Set to empty string for iron sights.
-_rifle_optic = "optic_Aco";
+_rifle_optic = "";
 // Optic used on Designated Marksman primary weapon. Set to empty string for iron sights.
-_rifle_dmr_optic = "optic_Hamr";
+_rifle_dmr_optic = "optic_DMS";
 // Primary weapon accessory, e.g. IR pointer or flashlight. Set to empty string for no accessory.
-_rifle_accessory = "acc_pointer_IR";
+_rifle_accessory = "acc_flashlight";
 
 // Fragmentation grenade
 _frag_grenade = "HandGrenade";
@@ -53,7 +53,7 @@ _smoke_grenade = "SmokeShell";
 // Chemical light
 _chemlight = "Chemlight_green";
 // Infrared marker. Set to empty string for no IR grenades.
-_ir_grenade = "B_IR_Grenade";
+_ir_grenade = "";
 
 // Grenade launcher high-explosive round
 _gl_he = "1Rnd_HE_Grenade_shell";
