@@ -106,7 +106,7 @@ switch (_loadout) do {
 	};
 	case "Designated Marksman":
 	{
-		[_rifle_ammo, 6, "vest"] call TH_fnc_addItem;
+		[_rifle_dmr_ammo, 6, "vest"] call TH_fnc_addItem;
 		[_frag_grenade, 2, "vest"] call TH_fnc_addItem;
 		player addWeapon _rifle_dmr;
 	};
