@@ -22,7 +22,7 @@ _goggles = "NVGoggles_INDEP";
 // Primary weapon for Light Anti-Tank
 _rifle = "rhs_weap_ak74m";
 // Primary weapon for Grenadier 
-_rifle_gl = "rhs_30Rnd_545x39_AK";
+_rifle_gl = "rhs_weap_ak74m_gp25";
 // Primary weapon for Medic
 _rifle_carbine = "rhs_weap_ak74m";
 // Primary weapon for Designated Marksman
