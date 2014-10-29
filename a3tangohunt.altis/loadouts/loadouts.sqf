@@ -6,16 +6,16 @@ _LISTBOX_IDC = 10002;
 
 // Use Diver loadouts if player is in water
 _loadouts = if ([getPos player] call TH_fnc_isPositionInWater) then {
-    ["Diver (Assault)", "Diver (Medic)"];
+	["Diver (Assault)", "Diver (Medic)"];
 } else {
-    ["Grenadier", "Automatic Rifleman", "Designated Marksman", "Light Anti-Tank", "Combat Medic"];
+	["Grenadier", "Automatic Rifleman", "Designated Marksman", "Light Anti-Tank", "Combat Medic"];
 };
 
 // Open loadouts UI and add loadout items
 createDialog "LoadoutSelectionDialog";
 lbClear _LISTBOX_IDC;
 {
-    lbAdd [_LISTBOX_IDC, _x];
+	lbAdd [_LISTBOX_IDC, _x];
 } forEach _loadouts;
 
 // Apply the default loadout

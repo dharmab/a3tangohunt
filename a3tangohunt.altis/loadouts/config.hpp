@@ -93,144 +93,144 @@
 
 class AbstractControl
 {
-    access = 0;
+	access = 0;
 
-    h = 0.0;
-    w = 0.0;
-    x = 0.0;
-    y = 0.0;
+	h = 0.0;
+	w = 0.0;
+	x = 0.0;
+	y = 0.0;
 
-    font = "PuristaMedium";
-    sizeEx = 0.05;
+	font = "PuristaMedium";
+	sizeEx = 0.05;
 };
 
 class ListBox : AbstractControl
 {
-    access = 0;
+	access = 0;
 
-    style = 528;
-    type = CT_LISTBOX;
+	style = 528;
+	type = CT_LISTBOX;
 
-    w = 1.0;
-    h = 1.0;
+	w = 1.0;
+	h = 1.0;
 
-    rowHeight = 0.05;
-    rowWidth = 1.0;
+	rowHeight = 0.05;
+	rowWidth = 1.0;
 
-    colorText[] = COLOR_WHITE;
-    colorScrollbar[] = COLOR_WHITE;
-    colorSelect[] = COLOR_BLACK;
-    colorSelect2[] = COLOR_BLACK;
-    colorSelectBackground[] = COLOR_WHITE;
-    colorSelectBackground2[] = COLOR_WHITE;
-    colorBackground[] = COLOR_BLACK;
+	colorText[] = COLOR_WHITE;
+	colorScrollbar[] = COLOR_WHITE;
+	colorSelect[] = COLOR_BLACK;
+	colorSelect2[] = COLOR_BLACK;
+	colorSelectBackground[] = COLOR_WHITE;
+	colorSelectBackground2[] = COLOR_WHITE;
+	colorBackground[] = COLOR_BLACK;
 
-    soundSelect[] = {"", 0.1, 1};
+	soundSelect[] = {"", 0.1, 1};
 
-    arrowEmpty = "#(argb,8,8,3)color(1,1,1,1)";
-    arrowFull = "#(argb,8,8,3)color(1,1,1,1)";
+	arrowEmpty = "#(argb,8,8,3)color(1,1,1,1)";
+	arrowFull = "#(argb,8,8,3)color(1,1,1,1)";
 
-    class ListScrollBar {
-        color[] = {1, 1, 1, 0.6};
-        colorActive[] = {1, 1, 1, 1};
-        colorDisabled[] = {1, 1, 1, 0.3};
-        shadow = 0;
-        thumb = "\A3\ui_f\data\gui\cfg\scrollbar\thumb_ca.paa";
-        arrowFull = "\A3\ui_f\data\gui\cfg\scrollbar\arrowFull_ca.paa";
-        arrowEmpty = "\A3\ui_f\data\gui\cfg\scrollbar\arrowEmpty_ca.paa";
-        border = "\A3\ui_f\data\gui\cfg\scrollbar\border_ca.paa";
-    };
+	class ListScrollBar {
+		color[] = {1, 1, 1, 0.6};
+		colorActive[] = {1, 1, 1, 1};
+		colorDisabled[] = {1, 1, 1, 0.3};
+		shadow = 0;
+		thumb = "\A3\ui_f\data\gui\cfg\scrollbar\thumb_ca.paa";
+		arrowFull = "\A3\ui_f\data\gui\cfg\scrollbar\arrowFull_ca.paa";
+		arrowEmpty = "\A3\ui_f\data\gui\cfg\scrollbar\arrowEmpty_ca.paa";
+		border = "\A3\ui_f\data\gui\cfg\scrollbar\border_ca.paa";
+	};
 
-    shadow = 0;
-    colorShadow[] = COLOR_BLACK;
-    color[] = COLOR_WHITE;
-    colorDisabled[] = COLOR_BLACK;
-    period = 1.2;
-    maxHistoryDelay = 1;
-    autoScrollSpeed = -1;
-    autoScrollDelay = 5;
-    autoScrollRewind = 0;
+	shadow = 0;
+	colorShadow[] = COLOR_BLACK;
+	color[] = COLOR_WHITE;
+	colorDisabled[] = COLOR_BLACK;
+	period = 1.2;
+	maxHistoryDelay = 1;
+	autoScrollSpeed = -1;
+	autoScrollDelay = 5;
+	autoScrollRewind = 0;
 };
 
 class Button : AbstractControl
 {
-    access = 0;
+	access = 0;
 
-    type = CT_BUTTON;
-    style = ST_CENTER;
+	type = CT_BUTTON;
+	style = ST_CENTER;
 
-    h = 0.05;
-    w = 0.10;
+	h = 0.05;
+	w = 0.10;
 
-    text = "";
+	text = "";
 
-    borderSize = 0;
-    colorBorder[] = COLOR_WHITE;
-    colorBackgroundActive[] = COLOR_WHITE;
-    colorBackgroundDisabled[] = COLOR_BLACK;
-    colorDisabled[] = COLOR_BLACK;
-    colorFocused[] = COLOR_BLACK;
-    colorShadow[] = COLOR_WHITE;
-    colorText[] = COLOR_WHITE;
-    color[] = COLOR_BLACK;
-    colorBackground[] = COLOR_BLACK;
+	borderSize = 0;
+	colorBorder[] = COLOR_WHITE;
+	colorBackgroundActive[] = COLOR_WHITE;
+	colorBackgroundDisabled[] = COLOR_BLACK;
+	colorDisabled[] = COLOR_BLACK;
+	colorFocused[] = COLOR_BLACK;
+	colorShadow[] = COLOR_WHITE;
+	colorText[] = COLOR_WHITE;
+	color[] = COLOR_BLACK;
+	colorBackground[] = COLOR_BLACK;
 
-    offsetPressedX = 0;
-    offsetPressedY = 0;
-    offsetX = 0;
-    offsetY = 0;
+	offsetPressedX = 0;
+	offsetPressedY = 0;
+	offsetX = 0;
+	offsetY = 0;
 
-    shadow = 0;
+	shadow = 0;
 
-    soundClick[] = {"\A3\ui_f\data\sound\RscButton\soundClick", 0.09, 1};
-    soundEnter[] = {"\A3\ui_f\data\sound\RscButton\soundEnter", 0.09, 1};
-    soundEscape[] = {"\A3\ui_f\data\sound\RscButton\soundEscape", 0.09, 1};
-    soundPush[] = {"\A3\ui_f\data\sound\RscButton\soundPush", 0.09, 1};
-    blinkingPeriod = 0;
-    tooltipColorShade[] = COLOR_BLACK;
-    tooltipColorText[] = COLOR_WHITE;
-    tooltipColorBox[] = COLOR_BLACK;
+	soundClick[] = {"\A3\ui_f\data\sound\RscButton\soundClick", 0.09, 1};
+	soundEnter[] = {"\A3\ui_f\data\sound\RscButton\soundEnter", 0.09, 1};
+	soundEscape[] = {"\A3\ui_f\data\sound\RscButton\soundEscape", 0.09, 1};
+	soundPush[] = {"\A3\ui_f\data\sound\RscButton\soundPush", 0.09, 1};
+	blinkingPeriod = 0;
+	tooltipColorShade[] = COLOR_BLACK;
+	tooltipColorText[] = COLOR_WHITE;
+	tooltipColorBox[] = COLOR_BLACK;
 
 };
 
 class LoadoutSelectionDialog
 {
-    idd = 10001;
-    movingEnable = true;
-    enableSimulation = true;
-    class controlsBackground
-    {
-        class LoadoutSelectionBackground
-        {
-            x = 0.25;
-            y = 0.25;
-            w = 0.5;
-            h = 0.5;
-        };
-    };
-    class objects
-    {
+	idd = 10001;
+	movingEnable = true;
+	enableSimulation = true;
+	class controlsBackground
+	{
+		class LoadoutSelectionBackground
+		{
+			x = 0.25;
+			y = 0.25;
+			w = 0.5;
+			h = 0.5;
+		};
+	};
+	class objects
+	{
 
-    };
-    class controls
-    {
-        class LoadoutListBox : ListBox
-        {
-            idc = 10002;
-            x = 0.33;
-            y = 0.15;
-            w = 0.33;
-            h = 0.50;
+	};
+	class controls
+	{
+		class LoadoutListBox : ListBox
+		{
+			idc = 10002;
+			x = 0.33;
+			y = 0.15;
+			w = 0.33;
+			h = 0.50;
 
-            rowWidth = 0.33;
-        };
-        class OkButton : Button
-        {
-            idc = 2;
-            text = "Confirm Loadout";
-            x = 0.33;
-            y = 0.65;
-            w = 0.33;
-        };
-    };
+			rowWidth = 0.33;
+		};
+		class OkButton : Button
+		{
+			idc = 2;
+			text = "Confirm Loadout";
+			x = 0.33;
+			y = 0.65;
+			w = 0.33;
+		};
+	};
 };

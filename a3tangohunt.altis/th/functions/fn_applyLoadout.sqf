@@ -48,22 +48,22 @@ removeGoggles player;
 
 // Add uniform, vest, backpack and headgear
 if (_is_diver) then {
-    player forceAddUniform _vest_diver;
-    player addVest _vest_diver;
+	player forceAddUniform _vest_diver;
+	player addVest _vest_diver;
 } else {
-    player forceAddUniform _uniform;
-    if (_loadout == "Grenadier") then {
-        player addVest _vest_gl;
-    } else {
-        if (_is_diver) then {
-        } else {
-            player addVest _vest;
-        };
-    };
-    player addBackpack _backpack;
-    if (_headgear != "") then {
-        player addHeadgear _headgear;
-    };
+	player forceAddUniform _uniform;
+	if (_loadout == "Grenadier") then {
+		player addVest _vest_gl;
+	} else {
+		if (_is_diver) then {
+		} else {
+			player addVest _vest;
+		};
+	};
+	player addBackpack _backpack;
+	if (_headgear != "") then {
+		player addHeadgear _headgear;
+	};
 };
 
 // Add basic items
@@ -72,7 +72,7 @@ player linkItem "ItemCompass";
 player linkItem "ItemWatch";
 player linkItem "ItemRadio";
 if (_goggles != "") then {
-    player linkItem _goggles;
+	player linkItem _goggles;
 };
 
 // Add common items
@@ -81,69 +81,69 @@ if (_goggles != "") then {
 [_smoke_grenade, 2, "vest"] call TH_fnc_addItem;
 [_chemlight, 2, "vest"] call TH_fnc_addItem;
 if (_ir_grenade != "") then {
-    [_ir_grenade, 1, "vest"] call TH_fnc_addItem;
+	[_ir_grenade, 1, "vest"] call TH_fnc_addItem;
 };
 
 // Add loadout-specific items (primary weapon and ammo, frag grenades, etc.)
 switch (_loadout) do {
-    case "Grenadier":
-    {
-        [_rifle_ammo, 6, "vest"] call TH_fnc_addItem;
-        [_frag_grenade, 2, "vest"] call TH_fnc_addItem;
-        [_gl_he, 8, "vest"] call TH_fnc_addItem;
-        [_gl_he, 14, "backpack"] call TH_fnc_addItem;
-        [_gl_flare_green, 1, "backpack"] call TH_fnc_addItem;
-        [_gl_flare_red, 1, "backpack"] call TH_fnc_addItem;
-        [_gl_smoke_green, 1, "backpack"] call TH_fnc_addItem;
-        [_gl_smoke_red, 1, "backpack"] call TH_fnc_addItem;
-        player addWeapon _rifle_gl;
-    };
-    case "Automatic Rifleman":
-    {
-        [_automatic_rifle_ammo, 1, "vest"] call TH_fnc_addItem;
-        [_automatic_rifle_ammo, 2, "backpack"] call TH_fnc_addItem;
-        player addWeapon _automatic_rifle;
-    };
-    case "Designated Marksman":
-    {
-        [_rifle_ammo, 6, "vest"] call TH_fnc_addItem;
-        [_frag_grenade, 2, "vest"] call TH_fnc_addItem;
-        player addWeapon _rifle_dmr;
-    };
-    case "Light Anti-Tank":
-    {
-        [_rifle_ammo, 6, "vest"] call TH_fnc_addItem;
-        [_frag_grenade, 2, "vest"] call TH_fnc_addItem;
-        [_light_at_ammo, 1, "backpack"] call TH_fnc_addItem;
-        player addWeapon _rifle;
-        player addWeapon _light_at;
-    };
-    case "Combat Medic":
-    {
-        [_rifle_ammo, 6, "vest"] call TH_fnc_addItem;
-        ["FirstAidKit", 3, "backpack"] call TH_fnc_addItem;
-        ["Medikit", 1, "backpack"] call TH_fnc_addItem;
-        player addWeapon _rifle_carbine;
-    };
-    case "Diver (Assault)":
-    {
-        [_rifle_diver_ammo, 4, "vest"] call TH_fnc_addItem;
-        [_frag_grenade, 2, "vest"] call TH_fnc_addItem;
-        player addWeapon _rifle_diver;
-    };
-    case "Diver (Medic)":
-    {
-        [_rifle_diver_ammo, 4, "vest"] call TH_fnc_addItem;
-        ["FirstAidKit", 1, "vest"] call TH_fnc_addItem;
-        ["Medikit", 1, "vest"] call TH_fnc_addItem;
-        player addWeapon _rifle_diver;
-    };
-    default
-    {
-        [_rifle_ammo, 6, "vest"] call TH_fnc_addItem;
-        [_frag_grenade, 2, "vest"] call TH_fnc_addItem;
-        player addWeapon _rifle;
-    };
+	case "Grenadier":
+	{
+		[_rifle_ammo, 6, "vest"] call TH_fnc_addItem;
+		[_frag_grenade, 2, "vest"] call TH_fnc_addItem;
+		[_gl_he, 8, "vest"] call TH_fnc_addItem;
+		[_gl_he, 14, "backpack"] call TH_fnc_addItem;
+		[_gl_flare_green, 1, "backpack"] call TH_fnc_addItem;
+		[_gl_flare_red, 1, "backpack"] call TH_fnc_addItem;
+		[_gl_smoke_green, 1, "backpack"] call TH_fnc_addItem;
+		[_gl_smoke_red, 1, "backpack"] call TH_fnc_addItem;
+		player addWeapon _rifle_gl;
+	};
+	case "Automatic Rifleman":
+	{
+		[_automatic_rifle_ammo, 1, "vest"] call TH_fnc_addItem;
+		[_automatic_rifle_ammo, 2, "backpack"] call TH_fnc_addItem;
+		player addWeapon _automatic_rifle;
+	};
+	case "Designated Marksman":
+	{
+		[_rifle_ammo, 6, "vest"] call TH_fnc_addItem;
+		[_frag_grenade, 2, "vest"] call TH_fnc_addItem;
+		player addWeapon _rifle_dmr;
+	};
+	case "Light Anti-Tank":
+	{
+		[_rifle_ammo, 6, "vest"] call TH_fnc_addItem;
+		[_frag_grenade, 2, "vest"] call TH_fnc_addItem;
+		[_light_at_ammo, 1, "backpack"] call TH_fnc_addItem;
+		player addWeapon _rifle;
+		player addWeapon _light_at;
+	};
+	case "Combat Medic":
+	{
+		[_rifle_ammo, 6, "vest"] call TH_fnc_addItem;
+		["FirstAidKit", 3, "backpack"] call TH_fnc_addItem;
+		["Medikit", 1, "backpack"] call TH_fnc_addItem;
+		player addWeapon _rifle_carbine;
+	};
+	case "Diver (Assault)":
+	{
+		[_rifle_diver_ammo, 4, "vest"] call TH_fnc_addItem;
+		[_frag_grenade, 2, "vest"] call TH_fnc_addItem;
+		player addWeapon _rifle_diver;
+	};
+	case "Diver (Medic)":
+	{
+		[_rifle_diver_ammo, 4, "vest"] call TH_fnc_addItem;
+		["FirstAidKit", 1, "vest"] call TH_fnc_addItem;
+		["Medikit", 1, "vest"] call TH_fnc_addItem;
+		player addWeapon _rifle_diver;
+	};
+	default
+	{
+		[_rifle_ammo, 6, "vest"] call TH_fnc_addItem;
+		[_frag_grenade, 2, "vest"] call TH_fnc_addItem;
+		player addWeapon _rifle;
+	};
 };
 
 // Add secondary weapons after primary weapons so that primary weapon is selected
@@ -151,16 +151,16 @@ player addWeapon "Binocular";
 player addWeapon _pistol;
 
 if (!_is_diver) then {
-    // Add weapon attachements
-    if (_loadout == "Designated Marksman" and _rifle_dmr_optic != "") then {
-        player addPrimaryWeaponItem _rifle_dmr_optic;
-    } else {
-        if (_rifle_optic != "") then {
-            player addPrimaryWeaponItem _rifle_optic;
-        };
-    };
+	// Add weapon attachements
+	if (_loadout == "Designated Marksman" and _rifle_dmr_optic != "") then {
+		player addPrimaryWeaponItem _rifle_dmr_optic;
+	} else {
+		if (_rifle_optic != "") then {
+			player addPrimaryWeaponItem _rifle_optic;
+		};
+	};
 
-    if (_rifle_accessory != "") then {
-        player addPrimaryWeaponItem _rifle_accessory;
-    };
+	if (_rifle_accessory != "") then {
+		player addPrimaryWeaponItem _rifle_accessory;
+	};
 };
