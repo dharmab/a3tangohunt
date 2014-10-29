@@ -45,52 +45,58 @@ class Mission
 	};
 	class Groups
 	{
-		items=11;
+		items=21;
 		class Item0
 		{
 			side="WEST";
 			class Vehicles
 			{
-				items=3;
+				items=4;
 				class Item0
 				{
-					position[]={14744.578,17.91,16797.334};
+					position[]={14714.127,17.91,16783.412};
 					id=0;
 					side="WEST";
 					vehicle="B_medic_F";
 					player="PLAYER COMMANDER";
 					leader=1;
-					rank="CAPTAIN";
-					skill=0.60000002;
-					init="group_hq = group this;";
-					description="HQ One";
+					rank="SERGEANT";
+					skill=0.46666664;
+					description="Alpha One";
 					syncId=0;
-					synchronizations[]={7};
+					synchronizations[]={5};
 				};
 				class Item1
 				{
-					position[]={14743.015,17.91,16796.049};
-					special="FLY";
+					position[]={14719.127,17.91,16778.412};
 					id=1;
 					side="WEST";
 					vehicle="B_medic_F";
 					player="PLAY CDG";
 					rank="CORPORAL";
-					skill=0.60000002;
-					init="group_hq = group this;";
-					description="HQ Two";
+					skill=0.33333331;
+					description="Alpha Two";
 				};
 				class Item2
 				{
-					position[]={14745.964,17.91,16796.049};
-					special="FLY";
+					position[]={14709.127,17.91,16778.412};
 					id=2;
 					side="WEST";
 					vehicle="B_medic_F";
 					player="PLAY CDG";
-					skill=0.60000002;
-					init="group_hq = group this;";
-					description="HQ Three";
+					rank="CORPORAL";
+					skill=0.2;
+					description="Alpha Three";
+				};
+				class Item3
+				{
+					position[]={14724.127,17.91,16773.412};
+					id=3;
+					side="WEST";
+					vehicle="B_medic_F";
+					player="PLAY CDG";
+					skill=0.2;
+					description="Alpha Four";
 				};
 			};
 		};
@@ -102,53 +108,49 @@ class Mission
 				items=4;
 				class Item0
 				{
-					position[]={14714.127,17.91,16783.412};
-					id=3;
+					position[]={14744.639,17.91,16783.502};
+					id=4;
 					side="WEST";
 					vehicle="B_medic_F";
 					player="PLAY CDG";
 					leader=1;
 					rank="SERGEANT";
 					skill=0.46666664;
-					init="group_alpha = group this;";
-					description="Alpha One";
+					description="Bravo One";
 					syncId=1;
-					synchronizations[]={6};
+					synchronizations[]={4};
 				};
 				class Item1
 				{
-					position[]={14719.127,17.91,16778.412};
-					id=4;
-					side="WEST";
-					vehicle="B_medic_F";
-					player="PLAY CDG";
-					rank="CORPORAL";
-					skill=0.33333331;
-					init="group_alpha = group this;";
-					description="Alpha Two";
-				};
-				class Item2
-				{
-					position[]={14709.127,17.91,16778.412};
+					position[]={14749.639,17.91,16778.502};
 					id=5;
 					side="WEST";
 					vehicle="B_medic_F";
 					player="PLAY CDG";
 					rank="CORPORAL";
-					skill=0.2;
-					init="group_alpha = group this;";
-					description="Alpha Three";
+					skill=0.33333331;
+					description="Bravo Two";
 				};
-				class Item3
+				class Item2
 				{
-					position[]={14724.127,17.91,16773.412};
+					position[]={14739.639,17.91,16778.502};
 					id=6;
 					side="WEST";
 					vehicle="B_medic_F";
 					player="PLAY CDG";
+					rank="CORPORAL";
 					skill=0.2;
-					init="group_alpha = group this;";
-					description="Alpha Four";
+					description="Bravo Three";
+				};
+				class Item3
+				{
+					position[]={14754.639,17.91,16773.502};
+					id=7;
+					side="WEST";
+					vehicle="B_medic_F";
+					player="PLAY CDG";
+					skill=0.2;
+					description="Bravo Four";
 				};
 			};
 		};
@@ -160,115 +162,53 @@ class Mission
 				items=4;
 				class Item0
 				{
-					position[]={14744.639,17.91,16783.502};
-					id=7;
+					position[]={14776.853,17.91,16783.102};
+					id=8;
 					side="WEST";
 					vehicle="B_medic_F";
 					player="PLAY CDG";
 					leader=1;
 					rank="SERGEANT";
 					skill=0.46666664;
-					init="group_bravo = group this;";
-					description="Bravo One";
+					description="Charlie One";
 					syncId=2;
-					synchronizations[]={5};
+					synchronizations[]={3};
 				};
 				class Item1
 				{
-					position[]={14749.639,17.91,16778.502};
-					id=8;
-					side="WEST";
-					vehicle="B_medic_F";
-					player="PLAY CDG";
-					rank="CORPORAL";
-					skill=0.33333331;
-					init="group_bravo = group this;";
-					description="Bravo Two";
-				};
-				class Item2
-				{
-					position[]={14739.639,17.91,16778.502};
+					position[]={14781.853,17.91,16778.102};
 					id=9;
 					side="WEST";
 					vehicle="B_medic_F";
 					player="PLAY CDG";
 					rank="CORPORAL";
-					skill=0.2;
-					init="group_bravo = group this;";
-					description="Bravo Three";
-				};
-				class Item3
-				{
-					position[]={14754.639,17.91,16773.502};
-					id=10;
-					side="WEST";
-					vehicle="B_medic_F";
-					player="PLAY CDG";
-					skill=0.2;
-					init="group_bravo = group this;";
-					description="Bravo Four";
-				};
-			};
-		};
-		class Item3
-		{
-			side="WEST";
-			class Vehicles
-			{
-				items=4;
-				class Item0
-				{
-					position[]={14776.853,17.91,16783.102};
-					id=11;
-					side="WEST";
-					vehicle="B_medic_F";
-					player="PLAY CDG";
-					leader=1;
-					rank="SERGEANT";
-					skill=0.46666664;
-					init="group_charlie = group this;";
-					description="Charlie One";
-					syncId=3;
-					synchronizations[]={4};
-				};
-				class Item1
-				{
-					position[]={14781.853,17.91,16778.102};
-					id=12;
-					side="WEST";
-					vehicle="B_medic_F";
-					player="PLAY CDG";
-					rank="CORPORAL";
 					skill=0.33333331;
-					init="group_charlie = group this;";
 					description="Charlie Two";
 				};
 				class Item2
 				{
 					position[]={14771.853,17.91,16778.102};
-					id=13;
+					id=10;
 					side="WEST";
 					vehicle="B_medic_F";
 					player="PLAY CDG";
 					rank="CORPORAL";
 					skill=0.2;
-					init="group_charlie = group this;";
 					description="Charlie Three";
 				};
 				class Item3
 				{
 					position[]={14786.853,17.91,16773.102};
-					id=14;
+					id=11;
 					side="WEST";
 					vehicle="B_medic_F";
 					player="PLAY CDG";
 					skill=0.2;
-					init="group_charlie = group this;";
 					description="Charlie Four";
 				};
 			};
 		};
-		class Item4
+		class Item3
 		{
 			side="LOGIC";
 			class Vehicles
@@ -282,7 +222,7 @@ class Mission
 						items=4;
 						class Item0
 						{
-							value="CompanyAlpha";
+							value="CompanyCharlie";
 							parentCls="ModuleGroupID";
 							typeName="Company";
 						};
@@ -305,18 +245,18 @@ class Mission
 							typeName="Custom";
 						};
 					};
-					id=15;
+					id=12;
 					side="LOGIC";
 					vehicle="ModuleGroupID";
 					leader=1;
 					lock="UNLOCKED";
 					skill=0.60000002;
-					syncId=4;
-					synchronizations[]={3};
+					syncId=3;
+					synchronizations[]={2};
 				};
 			};
 		};
-		class Item5
+		class Item4
 		{
 			side="LOGIC";
 			class Vehicles
@@ -330,7 +270,7 @@ class Mission
 						items=4;
 						class Item0
 						{
-							value="CompanyAlpha";
+							value="CompanyBravo";
 							parentCls="ModuleGroupID";
 							typeName="Company";
 						};
@@ -353,18 +293,18 @@ class Mission
 							typeName="Custom";
 						};
 					};
-					id=16;
+					id=13;
 					side="LOGIC";
 					vehicle="ModuleGroupID";
 					leader=1;
 					lock="UNLOCKED";
 					skill=0.60000002;
-					syncId=5;
-					synchronizations[]={2};
+					syncId=4;
+					synchronizations[]={1};
 				};
 			};
 		};
-		class Item6
+		class Item5
 		{
 			side="LOGIC";
 			class Vehicles
@@ -401,14 +341,33 @@ class Mission
 							typeName="Custom";
 						};
 					};
-					id=17;
+					id=14;
 					side="LOGIC";
 					vehicle="ModuleGroupID";
 					leader=1;
 					lock="UNLOCKED";
 					skill=0.60000002;
-					syncId=6;
-					synchronizations[]={1};
+					syncId=5;
+					synchronizations[]={0};
+				};
+			};
+		};
+		class Item6
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={14790.762,17.91,16801.889};
+					id=15;
+					side="LOGIC";
+					vehicle="Logic";
+					leader=1;
+					skill=0.60000002;
+					text="uav_scan_logic";
+					init="0 = this execVM ""uavScan.sqf"";";
 				};
 			};
 		};
@@ -420,13 +379,105 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={14748.527,17.91,16797.369};
+					position[]={14794.139,17.91,16801.914};
+					id=16;
+					side="LOGIC";
+					vehicle="Logic";
+					leader=1;
+					skill=0.60000002;
+					text="end_condition_logic";
+					init="0 = [] execVM ""endCondition.sqf"";";
+				};
+			};
+		};
+		class Item8
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={14785.052,17.91,16801.762};
+					id=17;
+					side="LOGIC";
+					vehicle="Logic";
+					leader=1;
+					skill=0.60000002;
+					text="mission_init_logic";
+					init="0 = this execVM ""mission_init.sqf""";
+				};
+			};
+		};
+		class Item9
+		{
+			side="WEST";
+			class Vehicles
+			{
+				items=4;
+				class Item0
+				{
+					position[]={14715.082,17.91,16761.545};
+					id=18;
+					side="WEST";
+					vehicle="B_medic_F";
+					player="PLAY CDG";
+					leader=1;
+					rank="SERGEANT";
+					skill=0.46666664;
+					description="Delta One";
+					syncId=6;
+					synchronizations[]={7};
+				};
+				class Item1
+				{
+					position[]={14720.082,17.91,16756.545};
+					id=19;
+					side="WEST";
+					vehicle="B_medic_F";
+					player="PLAY CDG";
+					rank="CORPORAL";
+					skill=0.33333331;
+					description="Delta Two";
+				};
+				class Item2
+				{
+					position[]={14710.082,17.91,16756.545};
+					id=20;
+					side="WEST";
+					vehicle="B_medic_F";
+					player="PLAY CDG";
+					rank="CORPORAL";
+					skill=0.2;
+					description="Delta Three";
+				};
+				class Item3
+				{
+					position[]={14725.082,17.91,16751.545};
+					id=21;
+					side="WEST";
+					vehicle="B_medic_F";
+					player="PLAY CDG";
+					skill=0.2;
+					description="Delta Four";
+				};
+			};
+		};
+		class Item10
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={14717.944,17.91,16761.512};
 					class args
 					{
 						items=4;
 						class Item0
 						{
-							value="CompanyAlpha";
+							value="CompanyDelta";
 							parentCls="ModuleGroupID";
 							typeName="Company";
 						};
@@ -444,23 +495,77 @@ class Mission
 						};
 						class Item3
 						{
-							value="HQ";
+							value="Delta";
 							parentCls="ModuleGroupID";
 							typeName="Custom";
 						};
 					};
-					id=18;
+					id=22;
 					side="LOGIC";
 					vehicle="ModuleGroupID";
 					leader=1;
 					lock="UNLOCKED";
 					skill=0.60000002;
 					syncId=7;
-					synchronizations[]={0};
+					synchronizations[]={6};
 				};
 			};
 		};
-		class Item8
+		class Item11
+		{
+			side="WEST";
+			class Vehicles
+			{
+				items=4;
+				class Item0
+				{
+					position[]={14746.749,17.91,16761.902};
+					id=23;
+					side="WEST";
+					vehicle="B_medic_F";
+					player="PLAY CDG";
+					leader=1;
+					rank="SERGEANT";
+					skill=0.46666664;
+					description="Echo One";
+					syncId=8;
+					synchronizations[]={9};
+				};
+				class Item1
+				{
+					position[]={14751.749,17.91,16756.902};
+					id=24;
+					side="WEST";
+					vehicle="B_medic_F";
+					player="PLAY CDG";
+					rank="CORPORAL";
+					skill=0.33333331;
+					description="Echo Two";
+				};
+				class Item2
+				{
+					position[]={14741.749,17.91,16756.902};
+					id=25;
+					side="WEST";
+					vehicle="B_medic_F";
+					player="PLAY CDG";
+					rank="CORPORAL";
+					skill=0.2;
+					description="Echo Three";
+				};
+				class Item3
+				{
+					position[]={14756.749,17.91,16751.902};
+					id=26;
+					side="WEST";
+					vehicle="B_medic_F";
+					player="PLAY CDG";
+					skill=0.2;
+					description="Echo Four";
+				};
+			};
+		};
+		class Item12
 		{
 			side="LOGIC";
 			class Vehicles
@@ -468,18 +573,101 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={14790.762,17.91,16801.889};
-					id=19;
+					position[]={14749.611,17.91,16761.869};
+					class args
+					{
+						items=4;
+						class Item0
+						{
+							value="CompanyEcho";
+							parentCls="ModuleGroupID";
+							typeName="Company";
+						};
+						class Item1
+						{
+							value="Platoon1";
+							parentCls="ModuleGroupID";
+							typeName="Platoon";
+						};
+						class Item2
+						{
+							value="Squad1";
+							parentCls="ModuleGroupID";
+							typeName="Squad";
+						};
+						class Item3
+						{
+							value="Echo";
+							parentCls="ModuleGroupID";
+							typeName="Custom";
+						};
+					};
+					id=27;
 					side="LOGIC";
-					vehicle="Logic";
+					vehicle="ModuleGroupID";
 					leader=1;
+					lock="UNLOCKED";
 					skill=0.60000002;
-					text="uav_scan_logic";
-					init="0 = this execVM ""uavScan.sqf"";";
+					syncId=9;
+					synchronizations[]={8};
 				};
 			};
 		};
-		class Item9
+		class Item13
+		{
+			side="WEST";
+			class Vehicles
+			{
+				items=4;
+				class Item0
+				{
+					position[]={14778.176,17.91,16762.021};
+					id=28;
+					side="WEST";
+					vehicle="B_medic_F";
+					player="PLAY CDG";
+					leader=1;
+					rank="SERGEANT";
+					skill=0.46666664;
+					description="Foxtrot One";
+					syncId=10;
+					synchronizations[]={11};
+				};
+				class Item1
+				{
+					position[]={14783.176,17.91,16757.021};
+					id=29;
+					side="WEST";
+					vehicle="B_medic_F";
+					player="PLAY CDG";
+					rank="CORPORAL";
+					skill=0.33333331;
+					description="Foxtrot Two";
+				};
+				class Item2
+				{
+					position[]={14773.176,17.91,16757.021};
+					id=30;
+					side="WEST";
+					vehicle="B_medic_F";
+					player="PLAY CDG";
+					rank="CORPORAL";
+					skill=0.2;
+					description="Foxtrot Three";
+				};
+				class Item3
+				{
+					position[]={14788.176,17.91,16752.021};
+					id=31;
+					side="WEST";
+					vehicle="B_medic_F";
+					player="PLAY CDG";
+					skill=0.2;
+					description="Foxtrot Four";
+				};
+			};
+		};
+		class Item14
 		{
 			side="LOGIC";
 			class Vehicles
@@ -487,18 +675,101 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={14794.139,17.91,16801.914};
-					id=20;
+					position[]={14781.038,17.91,16761.988};
+					class args
+					{
+						items=4;
+						class Item0
+						{
+							value="CompanyFoxtrot";
+							parentCls="ModuleGroupID";
+							typeName="Company";
+						};
+						class Item1
+						{
+							value="Platoon1";
+							parentCls="ModuleGroupID";
+							typeName="Platoon";
+						};
+						class Item2
+						{
+							value="Squad1";
+							parentCls="ModuleGroupID";
+							typeName="Squad";
+						};
+						class Item3
+						{
+							value="Foxtrot";
+							parentCls="ModuleGroupID";
+							typeName="Custom";
+						};
+					};
+					id=32;
 					side="LOGIC";
-					vehicle="Logic";
+					vehicle="ModuleGroupID";
 					leader=1;
+					lock="UNLOCKED";
 					skill=0.60000002;
-					text="end_condition_logic";
-					init="0 = [] execVM ""endCondition.sqf"";";
+					syncId=11;
+					synchronizations[]={10};
 				};
 			};
 		};
-		class Item10
+		class Item15
+		{
+			side="WEST";
+			class Vehicles
+			{
+				items=4;
+				class Item0
+				{
+					position[]={14715.921,17.91,16738.125};
+					id=33;
+					side="WEST";
+					vehicle="B_medic_F";
+					player="PLAY CDG";
+					leader=1;
+					rank="SERGEANT";
+					skill=0.46666664;
+					description="Golf One";
+					syncId=12;
+					synchronizations[]={13};
+				};
+				class Item1
+				{
+					position[]={14720.921,17.91,16733.125};
+					id=34;
+					side="WEST";
+					vehicle="B_medic_F";
+					player="PLAY CDG";
+					rank="CORPORAL";
+					skill=0.33333331;
+					description="Golf Two";
+				};
+				class Item2
+				{
+					position[]={14710.921,17.91,16733.125};
+					id=35;
+					side="WEST";
+					vehicle="B_medic_F";
+					player="PLAY CDG";
+					rank="CORPORAL";
+					skill=0.2;
+					description="Golf Three";
+				};
+				class Item3
+				{
+					position[]={14725.921,17.91,16728.125};
+					id=36;
+					side="WEST";
+					vehicle="B_medic_F";
+					player="PLAY CDG";
+					skill=0.2;
+					description="Golf Four";
+				};
+			};
+		};
+		class Item16
 		{
 			side="LOGIC";
 			class Vehicles
@@ -506,14 +777,247 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={14785.052,17.91,16801.762};
-					id=21;
+					position[]={14718.783,17.91,16738.092};
+					class args
+					{
+						items=4;
+						class Item0
+						{
+							value="CompanyGolf";
+							parentCls="ModuleGroupID";
+							typeName="Company";
+						};
+						class Item1
+						{
+							value="Platoon1";
+							parentCls="ModuleGroupID";
+							typeName="Platoon";
+						};
+						class Item2
+						{
+							value="Squad1";
+							parentCls="ModuleGroupID";
+							typeName="Squad";
+						};
+						class Item3
+						{
+							value="Golf";
+							parentCls="ModuleGroupID";
+							typeName="Custom";
+						};
+					};
+					id=37;
 					side="LOGIC";
-					vehicle="Logic";
+					vehicle="ModuleGroupID";
 					leader=1;
+					lock="UNLOCKED";
 					skill=0.60000002;
-					text="mission_init_logic";
-					init="0 = this execVM ""mission_init.sqf""";
+					syncId=13;
+					synchronizations[]={12};
+				};
+			};
+		};
+		class Item17
+		{
+			side="WEST";
+			class Vehicles
+			{
+				items=4;
+				class Item0
+				{
+					position[]={14747.706,17.91,16738.365};
+					id=38;
+					side="WEST";
+					vehicle="B_medic_F";
+					player="PLAY CDG";
+					leader=1;
+					rank="SERGEANT";
+					skill=0.46666664;
+					description="Hotel One";
+					syncId=14;
+					synchronizations[]={15};
+				};
+				class Item1
+				{
+					position[]={14752.706,17.91,16733.365};
+					id=39;
+					side="WEST";
+					vehicle="B_medic_F";
+					player="PLAY CDG";
+					rank="CORPORAL";
+					skill=0.33333331;
+					description="Hotel Two";
+				};
+				class Item2
+				{
+					position[]={14757.706,17.91,16728.365};
+					id=40;
+					side="WEST";
+					vehicle="B_medic_F";
+					player="PLAY CDG";
+					skill=0.2;
+					description="Hotel Four";
+				};
+				class Item3
+				{
+					position[]={14742.057,17.91,16733.016};
+					id=41;
+					side="WEST";
+					vehicle="B_medic_F";
+					player="PLAY CDG";
+					rank="SERGEANT";
+					skill=0.46666664;
+					description="Hotel Three";
+				};
+			};
+		};
+		class Item18
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={14750.568,17.91,16738.332};
+					class args
+					{
+						items=4;
+						class Item0
+						{
+							value="CompanyHotel";
+							parentCls="ModuleGroupID";
+							typeName="Company";
+						};
+						class Item1
+						{
+							value="Platoon1";
+							parentCls="ModuleGroupID";
+							typeName="Platoon";
+						};
+						class Item2
+						{
+							value="Squad1";
+							parentCls="ModuleGroupID";
+							typeName="Squad";
+						};
+						class Item3
+						{
+							value="Hotel";
+							parentCls="ModuleGroupID";
+							typeName="Custom";
+						};
+					};
+					id=42;
+					side="LOGIC";
+					vehicle="ModuleGroupID";
+					leader=1;
+					lock="UNLOCKED";
+					skill=0.60000002;
+					syncId=15;
+					synchronizations[]={14};
+				};
+			};
+		};
+		class Item19
+		{
+			side="WEST";
+			class Vehicles
+			{
+				items=4;
+				class Item0
+				{
+					position[]={14779.134,17.91,16736.572};
+					id=43;
+					side="WEST";
+					vehicle="B_medic_F";
+					player="PLAY CDG";
+					leader=1;
+					rank="SERGEANT";
+					skill=0.46666664;
+					description="India One";
+					syncId=16;
+					synchronizations[]={17};
+				};
+				class Item1
+				{
+					position[]={14784.134,17.91,16731.572};
+					id=44;
+					side="WEST";
+					vehicle="B_medic_F";
+					player="PLAY CDG";
+					rank="CORPORAL";
+					skill=0.33333331;
+					description="India Two";
+				};
+				class Item2
+				{
+					position[]={14774.134,17.91,16731.572};
+					id=45;
+					side="WEST";
+					vehicle="B_medic_F";
+					player="PLAY CDG";
+					rank="CORPORAL";
+					skill=0.2;
+					description="India Three";
+				};
+				class Item3
+				{
+					position[]={14789.134,17.91,16726.572};
+					id=46;
+					side="WEST";
+					vehicle="B_medic_F";
+					player="PLAY CDG";
+					skill=0.2;
+					description="India Four";
+				};
+			};
+		};
+		class Item20
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={14781.996,17.91,16736.539};
+					class args
+					{
+						items=4;
+						class Item0
+						{
+							value="CompanyIndia";
+							parentCls="ModuleGroupID";
+							typeName="Company";
+						};
+						class Item1
+						{
+							value="Platoon1";
+							parentCls="ModuleGroupID";
+							typeName="Platoon";
+						};
+						class Item2
+						{
+							value="Squad1";
+							parentCls="ModuleGroupID";
+							typeName="Squad";
+						};
+						class Item3
+						{
+							value="India";
+							parentCls="ModuleGroupID";
+							typeName="Custom";
+						};
+					};
+					id=47;
+					side="LOGIC";
+					vehicle="ModuleGroupID";
+					leader=1;
+					lock="UNLOCKED";
+					skill=0.60000002;
+					syncId=17;
+					synchronizations[]={16};
 				};
 			};
 		};
