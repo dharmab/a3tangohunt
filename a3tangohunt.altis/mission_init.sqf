@@ -107,9 +107,6 @@ _fnc_initParameters = {
     _ALLOW_UNDERWATER_START = (_description_ext_underwater != 0);
 };
 
-
-_fnc_isPositionInWater = compile preprocessFileLineNumbers "isPositionInWater.sqf";
-
 // Set weather values across network
 // _param_overcast overcast value (0.0 to 1.0)
 // _param_rain rain value (0.0 to 1.0)
@@ -128,16 +125,6 @@ _fnc_setWeather = {
     forceWeatherChange;
 };
 
-// Returns a random position on land;
-_fnc_randomPositionOnLand = {
-    _random_position = [0, 0];
-    waitUntil {
-        _random_position = [random 25000, random 25000];
-        !([_random_position] call _fnc_isPositionInWater);
-    };
-    _random_position;
-};
-
 // Returns a random location on the map.
 // _param_location_classes array of valid location classes
 _fnc_randomizeEnemyLocation = {
@@ -146,13 +133,13 @@ _fnc_randomizeEnemyLocation = {
     _location = "";
     if (count _param_location_classes == 0) then {
         // If no location classes were provided, create a new location 
-        _location_position = [] call _fnc_randomPositionOnLand;
+        _location_position = [] call TH_fnc_getRandomLandPosition;
         _location_position = _location_position + [0];
         _location = createLocation ["NameLocal", _location_position, 150 + random 200, 150 + random 200];
     } else {
         _locations = [];
         waitUntil {
-            _random_position = [] call _fnc_randomPositionOnLand;
+            _random_position = [] call TH_fnc_getRandomLandPosition;
 
             // Get all viable locations within 1km of the random position
             _locations = nearestLocations [_random_position, _param_location_classes, 1000];
@@ -175,7 +162,7 @@ _fnc_randomizePlayerPosition = {
     _random_position = [0, 0];
     waitUntil {
         _random_position = [_param_enemy_position, 350 + (random 250), random 360] call _fnc_computeOffset;
-        ((_ALLOW_UNDERWATER_START) or !([_random_position] call _fnc_isPositionInWater));
+        ((_ALLOW_UNDERWATER_START) or !([_random_position] call TH_fnc_isPositionInWater));
     };
 
     _random_position;

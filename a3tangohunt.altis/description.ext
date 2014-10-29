@@ -126,9 +126,11 @@ class CfgFunctions
 		};
 		class Functions
 		{
-			file = "th\functions"
+			file = "th\functions";
 			class applyLoadout{};
 			class addItem{};
+			class isPositionInWater{};
+			class getRandomLandPosition{};
 		};
 	};
 };

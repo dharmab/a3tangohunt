@@ -2,10 +2,16 @@ _loadout = _this select 1;
 
 // Uniform
 _uniform = "U_BG_Guerrilla_6_1";
+// Uniform for Divers
+_uniform_diver = "U_B_Wetsuit";
+
 // Armor vest/ammo rig
 _vest = "V_Chestrig_oli";
 // Armor vest/ammo rig for Grenadier
 _vest_gl = "V_Chestrig_oli";
+// Rebreather vest for Divers
+_vest_diver = "V_RebreatherB";
+
 // Backpack
 _backpack = "B_FieldPack_oli";
 // Helmet or headgear. Set to empty string for no headgear.
@@ -23,6 +29,8 @@ _rifle_carbine = "arifle_Mk20C_F";
 _rifle_dmr = "arifle_Mk20_F";
 // Primary weapon for Automatic Rifleman
 _automatic_rifle = "LMG_Mk200_F";
+// Primary weapon for Divers
+_rifle_diver = "arifle_SDAR_F";
 // Secondary weapon for all loadouts
 _pistol = "hgun_ACPC2_F";
 // Launcher for Light Anti-Tank
@@ -34,6 +42,8 @@ _rifle_ammo = "30Rnd_556x45_Stanag";
 _rifle_dmr_ammo = "30Rnd_556x45_Stanag";
 // Ammo for Automatic Rifleman primary weapon
 _automatic_rifle_ammo = "200Rnd_65x39_cased_Box";
+// ammo for Diver primary weapon
+_rifle_diver_ammo = "20Rnd_556x45_UW_mag";
 // Ammo for secondary weapon
 _pistol_ammo = "9Rnd_45ACP_Mag";
 // Ammo for Light Anti-Tank launcher
@@ -69,8 +79,10 @@ _gl_smoke_green = "1Rnd_SmokeGreen_Grenade_shell";
 [
     _loadout,
     _uniform,
+    _uniform_diver,
     _vest,
     _vest_gl,
+    _vest_diver,
     _backpack,
     _headgear,
     _goggles,
@@ -79,11 +91,13 @@ _gl_smoke_green = "1Rnd_SmokeGreen_Grenade_shell";
     _rifle_carbine,
     _rifle_dmr,
     _automatic_rifle,
+    _rifle_diver,
     _pistol,
     _light_at,
     _rifle_ammo,
     _rifle_dmr_ammo,
     _automatic_rifle_ammo,
+    _rifle_diver_ammo,
     _pistol_ammo,
     _light_at_ammo,
     _rifle_optic,
