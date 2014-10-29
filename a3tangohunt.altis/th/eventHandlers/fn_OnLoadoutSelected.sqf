@@ -1,5 +1,5 @@
 _LISTBOX_IDC = 10002;
-_FACTION_TABLE = ["a3_nato", "a3_csat", "a3_aaf", "a3_fia"];
+_FACTION_TABLE = ["a3_nato", "a3_csat", "a3_aaf", "a3_fia", "rhs_usa", "rhs_rgf"];
 
 // Get the currently selected loadout
 _selection = lbText [_LISTBOX_IDC, (lbCurSel _LISTBOX_IDC)];
