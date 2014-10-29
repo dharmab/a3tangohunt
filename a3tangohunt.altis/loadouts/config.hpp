@@ -226,8 +226,8 @@ class LoadoutSelectionDialog
         };
         class OkButton : Button
         {
-            idc = 10003;
-            text = "OK";
+            idc = 2;
+            text = "Confirm Loadout";
             x = 0.33;
             y = 0.65;
             w = 0.33;
