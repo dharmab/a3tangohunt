@@ -32,20 +32,16 @@ waitUntil {
 	_victory = true;
 	_defeat = true;
 	{
-		// Check if any enemies are alive
-		if (side _x == east) then {
-			if (alive _x) then {
+		if (alive _x) then {
+			if (side (group _x) == east) then {
 				_victory = false;
 			};
-		};
 
-		// Check if any players are alive and not spectating
-		if (side _x == west) then {
-			if (alive _x and !([spectate_area, position _x] call BIS_fnc_inTrigger)) then {
+			if (side (group _x) == west) then {
 				_defeat = false;
 			};
-		};
-	} forEach allUnits;
+		}
+	} forEach allUnits + allDeadMen;
 
 	sleep 15;
 	_victory or _defeat;
