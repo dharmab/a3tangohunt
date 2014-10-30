@@ -1,5 +1,5 @@
 onLoadName         = "Tango Hunt";
-author             = "Zaid";
+author             = "Dharma Bellamkonda";
 onLoadMission      = "Neutralize all hostiles";
 onLoadMissionTime  = 1;
 
