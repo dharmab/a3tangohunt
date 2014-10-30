@@ -208,7 +208,7 @@ _insertion_marker setMarkerColor "ColorBlue";
 // Set the spawn location
 "respawn_west" setMarkerPos (getMarkerPos _insertion_marker);
 
-_number_of_enemies = ceil (playersNumber * _ENEMY_SCALING_FACTOR);
+_number_of_enemies = ceil ((playersNumber west) * _ENEMY_SCALING_FACTOR);
 
 [_area_marker, east, _ENEMY_FACTION, _number_of_enemies, _ENEMY_BEHAVIOR] call TH_fnc_spawnEnemies;
 
