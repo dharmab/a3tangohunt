@@ -14,6 +14,8 @@ allowSubordinatesTakeWeapons = 1;
 class Header
 {
 	gameType = Coop;
+	minPlayers = 1;
+	maxPlayers = 32;
 };
 class Params
 {
