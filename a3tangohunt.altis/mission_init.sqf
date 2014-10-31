@@ -158,11 +158,9 @@ _fnc_randomizeEnemyLocation = {
 // _param_enemy_position position to base returned position on.
 _fnc_randomizePlayerPosition = {
 	_param_enemy_position = _this select 0;
-	_random_position = [0, 0];
-	waitUntil {
-		_random_position = [_param_enemy_position, 350 + (random 250), random 360] call TH_fnc_computeOffset;
-		((_ALLOW_UNDERWATER_START) or !([_random_position] call TH_fnc_isPositionInWater));
-	};
+	_water_mode = if (_ALLOW_UNDERWATER_START) then {1} else {0};
+
+	_random_position = [_param_enemy_position, 335, 475, _water_mode, 100] call BIS_fnc_findSafePos;
 
 	_random_position;
 };

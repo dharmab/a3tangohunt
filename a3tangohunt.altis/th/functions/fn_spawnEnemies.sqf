@@ -85,13 +85,7 @@ while {(count _ai_units) < _ai_global_count_total} do {
 	_ai_count_group_total = _ai_group_count_distribution call BIS_fnc_selectRandom;
 
 	_new_group = createGroup _ai_side;
-
-	// Select a random spawn point and ensure it is not in water
-	_new_group_position = [0, 0];
-	waitUntil {
-		_new_group_position = [_area_marker_position, random 120, random 360] call TH_fnc_computeOffset;
-		!([_new_group_position] call TH_fnc_isPositionInWater);
-	};
+	_new_group_position = [_area_marker_position, 25, 150, 0, 100] call BIS_fnc_findSafePos;
 
 	// Groups with 4 or more members have a team leader
 	if (_ai_count_group_total >= 4) then {
@@ -101,7 +95,6 @@ while {(count _ai_units) < _ai_global_count_total} do {
 	while {(count (units _new_group)) < _ai_count_group_total} do {
 		(_ai_group_class_distribution call BIS_fnc_selectRandom) createUnit [_new_group_position, _new_group];
 	};
-
 
 	// Add several patrol waypoints and a final defend waypoint to the new group
 	[_new_group, getPos leader _new_group, 250] call BIS_fnc_taskPatrol;
