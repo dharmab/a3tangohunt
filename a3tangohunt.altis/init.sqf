@@ -1,3 +1,8 @@
+// Mission is only supported in multiplayer
+if (!isMultiplayer) exitWith {
+    ["SinglePlayer", true, true] call BIS_fnc_endMission;
+};
+
 // Process briefing
 execVM "briefing.sqf";
 
