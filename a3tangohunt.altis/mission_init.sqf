@@ -29,7 +29,7 @@ _fnc_initParameters = {
 	// to convert the parameters into runtime types
 
 	// Enemy faction
-	_FACTION_TABLE = ["NATO", "CSAT", "AAF", "FIA", "RHS USA", "RHS AFRF"];
+	_FACTION_TABLE = ["NATO", "CSAT", "AAF", "FIA", "RHS USA", "RHS AFRF", "CAF PIRATES", "CAF TRIBAL FIGHTERS", "CAF REBELS"];
 	// Enemy scaling factor
 	_DIFFICULTY_TABLE = [1.0, 1.5, 2.0, 3.0, 4.5];
 	// Enemy behavior

@@ -11,6 +11,7 @@ _ai_marksman = "";
 _ai_antitank = "";
 
 switch (_ai_faction) do  {
+	// Bohemia Interactive: NATO (Arma 3)
 	case "NATO":
 	{
 		_ai_team_leader   = "B_Soldier_TL_F";
@@ -19,6 +20,7 @@ switch (_ai_faction) do  {
 		_ai_marksman      = "B_soldier_M_F";
 		_ai_antitank      = "B_soldier_LAT_F";
 	};
+	// Bohemia Interactive: FIA
 	case "FIA":
 	{
 		_ai_team_leader   = "I_G_Soldier_TL_F";
@@ -27,6 +29,7 @@ switch (_ai_faction) do  {
 		_ai_marksman      = "I_G_soldier_M_F";
 		_ai_antitank      = "I_G_soldier_LAT_F";
 	};
+	// Bohemia Interactive: AAF
 	case "AAF":
 	{
 		_ai_team_leader   = "I_Soldier_TL_F";
@@ -35,6 +38,7 @@ switch (_ai_faction) do  {
 		_ai_marksman      = "I_soldier_M_F";
 		_ai_antitank      = "I_soldier_LAT_F";
 	};
+	// Bohemia Interactive: CSAT
 	case "CSAT":
 	{
 		_ai_team_leader   = "O_Soldier_TL_F";
@@ -43,6 +47,7 @@ switch (_ai_faction) do  {
 		_ai_marksman      = "O_soldier_M_F";
 		_ai_antitank      = "O_soldier_LAT_F";
 	};
+	// Robert Hammer Studios: Armed Forces of the Russian Federation
 	case "RHS AFRF":
 	{
 		_ai_team_leader   = "rhs_vdv_sergeant";
@@ -51,6 +56,7 @@ switch (_ai_faction) do  {
 		_ai_marksman      = "rhs_vdv_marksman";
 		_ai_antitank      = "rhs_vdv_LAT";
 	};
+	// Robert Hammer Studios: United States Armed Forces
 	case "RHS USA":
 	{
 		_ai_team_leader   = "rhsusf_army_ocp_teamleader";
@@ -58,6 +64,33 @@ switch (_ai_faction) do  {
 		_ai_machinegunner = "rhsusf_army_ocp_autorifleman";
 		_ai_marksman      = "rhsusf_army_ocp_marksman";
 		_ai_antitank      = "rhsusf_army_ocp_LAT";
+	};
+	// Canadian Armed Forces Team: African Pirates
+	case "CAF PIRATES":
+	{
+		_ai_team_leader   = "CAF_AG_AFR_P_AK74";
+		_ai_rifleman      = "CAF_AG_AFR_P_AK74";
+		_ai_machinegunner = "CAF_AG_AFR_P_RPK74";
+		_ai_marksman      = "CAF_AG_AFR_P_SVD";
+		_ai_antitank      = "CAF_AG_AFR_P_RPG";
+	};
+	// Canadian Armed Forces Team: Middle Eastern Tribal Fighters
+	case "CAF TRIBAL FIGHTERS":
+	{
+		_ai_team_leader   = "CAF_AG_ME_T_AK74";
+		_ai_rifleman      = "CAF_AG_ME_T_AK74";
+		_ai_machinegunner = "CAF_AG_ME_T_RPK74";
+		_ai_marksman      = "CAF_AG_ME_T_SVD";
+		_ai_antitank      = "CAF_AG_ME_T_RPG";
+	};
+	// Canadian Armed Forces Team: Eastern European Rebels
+	case "CAF REBELS":
+	{
+		_ai_team_leader   = "CAF_AG_EEUR_R_AK74";
+		_ai_rifleman      = "CAF_AG_EEUR_R_AK74";
+		_ai_machinegunner = "CAF_AG_EEUR_R_PKM";
+		_ai_marksman      = "CAF_AG_EEUR_R_SVD";
+		_ai_antitank      = "CAF_AG_EEUR_R_RPG";
 	};
 	default {
 		hint "Error: _ai_faction parameter invalid";

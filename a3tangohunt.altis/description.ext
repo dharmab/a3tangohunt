@@ -23,14 +23,31 @@ class Params
 	{
 		title    = "Player Faction";
 		values[] = {0, 1, 2, 3, 4 ,5};
-		texts[]  = {"NATO", "CSAT", "AAF", "FIA", "United States Army (Requires RHS: Escalation)", "Russian Ground Forces (Requires RHS: Escalation)"};
+		texts[]  = {
+			"NATO",
+			"CSAT",
+			"AAF",
+			"FIA",
+			"United States Army (Requires RHS: Escalation)",
+			"Russian Ground Forces (Requires RHS: Escalation)"
+		};
 		default  = 0;
 	};
 	class Faction
 	{
 		title    = "Enemy Faction";
-		values[] = {0, 1, 2, 3, 4, 5};
-		texts[]  = {"NATO", "CSAT", "AAF", "FIA", "United States Army (Requires RHS: Escalation)", "Russian Ground Forces (Requires RHS: Escalation)"};
+		values[] = {0, 1, 2, 3, 4, 5, 6, 7, 8};
+		texts[]  = {
+			"NATO",
+			"CSAT",
+			"AAF",
+			"FIA",
+			"United States Army (Requires RHS: Escalation)",
+			"Russian Ground Forces (Requires RHS: Escalation)",
+			"African Pirates (Requires CAF Aggressors)",
+			"Middle Eastern Tribal Fighters (Requires CAF Aggressors)",
+			"East European Rebels (Requires CAF Aggressors)"
+		};
 		default  = 1;
 	};
 	class Difficulty
