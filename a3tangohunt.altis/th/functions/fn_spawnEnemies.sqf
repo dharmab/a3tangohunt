@@ -85,7 +85,7 @@ while {(count _ai_units) < _ai_global_count_total} do {
 	_ai_count_group_total = _ai_group_count_distribution call BIS_fnc_selectRandom;
 
 	_new_group = createGroup _ai_side;
-	_new_group_position = [_area_marker_position, 25, 150, 0, 100] call BIS_fnc_findSafePos;
+	_new_group_position = [_area_marker_position, 25, 150, 1, 0, 100, 0] call BIS_fnc_findSafePos;
 
 	// Groups with 4 or more members have a team leader
 	if (_ai_count_group_total >= 4) then {

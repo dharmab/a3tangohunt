@@ -1022,16 +1022,6 @@ class Mission
 			};
 		};
 	};
-	class Markers
-	{
-		items=1;
-		class Item0
-		{
-			position[]={14771.744,17.91,16827.846};
-			name="respawn_west";
-			type="Empty";
-		};
-	};
 	class Sensors
 	{
 		items=1;

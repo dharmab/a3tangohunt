@@ -121,11 +121,12 @@ class CfgFunctions
 		class Functions
 		{
 			file = "th\functions";
-			class applyLoadout{};
 			class addItem{};
-			class isPositionInWater{};
-			class getRandomLandPosition{};
+			class applyLoadout{};
+			class computeAngle{};
 			class computeOffset{};
+			class getRandomLandPosition{};
+			class isPositionInWater{};
 			class spawnEnemies{};
 		};
 	};

@@ -160,7 +160,7 @@ _fnc_randomizePlayerPosition = {
 	_param_enemy_position = _this select 0;
 	_water_mode = if (_ALLOW_UNDERWATER_START) then {1} else {0};
 
-	_random_position = [_param_enemy_position, 335, 475, _water_mode, 100] call BIS_fnc_findSafePos;
+	_random_position = [_param_enemy_position, 335, 475, 1, _water_mode, 100, 0] call BIS_fnc_findSafePos;
 
 	_random_position;
 };
@@ -174,7 +174,6 @@ _fnc_exportToPublicMissionNamespace = {
 	missionNamespace setVariable [_name, _value];
 	publicVariable _name;
 };
-
 
 if (!isServer) exitWith {};
 
@@ -191,10 +190,10 @@ _area_marker = createMarker ["enemy_area", position _area_location];
 _area_marker setMarkerSize (size _area_location);
 
 // Create objective marker and set symbology
-createMarker ["task_marker", (getMarkerPos _area_marker)];
-"task_marker" setMarkerShape "ICON";
-"task_marker" setMarkerType "mil_objective";
-"task_marker" setMarkerColor "ColorRed";
+_task_marker = createMarker ["task_marker", (getMarkerPos _area_marker)];
+_task_marker setMarkerShape "ICON";
+_task_marker setMarkerType "mil_objective";
+_task_marker setMarkerColor "ColorRed";
 
 // Create insertion marker and set symbology
 _insertion_marker_position = [getMarkerPos _area_marker] call _fnc_randomizePlayerPosition;
@@ -203,17 +202,18 @@ _insertion_marker setMarkerShape "ICON";
 _insertion_marker setMarkerType "mil_start";
 _insertion_marker setMarkerColor "ColorBlue";
 
-// Set the spawn location
-"respawn_west" setMarkerPos (getMarkerPos _insertion_marker);
-
+// Spawn enemies
 _number_of_enemies = ceil ((playersNumber west) * _ENEMY_SCALING_FACTOR);
-
+if (_number_of_enemies < 1) then {
+	_number_of_enemies = 1;
+};
 [_area_marker, east, _ENEMY_FACTION, _number_of_enemies, _ENEMY_BEHAVIOR] call TH_fnc_spawnEnemies;
 
-// Export variables used for client-local commands
-["mission_area_marker", _area_marker] call _fnc_exportToPublicMissionNamespace;
+// Move players to start
+_player_direction = [getMarkerPos "player_start", getMarkerPos "task_marker"] call TH_fnc_computeAngle;
+[compile format 
+	["player setDir %1; player setPos (getMarkerPos ""player_start"");", _player_direction],
+"BIS_fnc_spawn", true, true] call BIS_fnc_MP;
 
 // Set flag for clients and other scripts to continue
 ["mission_tangohunt_init", true] call _fnc_exportToPublicMissionNamespace;
-
-[{player setPos (getMarkerPos "respawn_west");}, "BIS_fnc_spawn", true, true] call BIS_fnc_MP;
