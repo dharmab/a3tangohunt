@@ -47,7 +47,7 @@ switch (_ai_faction) do  {
 		_ai_marksman      = "O_soldier_M_F";
 		_ai_antitank      = "O_soldier_LAT_F";
 	};
-	// Robert Hammer Studios: Armed Forces of the Russian Federation
+	// Red Hammer Studios: Armed Forces of the Russian Federation
 	case "RHS AFRF":
 	{
 		_ai_team_leader   = "rhs_vdv_sergeant";
@@ -56,7 +56,7 @@ switch (_ai_faction) do  {
 		_ai_marksman      = "rhs_vdv_marksman";
 		_ai_antitank      = "rhs_vdv_LAT";
 	};
-	// Robert Hammer Studios: United States Armed Forces
+	// Red Hammer Studios: United States Armed Forces
 	case "RHS USA":
 	{
 		_ai_team_leader   = "rhsusf_army_ocp_teamleader";
