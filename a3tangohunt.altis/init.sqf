@@ -20,3 +20,7 @@ waitUntil {!isNull player};
 // Sleep forces further execution to wait until mission has started
 sleep 0.1;
 [] execVM "loadouts\loadouts.sqf";
+
+if (playersNumber west < 4) then {
+    hint "You appear to be playing Tango Hunt with fewer than 4 players. While the scenario is fully playable, 4-32 players is recommended for an optimal experience.";
+};

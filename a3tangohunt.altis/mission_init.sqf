@@ -1,5 +1,6 @@
 // Forward declare runtime constants (parameters)
 _ENEMY_FACTION = "";
+_ENEMY_MINIMUM_NUMBER = 0;
 _ENEMY_SCALING_FACTOR = "";
 _ENEMY_BEHAVIOR = 0.0;
 _LOCATION_CLASSES = [];
@@ -16,20 +17,23 @@ _fnc_initParameters = {
 	_RANDOMIZE = -1;
 
 	// Parameters from description.ext
-	_description_ext_faction    = ["Faction", 0] call BIS_fnc_getParamValue;
-	_description_ext_difficulty = ["Difficulty", 1] call BIS_fnc_getParamValue;
-	_description_ext_awareness  = ["Awareness", _RANDOMIZE] call BIS_fnc_getParamValue;
-	_description_ext_location   = ["Location", 0] call BIS_fnc_getParamValue;
-	_description_ext_time       = ["Time", _RANDOMIZE] call BIS_fnc_getParamValue;
-	_description_ext_moon       = ["Moon", _RANDOMIZE] call BIS_fnc_getParamValue;
-	_description_ext_weather    = ["Weather", _RANDOMIZE] call BIS_fnc_getParamValue;
-	_description_ext_underwater = ["Underwater", 0] call BIS_fnc_getParamValue;
+	_description_ext_faction       = ["Faction", 0] call BIS_fnc_getParamValue;
+	_description_ext_enemy_minimum = ["EnemyMinimum", 0] call BIS_fnc_getParamValue;
+	_description_ext_difficulty    = ["Difficulty", 1] call BIS_fnc_getParamValue;
+	_description_ext_awareness     = ["Awareness", _RANDOMIZE] call BIS_fnc_getParamValue;
+	_description_ext_location      = ["Location", 0] call BIS_fnc_getParamValue;
+	_description_ext_time          = ["Time", _RANDOMIZE] call BIS_fnc_getParamValue;
+	_description_ext_moon          = ["Moon", _RANDOMIZE] call BIS_fnc_getParamValue;
+	_description_ext_weather       = ["Weather", _RANDOMIZE] call BIS_fnc_getParamValue;
+	_description_ext_underwater    = ["Underwater", 0] call BIS_fnc_getParamValue;
 
 	// Lookup tables - description.ext only supports int values, so we perform a lookup
 	// to convert the parameters into runtime types
 
 	// Enemy faction
 	_FACTION_TABLE = ["NATO", "CSAT", "AAF", "FIA", "RHS USA", "RHS AFRF", "CAF PIRATES", "CAF TRIBAL FIGHTERS", "CAF REBELS"];
+	// Minimum number of enemies
+	_ENEMY_MIN_TABLE = [1, 5, 10, 15, 20, 15, 30];
 	// Enemy scaling factor
 	_DIFFICULTY_TABLE = [1.0, 1.5, 2.0, 3.0, 4.5];
 	// Enemy behavior
@@ -59,6 +63,9 @@ _fnc_initParameters = {
 
 	// Spawned enemies will be units of this faction
 	_ENEMY_FACTION = [_FACTION_TABLE, _description_ext_faction] call _fnc_selectParameter;
+
+	// Minimum number of enemies to spawn
+	_ENEMY_MINIMUM_NUMBER = [_ENEMY_MIN_TABLE, _description_ext_enemy_minimum] call _fnc_selectParameter;
 
 	// Factor used to scale the number of spawned enemies in relation to the number of players
 	_ENEMY_SCALING_FACTOR = [_DIFFICULTY_TABLE, _description_ext_difficulty] call _fnc_selectParameter;
@@ -204,8 +211,8 @@ _insertion_marker setMarkerColor "ColorBlue";
 
 // Spawn enemies
 _number_of_enemies = ceil ((playersNumber west) * _ENEMY_SCALING_FACTOR);
-if (_number_of_enemies < 1) then {
-	_number_of_enemies = 1;
+if (_number_of_enemies < _ENEMY_MINIMUM_NUMBER) then {
+	_number_of_enemies = _ENEMY_MINIMUM_NUMBER;
 };
 [_area_marker, east, _ENEMY_FACTION, _number_of_enemies, _ENEMY_BEHAVIOR] call TH_fnc_spawnEnemies;
 
