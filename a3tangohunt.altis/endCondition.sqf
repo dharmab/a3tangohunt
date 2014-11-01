@@ -19,6 +19,8 @@ waitUntil {
 				_player_spawned = true;
 			};
 		};
+
+		if (_enemy_spawned and _player_spawned) exitWith {};
 	} forEach allUnits;
 
 	sleep 1;
@@ -40,7 +42,9 @@ waitUntil {
 			if (side (group _x) == west) then {
 				_defeat = false;
 			};
-		}
+		};
+
+		if (!_victory and !_defeat) exitWith {};
 	} forEach allUnits + allDeadMen;
 
 	sleep 15;
