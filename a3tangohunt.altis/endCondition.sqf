@@ -47,7 +47,7 @@ waitUntil {
 		if (!_victory and !_defeat) exitWith {};
 	} forEach allUnits + allDeadMen;
 
-	sleep 15;
+	sleep 5;
 	_victory or _defeat;
 };
 
