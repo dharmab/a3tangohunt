@@ -35,7 +35,7 @@ _fnc_initParameters = {
 	// Minimum number of enemies
 	_ENEMY_MIN_TABLE = [1, 5, 10, 15, 20, 15, 30];
 	// Enemy scaling factor
-	_DIFFICULTY_TABLE = [1.0, 1.5, 2.0, 3.0, 4.5];
+	_DIFFICULTY_TABLE = [1.0, 1.5, 2.0, 3.0];
 	// Enemy behavior
 	_AWARENESS_TABLE = ["SAFE", "AWARE", "COMBAT", "STEALTH"];
 	// Location types - values are an array of location classnames, or empty array for a totally random position
