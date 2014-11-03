@@ -151,6 +151,7 @@ class CfgFunctions
 			class computeOffset{};
 			class getRandomLandPosition{};
 			class isPositionInWater{};
+			class lookupParameter{};
 			class spawnEnemies{};
 		};
 	};

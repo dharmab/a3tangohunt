@@ -12,29 +12,39 @@ _rifle_gl             = _this select 10;
 _rifle_carbine        = _this select 11;
 _rifle_dmr            = _this select 12;
 _automatic_rifle      = _this select 13;
-_rifle_diver          = _this select 14;
-_pistol               = _this select 15;
-_light_at             = _this select 16;
-_rifle_ammo           = _this select 17;
-_rifle_dmr_ammo       = _this select 18;
-_automatic_rifle_ammo = _this select 19;
-_rifle_diver_ammo     = _this select 20;
-_pistol_ammo          = _this select 21;
-_light_at_ammo        = _this select 22;
-_rifle_optic          = _this select 23;
-_rifle_dmr_optic      = _this select 24;
-_rifle_accessory      = _this select 25;
-_frag_grenade         = _this select 26;
-_smoke_grenade        = _this select 27;
-_chemlight            = _this select 28;
-_ir_grenade           = _this select 29;
-_gl_he                = _this select 30;
-_gl_flare_red         = _this select 31;
-_gl_flare_green       = _this select 32;
-_gl_smoke_red         = _this select 33;
-_gl_smoke_green       = _this select 34;
+_sniper_rifle         = _this select 14;
+_rifle_diver          = _this select 15;
+_pistol               = _this select 16;
+_light_at             = _this select 17;
+_rifle_ammo           = _this select 18;
+_rifle_dmr_ammo       = _this select 19;
+_automatic_rifle_ammo = _this select 20;
+_sniper_rifle_ammo    = _this select 21;
+_rifle_diver_ammo     = _this select 22;
+_pistol_ammo          = _this select 23;
+_light_at_ammo        = _this select 24;
+_rifle_optic          = _this select 25;
+_rifle_dmr_optic      = _this select 26;
+_sniper_rifle_optic   = _this select 27;
+_rifle_accessory      = _this select 28;
+_frag_grenade         = _this select 29;
+_smoke_grenade        = _this select 30;
+_chemlight            = _this select 31;
+_ir_grenade           = _this select 32;
+_gl_he                = _this select 33;
+_gl_flare_red         = _this select 34;
+_gl_flare_green       = _this select 35;
+_gl_smoke_red         = _this select 36;
+_gl_smoke_green       = _this select 37;
 
-_is_diver = (_loadout == "Diver (Assault)" or _loadout == "Diver (Medic)");
+// Backwards compatibility code follows
+// 2014-11-02 add fields for sniper loadout- fall back on dmr loadouts
+if (_loadout == "Scout Sniper" && isNil "_sniper_rifle") then {
+	hint "No Scout Sniper loadout for this faction. Falling back on Designated Marksman loadout...";
+	_sniper_rifle = _rifle_dmr;
+	_sniper_rifle_ammo = _rifle_dmr_ammo;
+	_sniper_rifle_optic = _rifle_dmr_optic;
+};
 
 // Remove existing items
 removeAllWeapons player;
@@ -45,6 +55,8 @@ removeVest player;
 removeBackpack player;
 removeHeadgear player;
 removeGoggles player;
+
+_is_diver = (_loadout == "Diver (Assault)" or _loadout == "Diver (Medic)");
 
 // Add uniform, vest, backpack and headgear
 if (_is_diver) then {
@@ -127,6 +139,13 @@ switch (_loadout) do {
 		["Medikit", 1, "backpack"] call TH_fnc_addItem;
 		player addWeapon _rifle_carbine;
 	};
+	case "Scout Sniper":
+	{
+		[_sniper_rifle_ammo, 6, "vest"] call TH_fnc_addItem;
+		[_frag_grenade, 2, "vest"] call TH_fnc_addItem;
+		player addWeapon _sniper_rifle
+
+	};
 	case "Diver (Assault)":
 	{
 		[_rifle_diver_ammo, 4, "vest"] call TH_fnc_addItem;
@@ -154,12 +173,25 @@ player addWeapon _pistol;
 
 if (!_is_diver) then {
 	// Add weapon attachements
-	if (_loadout == "Designated Marksman" and _rifle_dmr_optic != "") then {
-		player addPrimaryWeaponItem _rifle_dmr_optic;
-	} else {
-		if (_rifle_optic != "") then {
-			player addPrimaryWeaponItem _rifle_optic;
+	switch (_loadout) do {
+		case "Designated Marksman":
+		{
+			if (_rifle_dmr_optic != "") then {
+				player addPrimaryWeaponItem _rifle_dmr_optic;
+			};
 		};
+		case "Scout Sniper":
+		{
+			if (_sniper_rifle_optic != "") then {
+				player addPrimaryWeaponItem _sniper_rifle_optic;
+			};
+		};
+		default
+		{
+			if (_rifle_optic != "") then {
+				player addPrimaryWeaponItem _rifle_optic;
+			};
+		}
 	};
 
 	if (_rifle_accessory != "") then {

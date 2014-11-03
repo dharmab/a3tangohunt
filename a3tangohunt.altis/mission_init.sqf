@@ -1,4 +1,5 @@
 // Forward declare runtime constants (parameters)
+_PLAYER_FACTION = "";
 _ENEMY_FACTION = "";
 _ENEMY_MINIMUM_NUMBER = 0;
 _ENEMY_SCALING_FACTOR = "";
@@ -17,19 +18,22 @@ _fnc_initParameters = {
 	_RANDOMIZE = -1;
 
 	// Parameters from description.ext
-	_description_ext_faction       = ["Faction", 0] call BIS_fnc_getParamValue;
-	_description_ext_enemy_minimum = ["EnemyMinimum", 0] call BIS_fnc_getParamValue;
-	_description_ext_difficulty    = ["Difficulty", 1] call BIS_fnc_getParamValue;
-	_description_ext_awareness     = ["Awareness", _RANDOMIZE] call BIS_fnc_getParamValue;
-	_description_ext_location      = ["Location", 0] call BIS_fnc_getParamValue;
-	_description_ext_time          = ["Time", _RANDOMIZE] call BIS_fnc_getParamValue;
-	_description_ext_moon          = ["Moon", _RANDOMIZE] call BIS_fnc_getParamValue;
-	_description_ext_weather       = ["Weather", _RANDOMIZE] call BIS_fnc_getParamValue;
-	_description_ext_underwater    = ["Underwater", 0] call BIS_fnc_getParamValue;
+	_description_ext_player_faction = ["PlayerFaction", 0] call BIS_fnc_getParamValue;
+	_description_ext_faction        = ["Faction", 1] call BIS_fnc_getParamValue;
+	_description_ext_enemy_minimum  = ["EnemyMinimum", 0] call BIS_fnc_getParamValue;
+	_description_ext_difficulty     = ["Difficulty", 1] call BIS_fnc_getParamValue;
+	_description_ext_awareness      = ["Awareness", _RANDOMIZE] call BIS_fnc_getParamValue;
+	_description_ext_location       = ["Location", 0] call BIS_fnc_getParamValue;
+	_description_ext_time           = ["Time", _RANDOMIZE] call BIS_fnc_getParamValue;
+	_description_ext_moon           = ["Moon", _RANDOMIZE] call BIS_fnc_getParamValue;
+	_description_ext_weather        = ["Weather", _RANDOMIZE] call BIS_fnc_getParamValue;
+	_description_ext_underwater     = ["Underwater", 0] call BIS_fnc_getParamValue;
 
 	// Lookup tables - description.ext only supports int values, so we perform a lookup
 	// to convert the parameters into runtime types
 
+	// Player faction
+	_PLAYER_FACTION_TABLE = ["NATO", "CSAT", "AAF", "FIA", "RHS USA", "RHS AFRF"];
 	// Enemy faction
 	_FACTION_TABLE = ["NATO", "CSAT", "AAF", "FIA", "RHS USA", "RHS AFRF", "CAF PIRATES", "CAF TRIBAL FIGHTERS", "CAF REBELS"];
 	// Minimum number of enemies
@@ -49,41 +53,32 @@ _fnc_initParameters = {
 	// Rain
 	_RAIN_TABLE = [0.0,  0.0, 0.0,  0.67, 0.9];
 
-	// Reusable code snippet for selecting parameter
-	_fnc_selectParameter = {
-		_param_lookup_table = _this select 0;
-		_param_parameter_value = _this select 1;
-
-		if (_param_parameter_value == _RANDOMIZE) then {
-			_param_lookup_table call BIS_fnc_selectRandom;
-		} else {
-			_param_lookup_table select _param_parameter_value;
-		};
-	};
+	// Players will select from loadouts of this faction
+	_PLAYER_FACTION = [_PLAYER_FACTION_TABLE, _description_ext_player_faction] call TH_fnc_lookupParameter;
 
 	// Spawned enemies will be units of this faction
-	_ENEMY_FACTION = [_FACTION_TABLE, _description_ext_faction] call _fnc_selectParameter;
+	_ENEMY_FACTION = [_FACTION_TABLE, _description_ext_faction] call TH_fnc_lookupParameter;
 
 	// Minimum number of enemies to spawn
-	_ENEMY_MINIMUM_NUMBER = [_ENEMY_MIN_TABLE, _description_ext_enemy_minimum] call _fnc_selectParameter;
+	_ENEMY_MINIMUM_NUMBER = [_ENEMY_MIN_TABLE, _description_ext_enemy_minimum] call TH_fnc_lookupParameter;
 
 	// Factor used to scale the number of spawned enemies in relation to the number of players
-	_ENEMY_SCALING_FACTOR = [_DIFFICULTY_TABLE, _description_ext_difficulty] call _fnc_selectParameter;
+	_ENEMY_SCALING_FACTOR = [_DIFFICULTY_TABLE, _description_ext_difficulty] call TH_fnc_lookupParameter;
 
 	// Spawned enemies will be in this behavior mode at mission start
-	_ENEMY_BEHAVIOR = [_AWARENESS_TABLE, _description_ext_awareness] call _fnc_selectParameter;
+	_ENEMY_BEHAVIOR = [_AWARENESS_TABLE, _description_ext_awareness] call TH_fnc_lookupParameter;
 
 	// Types of mission locations
-	_LOCATION_CLASSES = [_LOCATION_TABLE, _description_ext_location] call _fnc_selectParameter;
+	_LOCATION_CLASSES = [_LOCATION_TABLE, _description_ext_location] call TH_fnc_lookupParameter;
 
 	// Day when mission will occur
-	_DAY = [_MOON_TABLE, _description_ext_moon] call _fnc_selectParameter;
+	_DAY = [_MOON_TABLE, _description_ext_moon] call TH_fnc_lookupParameter;
 
 	// Time of day at which mission will start
 	_TIME = if (_description_ext_time == _RANDOMIZE) then {
 		random 24;
 	} else {
-		[_TIME_TABLE, _description_ext_time] call _fnc_selectParameter;
+		[_TIME_TABLE, _description_ext_time] call TH_fnc_lookupParameter;
 	};
 
 	if (_description_ext_weather == _RANDOMIZE) then {
@@ -97,8 +92,8 @@ _fnc_initParameters = {
 			0.0;
 		};
 	} else {
-		_OVERCAST = [_OVERCAST_TABLE, _description_ext_weather] call _fnc_selectParameter;
-		_RAIN = [_RAIN_TABLE, _description_ext_weather] call _fnc_selectParameter;
+		_OVERCAST = [_OVERCAST_TABLE, _description_ext_weather] call TH_fnc_lookupParameter;
+		_RAIN = [_RAIN_TABLE, _description_ext_weather] call TH_fnc_lookupParameter;
 	};
 
 	// Realistically, fog should not appear during the day

@@ -1,5 +1,3 @@
-_loadout = _this select 1;
-
 // Uniform
 _uniform = "U_BG_Guerrilla_6_1";
 // Uniform for Divers
@@ -60,6 +58,7 @@ _rifle_accessory = "acc_flashlight";
 _frag_grenade = "HandGrenade";
 // Smoke grenade
 _smoke_grenade = "SmokeShell";
+
 // Chemical light
 _chemlight = "Chemlight_green";
 // Infrared marker. Set to empty string for no IR grenades.
@@ -76,40 +75,4 @@ _gl_smoke_red = "1Rnd_SmokeRed_Grenade_shell";
 // Grenade launcher green smoke round
 _gl_smoke_green = "1Rnd_SmokeGreen_Grenade_shell";
 
-[
-	_loadout,
-	_uniform,
-	_uniform_diver,
-	_vest,
-	_vest_gl,
-	_vest_diver,
-	_backpack,
-	_headgear,
-	_goggles,
-	_rifle,
-	_rifle_gl,
-	_rifle_carbine,
-	_rifle_dmr,
-	_automatic_rifle,
-	_rifle_diver,
-	_pistol,
-	_light_at,
-	_rifle_ammo,
-	_rifle_dmr_ammo,
-	_automatic_rifle_ammo,
-	_rifle_diver_ammo,
-	_pistol_ammo,
-	_light_at_ammo,
-	_rifle_optic,
-	_rifle_dmr_optic,
-	_rifle_accessory,
-	_frag_grenade,
-	_smoke_grenade,
-	_chemlight,
-	_ir_grenade,
-	_gl_he,
-	_gl_flare_red,
-	_gl_flare_green,
-	_gl_smoke_red,
-	_gl_smoke_green
-] call TH_fnc_applyLoadout;
+[_uniform, _uniform_diver, _vest, _vest_gl, _vest_diver, _backpack, _headgear, _goggles, _rifle, _rifle_gl, _rifle_carbine, _rifle_dmr, _automatic_rifle, _sniper_rifle, _rifle_diver, _pistol, _light_at, _rifle_ammo, _rifle_dmr_ammo, _automatic_rifle_ammo, _sniper_rifle_ammo, _rifle_diver_ammo, _pistol_ammo, _light_at_ammo, _rifle_optic, _rifle_dmr_optic, _sniper_rifle_optic, _rifle_accessory, _frag_grenade, _smoke_grenade, _chemlight, _ir_grenade, _gl_he, _gl_flare_red, _gl_flare_green, _gl_smoke_red, _gl_smoke_green]

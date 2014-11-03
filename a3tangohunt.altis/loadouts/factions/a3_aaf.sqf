@@ -1,5 +1,3 @@
-_loadout = _this select 1;
-
 // Uniform
 _uniform = "U_I_CombatUniform";
 // Uniform for Divers
@@ -29,6 +27,8 @@ _rifle_carbine = "arifle_Mk20C_F";
 _rifle_dmr = "arifle_Mk20_F";
 // Primary weapon for Automatic Rifleman
 _automatic_rifle = "LMG_Mk200_F";
+// Primary weapon for Scout Sniper.
+_sniper_rifle_optic = "srifle_GM6_F";
 // Primary weapon for Divers
 _rifle_diver = "arifle_SDAR_F";
 // Secondary weapon for all loadouts
@@ -42,6 +42,8 @@ _rifle_ammo = "30Rnd_556x45_Stanag";
 _rifle_dmr_ammo = "30Rnd_556x45_Stanag";
 // Ammo for Automatic Rifleman primary weapon
 _automatic_rifle_ammo = "200Rnd_65x39_cased_Box";
+// Ammo for Scout Sniper primary weapon
+_sniper_rifle_ammo = "5Rnd_127x108_Mag";
 // ammo for Diver primary weapon
 _rifle_diver_ammo = "20Rnd_556x45_UW_mag";
 // Ammo for secondary weapon
@@ -53,6 +55,8 @@ _light_at_ammo = "launch_RPG32_F";
 _rifle_optic = "optic_Aco";
 // Optic used on Designated Marksman primary weapon. Set to empty string for iron sights.
 _rifle_dmr_optic = "optic_Hamr";
+// Optic used on Scout Sniper primary weapon. Set to empty string for iron sights.
+_sniper_optic = "optic_SOS";
 // Primary weapon accessory, e.g. IR pointer or flashlight. Set to empty string for no accessory.
 _rifle_accessory = "acc_pointer_IR";
 
@@ -76,40 +80,4 @@ _gl_smoke_red = "1Rnd_SmokeRed_Grenade_shell";
 // Grenade launcher green smoke round
 _gl_smoke_green = "1Rnd_SmokeGreen_Grenade_shell";
 
-[
-	_loadout,
-	_uniform,
-	_uniform_diver,
-	_vest,
-	_vest_gl,
-	_vest_diver,
-	_backpack,
-	_headgear,
-	_goggles,
-	_rifle,
-	_rifle_gl,
-	_rifle_carbine,
-	_rifle_dmr,
-	_automatic_rifle,
-	_rifle_diver,
-	_pistol,
-	_light_at,
-	_rifle_ammo,
-	_rifle_dmr_ammo,
-	_automatic_rifle_ammo,
-	_rifle_diver_ammo,
-	_pistol_ammo,
-	_light_at_ammo,
-	_rifle_optic,
-	_rifle_dmr_optic,
-	_rifle_accessory,
-	_frag_grenade,
-	_smoke_grenade,
-	_chemlight,
-	_ir_grenade,
-	_gl_he,
-	_gl_flare_red,
-	_gl_flare_green,
-	_gl_smoke_red,
-	_gl_smoke_green
-] call TH_fnc_applyLoadout;
+[_uniform, _uniform_diver, _vest, _vest_gl, _vest_diver, _backpack, _headgear, _goggles, _rifle, _rifle_gl, _rifle_carbine, _rifle_dmr, _automatic_rifle, _sniper_rifle, _rifle_diver, _pistol, _light_at, _rifle_ammo, _rifle_dmr_ammo, _automatic_rifle_ammo, _sniper_rifle_ammo, _rifle_diver_ammo, _pistol_ammo, _light_at_ammo, _rifle_optic, _rifle_dmr_optic, _sniper_rifle_optic, _rifle_accessory, _frag_grenade, _smoke_grenade, _chemlight, _ir_grenade, _gl_he, _gl_flare_red, _gl_flare_green, _gl_smoke_red, _gl_smoke_green]
