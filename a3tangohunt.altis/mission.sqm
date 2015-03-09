@@ -11,7 +11,8 @@ class Mission
 		"a3_uav_f_characters_f_gamma",
 		"A3_Modules_F_Intel",
 		"a3_characters_f",
-		"A3_Modules_F"
+		"A3_Modules_F",
+		"A3_Data_F_Curator_Virtual"
 	};
 	addOnsAuto[]=
 	{
@@ -19,6 +20,7 @@ class Mission
 		"a3_characters_f",
 		"A3_Modules_F_GroupModifiers",
 		"A3_Modules_F",
+		"A3_Data_F_Curator_Virtual",
 		"a3_map_altis"
 	};
 	randomSeed=652662;
@@ -45,7 +47,7 @@ class Mission
 	};
 	class Groups
 	{
-		items=21;
+		items=22;
 		class Item0
 		{
 			side="WEST";
@@ -1018,6 +1020,25 @@ class Mission
 					skill=0.60000002;
 					syncId=17;
 					synchronizations[]={16};
+				};
+			};
+		};
+		class Item21
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={14812.519,17.91,16744.025};
+					id=48;
+					side="LOGIC";
+					vehicle="VirtualCurator_F";
+					player="PLAY CDG";
+					leader=1;
+					skill=0.60000002;
+					description="Game Master";
 				};
 			};
 		};
