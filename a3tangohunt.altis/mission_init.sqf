@@ -209,7 +209,10 @@ _number_of_enemies = ceil ((playersNumber west) * _ENEMY_SCALING_FACTOR);
 if (_number_of_enemies < _ENEMY_MINIMUM_NUMBER) then {
 	_number_of_enemies = _ENEMY_MINIMUM_NUMBER;
 };
-[_area_marker, east, _ENEMY_FACTION, _number_of_enemies, _ENEMY_BEHAVIOR] call TH_fnc_spawnEnemies;
+_enemies = [_area_marker, east, _ENEMY_FACTION, _number_of_enemies, _ENEMY_BEHAVIOR] call TH_fnc_spawnEnemies;
+
+// Allow Zeus to manipulate/take control of spawned enemies
+game_master_module addCuratorEditableObjects [_enemies, false];
 
 // Move players to start
 _player_direction = [getMarkerPos "player_start", getMarkerPos "task_marker"] call TH_fnc_computeAngle;

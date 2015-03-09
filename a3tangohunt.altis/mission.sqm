@@ -1088,6 +1088,7 @@ class Mission
 					leader=1;
 					lock="UNLOCKED";
 					skill=0.60000002;
+					text="game_master_module";
 					syncId=18;
 					synchronizations[]={19};
 				};
@@ -1154,6 +1155,7 @@ class Mission
 					leader=1;
 					lock="UNLOCKED";
 					skill=0.60000002;
+					text="editing_costs_module";
 					syncId=19;
 					synchronizations[]={18};
 				};
