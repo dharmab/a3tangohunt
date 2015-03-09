@@ -12,7 +12,8 @@ class Mission
 		"A3_Modules_F_Intel",
 		"a3_characters_f",
 		"A3_Modules_F",
-		"A3_Data_F_Curator_Virtual"
+		"A3_Data_F_Curator_Virtual",
+		"A3_Modules_F_Curator_Curator"
 	};
 	addOnsAuto[]=
 	{
@@ -21,6 +22,7 @@ class Mission
 		"A3_Modules_F_GroupModifiers",
 		"A3_Modules_F",
 		"A3_Data_F_Curator_Virtual",
+		"A3_Modules_F_Curator_Curator",
 		"a3_map_altis"
 	};
 	randomSeed=652662;
@@ -47,7 +49,7 @@ class Mission
 	};
 	class Groups
 	{
-		items=22;
+		items=24;
 		class Item0
 		{
 			side="WEST";
@@ -1038,7 +1040,122 @@ class Mission
 					player="PLAY CDG";
 					leader=1;
 					skill=0.60000002;
+					text="zeus_1";
 					description="Game Master";
+				};
+			};
+		};
+		class Item22
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={14801.226,17.91,16802.119};
+					class args
+					{
+						items=4;
+						class Item0
+						{
+							value="zeus_1";
+							parentCls="ModuleCurator_F";
+							typeName="Owner";
+						};
+						class Item1
+						{
+							value="";
+							parentCls="ModuleCurator_F";
+							typeName="Name";
+						};
+						class Item2
+						{
+							value="3";
+							parentCls="ModuleCurator_F";
+							typeName="Addons";
+						};
+						class Item3
+						{
+							value="1";
+							parentCls="ModuleCurator_F";
+							typeName="Forced";
+						};
+					};
+					id=49;
+					side="LOGIC";
+					vehicle="ModuleCurator_F";
+					leader=1;
+					lock="UNLOCKED";
+					skill=0.60000002;
+					syncId=18;
+					synchronizations[]={19};
+				};
+			};
+		};
+		class Item23
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={14809.759,17.91,16802.338};
+					class args
+					{
+						items=7;
+						class Item0
+						{
+							value="";
+							parentCls="ModuleCuratorSetCoefs_F";
+							typeName="Curator";
+						};
+						class Item1
+						{
+							value="0";
+							parentCls="ModuleCuratorSetCoefs_F";
+							typeName="Place";
+						};
+						class Item2
+						{
+							value="0";
+							parentCls="ModuleCuratorSetCoefs_F";
+							typeName="Edit";
+						};
+						class Item3
+						{
+							value="0";
+							parentCls="ModuleCuratorSetCoefs_F";
+							typeName="Delete";
+						};
+						class Item4
+						{
+							value="0";
+							parentCls="ModuleCuratorSetCoefs_F";
+							typeName="Destroy";
+						};
+						class Item5
+						{
+							value="0";
+							parentCls="ModuleCuratorSetCoefs_F";
+							typeName="Synchronize";
+						};
+						class Item6
+						{
+							value="0";
+							parentCls="ModuleCuratorSetCoefs_F";
+							typeName="Group";
+						};
+					};
+					id=50;
+					side="LOGIC";
+					vehicle="ModuleCuratorSetCoefs_F";
+					leader=1;
+					lock="UNLOCKED";
+					skill=0.60000002;
+					syncId=19;
+					synchronizations[]={18};
 				};
 			};
 		};
