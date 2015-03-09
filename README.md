@@ -7,9 +7,10 @@ Features
 
 * Randomization of most mission parameters, including the location, the number of enemies and their weapons, enemy locations and AI behaviors, time of day, weather and more. Play a dozen times and adapt to a dozen different situations. 
 * Difficulty scales to the number of players. Play with two people and you'll fight a small force. Play with ten and you'll have a huge firefight with multiple enemy squads. 
-* Most random elements are customizable through mission parameters. Think you can handle more enemies? Hate underwater combat? Want to fight at night or in a storm? All of these and more can be customized to your skill level and preferences. 
-* Selectable loadouts. Choose from Grenadier, Automatic Rifleman, Antiarmor Specialist, Designated Marksman and Combat Medic. 
-* Spectator mode (powered by F3 spectator) 
+* Most random elements are customizable through mission parameters. Think you can handle more enemies? Prefer to play as AAF against NATO? Want to fight at night or in a storm? All of these and more can be customized to your skill level and preferences. 
+* Selectable loadouts. Choose from Grenadier, Automatic Rifleman, Antiarmor Specialist, Designated Marksman and Combat Medic.
+* Zeus support. Have a friend spawn some vehicles and take control of AI for additional variety and challenge!
+* Spectator mode (powered by F3 spectator).
 * Compatible with popular gameplay mods. Tested with Advanced Gameplay Mod and Task Force Arrowhead Radio. 
 * Open source and public domain. You are free to modify this mission to your preferences.
 
