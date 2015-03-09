@@ -18,5 +18,9 @@ Features
 
 Place the a3tangohunt.altis folder folder in your ArmA 3 missions folder. Open the mission in the ArmA 3 mission editor and export the mission to multiplayer missions. You can then use the mission in LAN or Internet hosted or dedicated servers.
 
+## Steam Workshop
+
+You can find the latest stable release on Steam Workshop [here](http://steamcommunity.com/sharedfiles/filedetails/?id=332544964)
+
 ## Legal 
 This mission uses components from [F3](http://ferstaberinde.com/f3/en//index.php?title=Main_Page). All other scripts in this mission are released into the public domain, so feel free to use and modify them in your own missions. I place no restriction on use of these scripts. I request that you mention and link to [the GitHub page](http://www.github.com/dharmab/a3tangohunt) if possible, but this is not required. See LICENSE for more information.
