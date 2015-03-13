@@ -26,7 +26,7 @@
 
 ["rifle_optic", ""],
 ["rifle_dmr_optic", "optic_DMS"],
-["sniper_rifle_optic", ""],
+["sniper_rifle_optic", "optic_DMS"],
 ["rifle_accessory", "acc_flashlight"],
 
 ["frag_grenade", "HandGrenade"],

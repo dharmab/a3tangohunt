@@ -30,7 +30,8 @@ class Params
 			"AAF",
 			"FIA",
 			"United States Army (Requires RHS: Escalation)",
-			"Russian Ground Forces (Requires RHS: Escalation)"
+			"Russian Ground Forces (Requires RHS: Escalation)",
+			"Insurgents (Requres RHS: Escalation)"
 		};
 		default  = 0;
 	};
@@ -66,7 +67,7 @@ class Params
 			"FIA",
 			"United States Army (Requires RHS: Escalation)",
 			"Russian Ground Forces (Requires RHS: Escalation)",
-			"Insurgencts (Requires RHS: Escalation)"
+			"Insurgents (Requires RHS: Escalation)"
 		};
 		default  = 1;
 	};
