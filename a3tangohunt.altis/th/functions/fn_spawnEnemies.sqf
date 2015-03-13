@@ -1,19 +1,37 @@
-_param_area_marker           = _this select 0; // Marker where enemies will be spawned
-_param_side                  = _this select 1; // Side that units will spawn on. (west, east, resistance)
-_param_faction_template_name = _this select 2; // Faction template name e.g. "a3_nato"
-_param_default_behavior      = _this select 3; // default combat mode, "CARELESS", "SAFE", "AWARE", "COMBAT", "STEALTH"
-_param_number_of_infantry    = _this select 4; // number of  infantry to spawn, integer > 0
-_param_number_of_cars        = _this select 5; // number of  cars to spawn, integer >= 0
-_param_number_of_apcs        = _this select 6; // number of  APCs to spawn, integer >= 0
-_param_number_of_tanks       = _this select 7; // number of  tanks to spawn, integer >= 0
+/*
+Populates an area with AI that patrol and defend the area.
+@param _param_area_marker (marker) marker where enemies will be spawned
+@param _param_side (west, east, resistance) side that units will spawn on
+@param _param_faction_template_name (string) name of faction template determining which units will spawn
+@param _param_default_behavior ("CARELESS", "SAFE", "AWARE", "COMBAT", "STEALTH")
+@param _param_number_of_infantry (number) approximate number of infantry to spawn
+@param _param_number_of_cars (number) exact number of cars to spawn
+@param _param_number_of_apcs (number) exact number of APCs to spawn
+@param _param_number_of_tanks (number) exact number of tanks to spawn
+*/
+_param_area_marker           = _this select 0;
+_param_side                  = _this select 1;
+_param_faction_template_name = _this select 2;
+_param_default_behavior      = _this select 3;
+_param_number_of_infantry    = _this select 4;
+_param_number_of_cars        = _this select 5;
+_param_number_of_apcs        = _this select 6;
+_param_number_of_tanks       = _this select 7;
 
-// Spawn vehicles which will randomly either patrol or defend an area
+/*
+Spawn crewed vehicles which will randomly either patrol or defend an area
+@param _param_vehicle_class (classname) Classname of vehicle to spawn
+@param _param_vehicle_side (west, east, resistance) Side on which vehicle will be spawned
+@param _param_number_of_vehicles (number) Number of vehicles to spawn
+@param _param_area_position (number) Position near which vehicles will spawn
+@param _param_patrol_probability (number) Probability vehicle will patrol the area instead of defending (0.0-1.0)
+*/
 _fnc_spawnVehicles = {
-	_param_vehicle_class      = _this select 0; // Classname of vehicle to spawn
-	_param_vehicle_side       = _this select 1; // Side on which vehicle will be spawned
-	_param_number_of_vehicles = _this select 2; // Number of vehicles to spawn
-	_param_area_position      = _this select 3; // Position near which vehicles will spawn
-	_param_patrol_probability = _this select 4; // Probability vehicle will patrol the area instead of defending (0.0-1.0)
+	_param_vehicle_class      = _this select 0;
+	_param_vehicle_side       = _this select 1;
+	_param_number_of_vehicles = _this select 2;
+	_param_area_position      = _this select 3;
+	_param_patrol_probability = _this select 4;
 
 	_n = 0;
 	_crew = [];
@@ -90,7 +108,7 @@ _spawned_group_size_distribution = if (_param_number_of_infantry <= 5) then {
 	[1, 2, 2, 3, 4, 4, 4, 4, 5, 6];
 };
 // Possibilities for class of AI spawned in a group; Groups above a certain size always have a team leader
-_spawned_unit_type_distribution = [_ai_rifleman, _ai_rifleman, _ai_rifleman, _ai_rifleman, _ai_machinegunner, _ai_machinegunner, _ai_marksman, _ai_antitank]; 
+_spawned_unit_type_distribution = [_ai_rifleman, _ai_rifleman, _ai_rifleman, _ai_rifleman, _ai_machinegunner, _ai_machinegunner, _ai_marksman, _ai_antitank];
 
 _area_marker_position = getMarkerPos _param_area_marker;
 _area_marker_size = ((getMarkerSize _param_area_marker select 0) + (getMarkerSize _param_area_marker select 1)) / 2.0;
@@ -133,7 +151,7 @@ while {_spawned_infantry_count < _param_number_of_infantry} do {
 	if (_ai_count_group_total >= 4) then {
 		_ai_team_leader createUnit [_new_group_position, _new_group];
 	};
-	
+
 	while {(count (units _new_group)) < _ai_count_group_total} do {
 		(_spawned_unit_type_distribution call BIS_fnc_selectRandom) createUnit [_new_group_position, _new_group];
 	};
@@ -145,7 +163,7 @@ while {_spawned_infantry_count < _param_number_of_infantry} do {
 	_defend_waypoint setWaypointStatements ["true", "nul = [group this, position this] call BIS_fnc_taskDefend;"];
 
 	_new_group setBehaviour _param_default_behavior;
-	
+
 	_spawned_infantry_count = _spawned_infantry_count + (count units _new_group);
 	_spawned_units = _spawned_units + units _new_group;
 };

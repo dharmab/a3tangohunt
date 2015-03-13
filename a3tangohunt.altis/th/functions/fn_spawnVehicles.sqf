@@ -1,3 +1,15 @@
+/*
+Spawn empty vehicles near a given position.
+@param _param_faction (string) name of faction template determining which vehicles will spawn
+@param _param_position (position2d) position near which vehicles will spawn
+@param _param_direction (number) direction vehicles will face
+@param _param_number_of_cars (number) number of cars that will spawn. If no car class is found in the faction template,
+FIA technicals ("B_G_Offroad_01_armed_F") will be spawned.
+@param _param_number_of_apcs (number) number of APCs that will spawn. If no APC class is found in the faction template,
+additional cars will be spawned instead.
+@param _param_number_of_tanks (number) number of tanks that will spawn. If no tank class is found in the faction template,
+additional APCs or cars will be spawned instead.
+*/
 _param_faction   = _this select 0;
 _param_position  = _this select 1;
 _param_direction = _this select 2;
@@ -29,6 +41,13 @@ _faction_template = [_param_faction] call TH_fnc_getFactionTemplate;
     };
 } forEach _faction_template;
 
+/*
+Spawn empty vehicles of a given class
+@param _param_vehicle_class (classname) classname of vehicle to spawn
+@param _param_number_of_vehicles (number) number of vehicles to spawn
+@param _param_position (position2d) position near which vehicle will spawn
+@param _param_direction (number) direction vehicle will face
+*/
 _fnc_spawnVehicles = {
     _param_vehicle_class      = _this select 0;
     _param_number_of_vehicles = _this select 1;
