@@ -1,3 +1,18 @@
+/*
+Mission initialization logic
+
+This script handles the randomization elements of Tango Hunt. 
+
+* Sets time, weather and moon phase
+* Selects mission area
+* Adds map markers
+* Auto-balances mission
+* Spawns enemies
+* Spawns player vehicles
+
+*/
+if (!isServer) exitWith {};
+
 // Forward declare runtime constants (parameters)
 _PLAYER_FACTION = "";
 _PLAYER_NUMBER_OF_CARS = 0;
@@ -17,7 +32,10 @@ _OVERCAST = 0.0;
 _RAIN = 0.0;
 _FOG = 0.0;
 
-// Loads parameters from description.ext and initializes runtime constants
+/*
+Loads parameters from description.ext and initializes runtime constants
+@return nothing
+*/
 _fnc_initParameters = {
 	// Value indicating that a parameter from description.ext should be randomized
 	_RANDOMIZE = -1;
@@ -135,12 +153,16 @@ _fnc_initParameters = {
 	} else {
 		0.0;
 	};
+	true;
 };
 
-// Set weather values across network
-// _param_overcast overcast value (0.0 to 1.0)
-// _param_rain rain value (0.0 to 1.0)
-// _param_fog fog value (0.0 to 1.0)
+/*
+Set weather values on server and all clients.
+@param _param_overcast (number) overcast value (0.0 to 1.0)
+@param _param_rain (number) rain value (0.0 to 1.0)
+@param _param_fog (number) fog value (0.0 to 1.0)
+@return nothing
+*/
 _fnc_setWeather = {
 	_param_overcast = _this select 0;
 	_param_rain = _this select 1;
@@ -153,10 +175,15 @@ _fnc_setWeather = {
 	[_fnc_setRain, "BIS_fnc_spawn", true, true] call BIS_fnc_MP;
 
 	forceWeatherChange;
+	true;
 };
 
-// Returns a random location on the map.
-// _param_location_classes array of valid location classes
+/*
+Find a random location for the enemy area
+@param _param_location_classes (array) location classes to select from. If the empty array is passed, a new location is
+generated from a random land position.
+@return (location) a random location
+*/
 _fnc_randomizeEnemyLocation = {
 	_param_location_classes = _this select 0;
 
@@ -183,15 +210,21 @@ _fnc_randomizeEnemyLocation = {
 	_location;
 };
 
-// Return true if either player or enemies have vehicles. False otherwise.
+/*
+@return (boolean) true if either player or enemies have vehicles. False otherwise.
+*/
 _fnc_vehiclesArePresent = {
 	_number_of_player_vehicles = _PLAYER_NUMBER_OF_TANKS + _PLAYER_NUMBER_OF_APCS + _PLAYER_NUMBER_OF_CARS;
 	_number_of_enemy_vehicles = _ENEMY_NUMBER_OF_TANKS + _ENEMY_NUMBER_OF_APCS + _ENEMY_NUMBER_OF_CARS;
 	(_number_of_player_vehicles > 0) || (_number_of_enemy_vehicles > 0);
 };
 
-// Returns a random position 500 meters away from the provided position.
-// _param_enemy_position position to base returned position on.
+/*
+Find a random position for the player spawn
+@param _param_enemy_position (position2d) enemy position
+@return (position2d) a player spawn position. If vehicles are present, the spawn position is further away to compensate for the increase
+in weapon ranges.
+*/
 _fnc_randomizePlayerPosition = {
 	_param_enemy_position = _this select 0;
 
@@ -205,17 +238,17 @@ _fnc_randomizePlayerPosition = {
 	_random_position;
 };
 
-// Expose a variable to the public mission namespace
-// _name variable name
-// _value variable value
+/* Expose a variable to the public mission namespace
+@param _param_name (string) variable name
+@param _param_value (any) variable value
+@return nothing
+*/
 _fnc_exportToPublicMissionNamespace = {
-	_name = _this select 0;
-	_value = _this select 1;
-	missionNamespace setVariable [_name, _value];
-	publicVariable _name;
+	_param_name = _this select 0;
+	_param_value = _this select 1;
+	missionNamespace setVariable [_param_name, _param_value];
+	publicVariable _param_name;
 };
-
-if (!isServer) exitWith {};
 
 // Initialize parameters
 [] call _fnc_initParameters;
@@ -275,3 +308,4 @@ _player_direction = [getMarkerPos "player_start", getMarkerPos "task_marker"] ca
 
 // Set flag for clients and other scripts to continue
 ["mission_tangohunt_init", true] call _fnc_exportToPublicMissionNamespace;
+true;

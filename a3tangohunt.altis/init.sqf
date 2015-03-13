@@ -20,7 +20,7 @@ waitUntil {!isNull player};
 // Sleep forces further execution to wait until mission has started
 sleep 0.1;
 if (side player == west) then {
-    [] execVM "loadouts\loadouts.sqf";
+    [] execVM "loadouts.sqf";
 };
 
 if (playersNumber west < 4) then {

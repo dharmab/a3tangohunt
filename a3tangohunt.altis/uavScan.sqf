@@ -1,3 +1,13 @@
+/*
+Main control for UAV scanner.
+
+The UAV scanner highlights enemy locations with red dots on the map. There are three operation modes, selectable in 
+description.ext:
+
+* Disabled: The scanner is disabled. This script stops and no red dots appear.
+* Intermitted: The scanner is accurate to within 100 meters and updates every 90 seconds.
+* Real-time: The scanner is accurate to within 25 meters and updates every 5 seconds.
+*/
 if (!isServer) exitWith {};
 
 _param_uav_scan_mode = ["Uav", 1] call BIS_fnc_getParamValue;
@@ -63,3 +73,4 @@ waitUntil {
 	sleep _uav_scan_interval;
 	false;
 };
+true;

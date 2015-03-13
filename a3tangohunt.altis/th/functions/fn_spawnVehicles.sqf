@@ -9,6 +9,7 @@ FIA technicals ("B_G_Offroad_01_armed_F") will be spawned.
 additional cars will be spawned instead.
 @param _param_number_of_tanks (number) number of tanks that will spawn. If no tank class is found in the faction template,
 additional APCs or cars will be spawned instead.
+@return nothing
 */
 _param_faction   = _this select 0;
 _param_position  = _this select 1;

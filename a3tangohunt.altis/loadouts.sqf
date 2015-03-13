@@ -1,3 +1,6 @@
+/*
+Main control for Loadout selection UI window
+*/
 if (isDedicated) exitWith {};
 
 // IDs of UI elements

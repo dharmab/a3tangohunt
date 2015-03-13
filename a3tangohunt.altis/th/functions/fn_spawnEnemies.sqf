@@ -8,6 +8,7 @@ Populates an area with AI that patrol and defend the area.
 @param _param_number_of_cars (number) exact number of cars to spawn
 @param _param_number_of_apcs (number) exact number of APCs to spawn
 @param _param_number_of_tanks (number) exact number of tanks to spawn
+@return (array) all units spawned by this script
 */
 _param_area_marker           = _this select 0;
 _param_side                  = _this select 1;

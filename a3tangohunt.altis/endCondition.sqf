@@ -1,3 +1,13 @@
+/*
+Main control for game over logic
+
+This script idles until at least one BLUFOR and at least one OPFOR have spawned. Once that condition is met, the scripts waits until
+either all BLUFOR are dead or all OPFOR are dead.
+
+If all BLUFOR are dead, the victory screen is displayed and the mission ends.
+
+If all OPFOR are dead, the defeat screen is displayed and the mission ends.
+*/
 if (!isServer) exitWith {};
 waitUntil {missionNamespace getVariable "mission_tangohunt_init";};
 
