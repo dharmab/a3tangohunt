@@ -34,11 +34,11 @@
 ["chemlight", "Chemlight_red"],
 ["ir_grenade", "O_IR_Grenade"],
 
-["gl_he", "1Rnd_HE_Grenade_shell"],
-["gl_flare_red", "UGL_FlareRed_F"],
-["gl_flare_green", "UGL_FlareGreen_F"],
-["gl_smoke_red", "1Rnd_SmokeRed_Grenade_shell"],
-["gl_smoke_green", "1Rnd_SmokeGreen_Grenade_shell"],
+["gl_he", "rhs_VOG25"],
+["gl_flare_red", "rhs_VG40OP_red"],
+["gl_flare_green", "rhs_VG40OP_green"],
+["gl_smoke_red", "rhs_GRD40_Red"],
+["gl_smoke_green", "rhs_GRD40_Green"],
 
 ["team_leader", "rhs_vdv_sergeant"],
 ["rifleman", "rhs_vdv_rifleman"],
