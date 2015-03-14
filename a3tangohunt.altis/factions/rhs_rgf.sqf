@@ -24,7 +24,7 @@
 ["pistol_ammo", "16Rnd_9x21_Mag"],
 ["light_at_ammo", "rhs_rpg7_PG7VL_mag"],
 
-["rifle_optic", ""],
+["rifle_optic", "rhs_acc_1p63"],
 ["rifle_dmr_optic", "rhs_acc_pso1m2"],
 ["sniper_rifle_optic", "rhs_acc_pso1m2"],
 ["rifle_accessory", ""],
