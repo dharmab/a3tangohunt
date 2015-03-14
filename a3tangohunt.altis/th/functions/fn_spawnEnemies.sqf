@@ -120,24 +120,30 @@ _spawned_units = [];
 if (_ai_tank != "") then {
 	_spawned_units = _spawned_units + ([_ai_tank, _param_side, _param_number_of_tanks, _area_marker_position, 0.25] call _fnc_spawnVehicles);
 } else {
+	if (_param_number_of_tanks > 0) then {
+		logger_logic globalChat "The enemy faction doesn't have any tanks. Additional enemy APCs have been added instead.";
+	};
 	_param_number_of_apcs = _param_number_of_apcs + (_param_number_of_tanks * 2);
-	logger_logic globalChat "The enemy faction doesn't have any tanks. Additional enemy APCs have been added instead.";
 };
 
 // Spawn APCs
 if (_ai_apc != "") then {
 	_spawned_units = _spawned_units + ([_ai_apc, _param_side, _param_number_of_apcs, _area_marker_position, 0.50] call _fnc_spawnVehicles);
 } else {
+	if (_param_number_of_apcs > 0) then {
+		logger_logic globalChat "The enemy faction doesn't have any APCs. Additional enemy light vehicles have been added instead.";
+	};
 	_param_number_of_cars = _param_number_of_cars + (_param_number_of_apcs * 2);
-	logger_logic globalChat "The enemy faction doesn't have any APCs. Additional enemy light vehicles have been added instead.";
 };
 
 // Spawn cars
 if (_ai_car != "") then {
 	_spawned_units = _spawned_units + ([_ai_car, _param_side, _param_number_of_cars, _area_marker_position, 0.75] call _fnc_spawnVehicles);
 } else {
+	if (_param_number_of_cars > 0) then {
+		logger_logic globalChat "The enemy faction doesn't have any light vehicles. Additional enemy infantry have been added instead.";
+	};
 	_param_number_of_infantry = _param_number_of_infantry + (_param_number_of_cars * 2);
-	logger_logic globalChat "The enemy faction doesn't have any light vehicles. Additional enemy infantry have been added instead.";
 };
 
 // Spawn infantry units and set them to patrol the area
