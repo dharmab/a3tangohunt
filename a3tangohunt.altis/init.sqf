@@ -1,6 +1,6 @@
 // Mission is only supported in multiplayer
 if (!isMultiplayer) exitWith {
-    ["SinglePlayer", true, true] call BIS_fnc_endMission;
+	["SinglePlayer", true, true] call BIS_fnc_endMission;
 };
 
 // Process briefing
@@ -20,9 +20,5 @@ waitUntil {!isNull player};
 // Sleep forces further execution to wait until mission has started
 sleep 0.1;
 if (side player == west) then {
-    [] execVM "loadouts.sqf";
-};
-
-if (playersNumber west < 4) then {
-    hint "You appear to be playing Tango Hunt with fewer than 4 players. While the scenario is fully playable, 4-32 players is recommended for an optimal experience.";
+	[] execVM "loadouts.sqf";
 };

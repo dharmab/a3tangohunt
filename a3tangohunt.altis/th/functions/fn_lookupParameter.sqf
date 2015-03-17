@@ -12,7 +12,7 @@ _param_selection = _this select 1;
 _RANDOMIZE = -1;
 
 if (_param_selection == _RANDOMIZE) then {
-    _param_lookup_table call BIS_fnc_selectRandom;
+	_param_lookup_table call BIS_fnc_selectRandom;
 } else {
-    _param_lookup_table select _param_selection;
+	_param_lookup_table select _param_selection;
 };
