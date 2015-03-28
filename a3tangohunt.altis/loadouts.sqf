@@ -1,5 +1,9 @@
 /*
 Main control for Loadout selection UI window
+
+Displays a dialog that lists the available loadouts. When the user clicks on the name of a loadout,
+their character receives that loadout. The user is free to change loadouts until they click the Confirm
+button, which closes the dialog window.
 */
 if (isDedicated) exitWith {};
 

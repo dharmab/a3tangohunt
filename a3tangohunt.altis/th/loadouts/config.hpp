@@ -1,6 +1,17 @@
+/*
+Defines the loadout selection dialog.
+
+This is literally the worst code I have ever worked on.
+MANDATORY READING: https://community.bistudio.com/wiki/Dialog_Control
+WARNING: If you screw up a line line of syntax, or forget to define a single required class member,
+the game WILL crash to desktop.
+*/
+
+// A modicum of sanity
 #define true 1
 #define false 0
 
+// Boilerplate constants
 #define CT_STATIC 0
 #define CT_BUTTON 1
 #define CT_EDIT 2
@@ -91,6 +102,7 @@
 #define COLOR_BLACK {0.0, 0.0, 0.0, 1}
 #define COLOR_WHITE {1.0, 1.0, 1.0, 1}
 
+// Abstract superclass to avoid repeating ourselves
 class AbstractControl
 {
 	access = 0;
@@ -104,6 +116,7 @@ class AbstractControl
 	sizeEx = 0.05;
 };
 
+// ListBox used to list the available loadouts
 class ListBox : AbstractControl
 {
 	access = 0;
@@ -152,6 +165,7 @@ class ListBox : AbstractControl
 	autoScrollRewind = 0;
 };
 
+// Button used for the confirm button
 class Button : AbstractControl
 {
 	access = 0;
@@ -193,8 +207,10 @@ class Button : AbstractControl
 
 };
 
+// The actual loadout dialog
 class LoadoutSelectionDialog
 {
+	// Magic number used to reference the dialog in scripts
 	idd = 10001;
 	movingEnable = true;
 	enableSimulation = true;
@@ -216,6 +232,7 @@ class LoadoutSelectionDialog
 	{
 		class LoadoutListBox : ListBox
 		{
+			// Magic number used to reference this listbox in scripts
 			idc = 10002;
 			x = 0.33;
 			y = 0.15;
@@ -226,6 +243,7 @@ class LoadoutSelectionDialog
 		};
 		class OkButton : Button
 		{
+			// Magic number that closes the dialog (???) 
 			idc = 2;
 			text = "Confirm Loadout";
 			x = 0.33;
