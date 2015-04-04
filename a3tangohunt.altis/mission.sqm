@@ -29,7 +29,7 @@ class Mission
 	class Intel
 	{
 		briefingName="Tango Hunt";
-		overviewText="Generates an infantry firefight using random parameters. Maximizes replay value and minimizes complex setup.";
+		overviewText="Procedural Firefight Generator";
 		resistanceWest=0;
 		startWeather=0.84999996;
 		startWind=0;
