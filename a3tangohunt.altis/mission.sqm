@@ -29,7 +29,7 @@ class Mission
 	class Intel
 	{
 		briefingName="Tango Hunt";
-		overviewText="Generates an infantry firefight using random parameters. Maximizes replay value and minimizes complex setup.";
+		overviewText="Procedural Firefight Generator";
 		resistanceWest=0;
 		startWeather=0.84999996;
 		startWind=0;
@@ -49,7 +49,7 @@ class Mission
 	};
 	class Groups
 	{
-		items=24;
+		items=25;
 		class Item0
 		{
 			side="WEST";
@@ -1158,6 +1158,24 @@ class Mission
 					text="editing_costs_module";
 					syncId=19;
 					synchronizations[]={18};
+				};
+			};
+		};
+		class Item24
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={14779.813,17.91,16801.67};
+					id=51;
+					side="LOGIC";
+					vehicle="Logic";
+					leader=1;
+					skill=0.60000002;
+					text="logger_logic";
 				};
 			};
 		};

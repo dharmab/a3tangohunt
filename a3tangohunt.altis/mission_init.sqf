@@ -1,43 +1,64 @@
+/*
+Mission initialization logic
+
+This script handles the randomization elements of Tango Hunt. 
+
+* Sets time, weather and moon phase
+* Selects mission area
+* Adds map markers
+* Auto-balances mission
+* Spawns enemies
+* Spawns player vehicles
+
+*/
+if (!isServer) exitWith {};
+
 // Forward declare runtime constants (parameters)
 _PLAYER_FACTION = "";
+_PLAYER_NUMBER_OF_CARS = 0;
+_PLAYER_NUMBER_OF_APCS = 0;
+_PLAYER_NUMBER_OF_TANKS = 0;
 _ENEMY_FACTION = "";
-_ENEMY_MINIMUM_NUMBER = 0;
+_ENEMY_NUMBER_OF_INFANTRY = 0;
+_ENEMY_NUMBER_OF_CARS = 0;
+_ENEMY_NUMBER_OF_APCS = 0;
+_ENEMY_NUMBER_OF_TANKS = 0;
 _ENEMY_SCALING_FACTOR = "";
-_ENEMY_BEHAVIOR = 0.0;
+_ENEMY_BEHAVIOR = "";
 _LOCATION_CLASSES = [];
 _DAY = 0;
 _TIME = 0;
 _OVERCAST = 0.0;
 _RAIN = 0.0;
 _FOG = 0.0;
-_ALLOW_UNDERWATER_START = false;
 
-// Loads parameters from description.ext and initializes runtime constants
+/*
+Loads parameters from description.ext and initializes runtime constants
+@return nothing
+*/
 _fnc_initParameters = {
 	// Value indicating that a parameter from description.ext should be randomized
 	_RANDOMIZE = -1;
+	// Value indicating that a parameter from description.ext should be auto-balanced
+	_AUTO_BALANCE = -2;
 
 	// Parameters from description.ext
-	_description_ext_player_faction = ["PlayerFaction", 0] call BIS_fnc_getParamValue;
-	_description_ext_faction        = ["Faction", 1] call BIS_fnc_getParamValue;
-	_description_ext_enemy_minimum  = ["EnemyMinimum", 0] call BIS_fnc_getParamValue;
+	_description_ext_player_cars    = ["PlayerCars", 0] call BIS_fnc_getParamValue;
+	_description_ext_player_apcs    = ["PlayerApcs", 0] call BIS_fnc_getParamValue;
+	_description_ext_player_tanks   = ["PlayerTanks", 0] call BIS_fnc_getParamValue;
+	_description_ext_enemy_infantry = ["EnemyInfantry", 1] call BIS_fnc_getParamValue;
+	_description_ext_enemy_cars     = ["EnemyCars", _AUTO_BALANCE] call BIS_fnc_getParamValue;
+	_description_ext_enemy_apcs     = ["EnemyApcs", _AUTO_BALANCE] call BIS_fnc_getParamValue;
+	_description_ext_enemy_tanks    = ["EnemyTanks", _AUTO_BALANCE] call BIS_fnc_getParamValue;
 	_description_ext_difficulty     = ["Difficulty", 1] call BIS_fnc_getParamValue;
 	_description_ext_awareness      = ["Awareness", _RANDOMIZE] call BIS_fnc_getParamValue;
 	_description_ext_location       = ["Location", 0] call BIS_fnc_getParamValue;
 	_description_ext_time           = ["Time", _RANDOMIZE] call BIS_fnc_getParamValue;
 	_description_ext_moon           = ["Moon", _RANDOMIZE] call BIS_fnc_getParamValue;
 	_description_ext_weather        = ["Weather", _RANDOMIZE] call BIS_fnc_getParamValue;
-	_description_ext_underwater     = ["Underwater", 0] call BIS_fnc_getParamValue;
 
 	// Lookup tables - description.ext only supports int values, so we perform a lookup
 	// to convert the parameters into runtime types
-
-	// Player faction
-	_PLAYER_FACTION_TABLE = ["NATO", "CSAT", "AAF", "FIA", "RHS USA", "RHS AFRF"];
-	// Enemy faction
-	_FACTION_TABLE = ["NATO", "CSAT", "AAF", "FIA", "RHS USA", "RHS AFRF", "CAF PIRATES", "CAF TRIBAL FIGHTERS", "CAF REBELS"];
-	// Minimum number of enemies
-	_ENEMY_MIN_TABLE = [1, 5, 10, 15, 20, 15, 30];
 	// Enemy scaling factor
 	_DIFFICULTY_TABLE = [1.0, 1.5, 2.0, 3.0];
 	// Enemy behavior
@@ -54,16 +75,45 @@ _fnc_initParameters = {
 	_RAIN_TABLE = [0.0,  0.0, 0.0,  0.67, 0.9];
 
 	// Players will select from loadouts of this faction
-	_PLAYER_FACTION = [_PLAYER_FACTION_TABLE, _description_ext_player_faction] call TH_fnc_lookupParameter;
+	_PLAYER_FACTION = [] call TH_fnc_getPlayerFaction;
+
+	// Number of empty vehicles to spawn for the players
+	_PLAYER_NUMBER_OF_CARS = _description_ext_player_cars;
+	_PLAYER_NUMBER_OF_APCS = _description_ext_player_apcs;
+	_PLAYER_NUMBER_OF_TANKS = _description_ext_player_tanks;
 
 	// Spawned enemies will be units of this faction
-	_ENEMY_FACTION = [_FACTION_TABLE, _description_ext_faction] call TH_fnc_lookupParameter;
-
-	// Minimum number of enemies to spawn
-	_ENEMY_MINIMUM_NUMBER = [_ENEMY_MIN_TABLE, _description_ext_enemy_minimum] call TH_fnc_lookupParameter;
-
+	_ENEMY_FACTION = [] call TH_fnc_getEnemyFaction;
+	
 	// Factor used to scale the number of spawned enemies in relation to the number of players
 	_ENEMY_SCALING_FACTOR = [_DIFFICULTY_TABLE, _description_ext_difficulty] call TH_fnc_lookupParameter;
+
+	// Minimum number of enemies to spawn
+	_ENEMY_NUMBER_OF_INFANTRY = if (_description_ext_enemy_infantry == _AUTO_BALANCE) then {
+		ceil ((playersNumber west) * _ENEMY_SCALING_FACTOR);
+	} else {
+		_description_ext_enemy_infantry
+	};
+	if (_ENEMY_NUMBER_OF_INFANTRY < 5) then {
+		_ENEMY_NUMBER_OF_INFANTRY = 5;
+	};
+
+	// Number of enemy vehicles to spawn
+	_ENEMY_NUMBER_OF_CARS = if (_description_ext_enemy_cars == _AUTO_BALANCE) then {
+		_PLAYER_NUMBER_OF_CARS;
+	} else {
+		_description_ext_enemy_cars;
+	};
+	_ENEMY_NUMBER_OF_APCS = if (_description_ext_enemy_apcs == _AUTO_BALANCE) then {
+		_PLAYER_NUMBER_OF_APCS;
+	} else {
+		_description_ext_enemy_apcs;
+	};
+	_ENEMY_NUMBER_OF_TANKS = if (_description_ext_enemy_tanks == _AUTO_BALANCE) then {
+		_PLAYER_NUMBER_OF_TANKS;
+	} else {
+		_description_ext_enemy_tanks;
+	};
 
 	// Spawned enemies will be in this behavior mode at mission start
 	_ENEMY_BEHAVIOR = [_AWARENESS_TABLE, _description_ext_awareness] call TH_fnc_lookupParameter;
@@ -103,17 +153,16 @@ _fnc_initParameters = {
 	} else {
 		0.0;
 	};
-
-	// If set to true, players may spawn as scuba divers in water
-	// Otherwise, players will only spawn as soldiers on land
-	// 2014-10-29 disabled underwater starts due to incompatibility with new loadouts system
-	_ALLOW_UNDERWATER_START = false;
+	true;
 };
 
-// Set weather values across network
-// _param_overcast overcast value (0.0 to 1.0)
-// _param_rain rain value (0.0 to 1.0)
-// _param_fog fog value (0.0 to 1.0)
+/*
+Set weather values on server and all clients.
+@param _param_overcast (number) overcast value (0.0 to 1.0)
+@param _param_rain (number) rain value (0.0 to 1.0)
+@param _param_fog (number) fog value (0.0 to 1.0)
+@return nothing
+*/
 _fnc_setWeather = {
 	_param_overcast = _this select 0;
 	_param_rain = _this select 1;
@@ -126,10 +175,15 @@ _fnc_setWeather = {
 	[_fnc_setRain, "BIS_fnc_spawn", true, true] call BIS_fnc_MP;
 
 	forceWeatherChange;
+	true;
 };
 
-// Returns a random location on the map.
-// _param_location_classes array of valid location classes
+/*
+Find a random location for the enemy area
+@param _param_location_classes (array) location classes to select from. If the empty array is passed, a new location is
+generated from a random land position.
+@return (location) a random location
+*/
 _fnc_randomizeEnemyLocation = {
 	_param_location_classes = _this select 0;
 
@@ -156,28 +210,45 @@ _fnc_randomizeEnemyLocation = {
 	_location;
 };
 
-// Returns a random position 500 meters away from the provided position.
-// _param_enemy_position position to base returned position on.
+/*
+@return (boolean) true if either player or enemies have vehicles. False otherwise.
+*/
+_fnc_vehiclesArePresent = {
+	_number_of_player_vehicles = _PLAYER_NUMBER_OF_TANKS + _PLAYER_NUMBER_OF_APCS + _PLAYER_NUMBER_OF_CARS;
+	_number_of_enemy_vehicles = _ENEMY_NUMBER_OF_TANKS + _ENEMY_NUMBER_OF_APCS + _ENEMY_NUMBER_OF_CARS;
+	(_number_of_player_vehicles > 0) || (_number_of_enemy_vehicles > 0);
+};
+
+/*
+Find a random position for the player spawn
+@param _param_enemy_position (position2d) enemy position
+@return (position2d) a player spawn position. If vehicles are present, the spawn position is further away to compensate for the increase
+in weapon ranges.
+*/
 _fnc_randomizePlayerPosition = {
 	_param_enemy_position = _this select 0;
-	_water_mode = if (_ALLOW_UNDERWATER_START) then {1} else {0};
 
-	_random_position = [_param_enemy_position, 335, 475, 1, _water_mode, 100, 0] call BIS_fnc_findSafePos;
+	_distance =	if ([] call _fnc_vehiclesArePresent) then {
+		800;
+	} else {
+		400;
+	};
+	_random_position = [_param_enemy_position, _distance - 75, _distance + 75, 1, 0, 100, 0] call BIS_fnc_findSafePos;
 
 	_random_position;
 };
 
-// Expose a variable to the public mission namespace
-// _name variable name
-// _value variable value
+/* Expose a variable to the public mission namespace
+@param _param_name (string) variable name
+@param _param_value (any) variable value
+@return nothing
+*/
 _fnc_exportToPublicMissionNamespace = {
-	_name = _this select 0;
-	_value = _this select 1;
-	missionNamespace setVariable [_name, _value];
-	publicVariable _name;
+	_param_name = _this select 0;
+	_param_value = _this select 1;
+	missionNamespace setVariable [_param_name, _param_value];
+	publicVariable _param_name;
 };
-
-if (!isServer) exitWith {};
 
 // Initialize parameters
 [] call _fnc_initParameters;
@@ -205,11 +276,16 @@ _insertion_marker setMarkerType "mil_start";
 _insertion_marker setMarkerColor "ColorBlue";
 
 // Spawn enemies
-_number_of_enemies = ceil ((playersNumber west) * _ENEMY_SCALING_FACTOR);
-if (_number_of_enemies < _ENEMY_MINIMUM_NUMBER) then {
-	_number_of_enemies = _ENEMY_MINIMUM_NUMBER;
-};
-_enemies = [_area_marker, east, _ENEMY_FACTION, _number_of_enemies, _ENEMY_BEHAVIOR] call TH_fnc_spawnEnemies;
+_enemies = [
+	_area_marker, 
+	east, 
+	_ENEMY_FACTION, 
+	_ENEMY_BEHAVIOR, 
+	_ENEMY_NUMBER_OF_INFANTRY, 
+	_ENEMY_NUMBER_OF_CARS, 
+	_ENEMY_NUMBER_OF_APCS, 
+	_ENEMY_NUMBER_OF_TANKS
+] call TH_fnc_spawnEnemies;
 
 // Allow Zeus to manipulate/take control of spawned enemies
 game_master_module addCuratorEditableObjects [_enemies, false];
@@ -220,5 +296,16 @@ _player_direction = [getMarkerPos "player_start", getMarkerPos "task_marker"] ca
 	["player setDir %1; player setPos (getMarkerPos ""player_start"");", _player_direction],
 "BIS_fnc_spawn", true, true] call BIS_fnc_MP;
 
+// Spawn vehicles
+[
+	_PLAYER_FACTION, 
+	getMarkerPos "player_start", 
+	_player_direction, 
+	_PLAYER_NUMBER_OF_CARS, 
+	_PLAYER_NUMBER_OF_APCS, 
+	_PLAYER_NUMBER_OF_TANKS
+] call TH_fnc_spawnVehicles;
+
 // Set flag for clients and other scripts to continue
 ["mission_tangohunt_init", true] call _fnc_exportToPublicMissionNamespace;
+true;

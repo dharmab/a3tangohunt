@@ -9,6 +9,7 @@ respawnOnStart = 0;
 respawnTemplates[] = {"f_Spectator"};
 
 disabledAI = 1;
+saving = 0;
 
 allowSubordinatesTakeWeapons = 1;
 class Header
@@ -22,21 +23,7 @@ class Params
 	class PlayerFaction
 	{
 		title    = "Player Faction";
-		values[] = {0, 1, 2, 3, 4 ,5};
-		texts[]  = {
-			"NATO",
-			"CSAT",
-			"AAF",
-			"FIA",
-			"United States Army (Requires RHS: Escalation)",
-			"Russian Ground Forces (Requires RHS: Escalation)"
-		};
-		default  = 0;
-	};
-	class Faction
-	{
-		title    = "Enemy Faction";
-		values[] = {0, 1, 2, 3, 4, 5, 6, 7, 8};
+		values[] = {0, 1, 2, 3, 4, 5, 6};
 		texts[]  = {
 			"NATO",
 			"CSAT",
@@ -44,22 +31,77 @@ class Params
 			"FIA",
 			"United States Army (Requires RHS: Escalation)",
 			"Russian Ground Forces (Requires RHS: Escalation)",
-			"African Pirates (Requires CAF Aggressors)",
-			"Middle Eastern Tribal Fighters (Requires CAF Aggressors)",
-			"East European Rebels (Requires CAF Aggressors)"
+			"Insurgents (Requres RHS: Escalation)"
+		};
+		default  = 0;
+	};
+	class PlayerCars
+	{
+		title    = "Number of Player Light Vehicles";
+		values[] = {0, 1, 2, 3, 4};
+		texts[]  = {"0", "1", "2", "3", "4"};
+		default  = 0;
+	};
+	class PlayerApcs
+	{
+		title    = "Number of Player APCs";
+		values[] = {0, 1, 2, 3, 4};
+		texts[]  = {"0", "1", "2", "3", "4"};
+		default  = 0;
+	};
+	class PlayerTanks
+	{
+		title    = "Number of Player Tanks";
+		values[] = {0, 1, 2, 3, 4};
+		texts[]  = {"0", "1", "2", "3", "4"};
+		default  = 0;
+	};
+	class EnemyFaction
+	{
+		title    = "Enemy Faction";
+		values[] = {0, 1, 2, 3, 4, 5, 6};
+		texts[]  = {
+			"NATO",
+			"CSAT",
+			"AAF",
+			"FIA",
+			"United States Army (Requires RHS: Escalation)",
+			"Russian Ground Forces (Requires RHS: Escalation)",
+			"Insurgents (Requires RHS: Escalation)"
 		};
 		default  = 1;
 	};
-	class EnemyMinimum
+	class EnemyInfantry
 	{
-		title    = "Minimum Number of Enemies";
-		values[] = {0, 1, 2, 3, 4, 5, 6};
-		texts[]  = {"1", "5", "10", "15", "20", "25", "30"};
-		default  = 1;
+		title    = "Number of Enemy Infantry";
+		values[] = {-2, 5, 10, 15, 20, 25, 30};
+		texts[]  = {"Auto-Balance", "5", "10", "15", "20", "25", "30"};
+		default  = -2;
+	};
+	class EnemyCars
+	{
+		title    = "Number of Enemy Light Vehicles";
+		values[] = {-2, 0, 1, 2, 3, 4};
+		texts[]  = {"Auto-Balance", "0", "1", "2", "3", "4"};
+		default  = -2;
+	};
+	class EnemyApcs
+	{
+		title    = "Number of Enemy APCs";
+		values[] = {-2, 0, 1, 2, 3, 4};
+		texts[]  = {"Auto-Balance", "0", "1", "2", "3", "4"};
+		default  = -2;
+	};
+	class Enemytanks
+	{
+		title    = "Number of Enemy Tanks";
+		values[] = {-2, 0, 1, 2, 3, 4};
+		texts[]  = {"Auto-Balance", "0", "1", "2", "3", "4"};
+		default  = -2;
 	};
 	class Difficulty
 	{
-		title    = "Enemy Scaling";
+		title    = "Auto-Balance Scaling";
 		values[] = {0, 1, 2, 3};
 		texts[]  = {"Easy (1.0x)", "Normal (1.5x)", "Hard (2.0x)", "Very Hard (3.0x)"};
 		default  = 1;
@@ -146,17 +188,21 @@ class CfgFunctions
 		{
 			file = "th\functions";
 			class addItem{};
-			class applyLoadout{};
 			class computeAngle{};
 			class computeOffset{};
+			class getEnemyFaction{};
+			class getFactions{};
+			class getFactionTemplate{};
+			class getPlayerFaction{};
 			class getRandomLandPosition{};
 			class isPositionInWater{};
 			class lookupParameter{};
 			class spawnEnemies{};
+			class spawnVehicles{};
 		};
 	};
 };
-#include "loadouts\config.hpp"
+#include "th\loadouts\config.hpp"
 class CfgRespawnTemplates
 {
 	class f_Spectator

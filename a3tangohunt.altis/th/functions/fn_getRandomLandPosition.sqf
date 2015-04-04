@@ -1,3 +1,6 @@
+/*
+@return (position2d) A random position on the map that is on land.
+*/
 _random_position = [0, 0];
 _map_size = [] call BIS_fnc_mapSize;
 waitUntil {
