@@ -3,7 +3,7 @@ Defines the loadout selection dialog.
 
 This is literally the worst code I have ever worked on.
 MANDATORY READING: https://community.bistudio.com/wiki/Dialog_Control
-WARNING: If you screw up a line line of syntax, or forget to define a single required class member,
+WARNING: If you screw up a single line of syntax, or forget to define a single required class member,
 the game WILL crash to desktop.
 */
 
