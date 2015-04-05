@@ -21,10 +21,10 @@ _forced = false;
 // escape the script if you are not a seagull
 // if (typeof _unit != "seagull" && !_forced) ExitWith {};
 
-// // disable this to instantly switch to the spectator script.
-// if (!_forced) then {
-// 	waituntil {missionnamespace getvariable ["BIS_fnc_feedback_allowDeathScreen",true]};
-// };
+// disable this to instantly switch to the spectator script.
+if (!_forced) then {
+	waituntil {missionnamespace getvariable ["BIS_fnc_feedback_allowDeathScreen",true]};
+};
 
 if(!isnil "BIS_fnc_feedback_allowPP") then
 {
@@ -32,25 +32,25 @@ if(!isnil "BIS_fnc_feedback_allowPP") then
 	BIS_fnc_feedback_allowPP = false;
 };
 
-// // Set spectator mode for whichever radio system is in use
-// switch (f_var_radios) do {
+// Set spectator mode for whichever radio system is in use
+switch (f_var_radios) do {
 
-//   // No radio system, do nothing
-//   case 0: {
+  // No radio system, do nothing
+  case 0: {
 
-//   };
+  };
 
-//   // ACRE
-//   case 1: {
-//     [true] call acre_api_fnc_setSpectator;
-//   };
+  // ACRE
+  case 1: {
+    [true] call acre_api_fnc_setSpectator;
+  };
 
-//   // TFR
-//   case 2: {
-//     [_unit, true] call TFAR_fnc_forceSpectator;
-//   };
+  // TFR
+  case 2: {
+    [_unit, true] call TFAR_fnc_forceSpectator;
+  };
 
-// };
+};
 
 // ====================================================================================
 

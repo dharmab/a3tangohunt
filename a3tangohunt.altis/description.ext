@@ -148,6 +148,15 @@ class Params
 		texts[]  = {"Disabled", "Intermittent", "Real Time"};
 		default  = 1;
 	};
+	// F3 Radio System - required to support death channel in spectator mode
+	class f_param_radios
+    {
+            title = "Radio System";
+            values[] = {0,1,2,3};
+            texts[] = {"Off","ACRE","TFAR","ACRE2"};
+            default = 0;
+            code = "f_var_radios = %1";
+    };
 };
 class CfgDebriefing
 {
