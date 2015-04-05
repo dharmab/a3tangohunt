@@ -231,7 +231,7 @@ _fnc_randomizePlayerPosition = {
 	_distance =	if ([] call _fnc_vehiclesArePresent) then {
 		800;
 	} else {
-		400;
+		600;
 	};
 	_random_position = [_param_enemy_position, _distance - 75, _distance + 75, 1, 0, 100, 0] call BIS_fnc_findSafePos;
 
