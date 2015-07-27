@@ -26,6 +26,7 @@ Spawn crewed vehicles which will randomly either patrol or defend an area
 @param _param_number_of_vehicles (number) Number of vehicles to spawn
 @param _param_area_position (number) Position near which vehicles will spawn
 @param _param_patrol_probability (number) Probability vehicle will patrol the area instead of defending (0.0-1.0)
+@return (array) all crew spawned by this function
 */
 _fnc_spawnVehicles = {
 	_param_vehicle_class      = _this select 0;
@@ -118,7 +119,7 @@ _spawned_units = [];
 
 // Spawn tanks
 if (_ai_tank != "") then {
-	_spawned_units = _spawned_units + ([_ai_tank, _param_side, _param_number_of_tanks, _area_marker_position, 0.25] call _fnc_spawnVehicles);
+	_spawned_units append ([_ai_tank, _param_side, _param_number_of_tanks, _area_marker_position, 0.25] call _fnc_spawnVehicles);
 } else {
 	if (_param_number_of_tanks > 0) then {
 		logger_logic globalChat "The enemy faction doesn't have any tanks. Additional enemy APCs have been added instead.";
@@ -128,7 +129,7 @@ if (_ai_tank != "") then {
 
 // Spawn APCs
 if (_ai_apc != "") then {
-	_spawned_units = _spawned_units + ([_ai_apc, _param_side, _param_number_of_apcs, _area_marker_position, 0.50] call _fnc_spawnVehicles);
+	_spawned_units append ([_ai_apc, _param_side, _param_number_of_apcs, _area_marker_position, 0.50] call _fnc_spawnVehicles);
 } else {
 	if (_param_number_of_apcs > 0) then {
 		logger_logic globalChat "The enemy faction doesn't have any APCs. Additional enemy light vehicles have been added instead.";
@@ -138,7 +139,7 @@ if (_ai_apc != "") then {
 
 // Spawn cars
 if (_ai_car != "") then {
-	_spawned_units = _spawned_units + ([_ai_car, _param_side, _param_number_of_cars, _area_marker_position, 0.75] call _fnc_spawnVehicles);
+	_spawned_units append ([_ai_car, _param_side, _param_number_of_cars, _area_marker_position, 0.75] call _fnc_spawnVehicles);
 } else {
 	if (_param_number_of_cars > 0) then {
 		logger_logic globalChat "The enemy faction doesn't have any light vehicles. Additional enemy infantry have been added instead.";
@@ -172,7 +173,7 @@ while {_spawned_infantry_count < _param_number_of_infantry} do {
 	_new_group setBehaviour _param_default_behavior;
 
 	_spawned_infantry_count = _spawned_infantry_count + (count units _new_group);
-	_spawned_units = _spawned_units + units _new_group;
+	_spawned_units append units _new_group;
 };
 
 _spawned_units;
