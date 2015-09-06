@@ -173,11 +173,6 @@ class CfgDebriefing
 		subtitle    = "BLUFOR Wiped Out";
 		description = "Friendly forces sustained high casualties and failed to secure the area.";
 	};
-	class SinglePlayer
-	{
-		title       = "Multiplayer Only";
-		description = "This mission is not singleplayer-compatible. If you would like to play by yourself, host a multiplayer LAN session.";
-	};
 };
 #include "f\spect\config.hpp"
 class CfgFunctions
