@@ -1,14 +1,20 @@
 /*
 Main control for game over logic
 
-This script idles until at least one BLUFOR and at least one OPFOR have spawned. Once that condition is met, the scripts waits until
-either all BLUFOR are dead or all OPFOR are dead.
+This script only takes action in multiplayer. In singleplayer, it exits 
+immediately and allows the game's standard game over logic to handle
+player death.
 
-If all BLUFOR are dead, the victory screen is displayed and the mission ends.
+This script idles until at least one BLUFOR and at least one OPFOR have spawned.
+Once that condition is met, the scripts waits until either all BLUFOR are dead
+or all OPFOR are dead.
 
-If all OPFOR are dead, the defeat screen is displayed and the mission ends.
+If all OPFOR are dead, the victory screen is displayed and the mission ends.
+
+If all BLUFOR are dead, the defeat screen is displayed and the mission ends.
 */
 if (!isServer) exitWith {};
+
 waitUntil {missionNamespace getVariable "mission_tangohunt_init";};
 
 // Wait for at least one player and one enemy to spawn
@@ -49,7 +55,7 @@ waitUntil {
 				_victory = false;
 			};
 
-			if (side (group _x) == west) then {
+			if (!isMultiplayer || side (group _x) == west) then {
 				_defeat = false;
 			};
 		};
