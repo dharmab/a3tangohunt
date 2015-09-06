@@ -1,3 +1,13 @@
+// Delete non-players
+if (!isMultiplayer) then {
+	{
+        if (!isPlayer _x && side _x == west) then {
+            deleteVehicle _x;
+        };
+    } forEach switchableUnits;
+    deleteVehicle zeus_1;
+};
+
 // Process briefing
 execVM "briefing.sqf";
 
