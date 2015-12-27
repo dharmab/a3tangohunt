@@ -1,7 +1,7 @@
 /*
 Mission initialization logic
 
-This script handles the randomization elements of Tango Hunt. 
+This script handles the randomization elements of Tango Hunt.
 
 * Sets time, weather and moon phase
 * Selects mission area
@@ -25,6 +25,7 @@ _ENEMY_NUMBER_OF_APCS = 0;
 _ENEMY_NUMBER_OF_TANKS = 0;
 _ENEMY_SCALING_FACTOR = "";
 _ENEMY_BEHAVIOR = "";
+_FRIENDLY_NUMBER_OF_INFANTRY = 0;
 _LOCATION_CLASSES = [];
 _DAY = 0;
 _TIME = 0;
@@ -43,19 +44,20 @@ _fnc_initParameters = {
 	_AUTO_BALANCE = -2;
 
 	// Parameters from description.ext
-	_description_ext_player_cars    = ["PlayerCars", 0] call BIS_fnc_getParamValue;
-	_description_ext_player_apcs    = ["PlayerApcs", 0] call BIS_fnc_getParamValue;
-	_description_ext_player_tanks   = ["PlayerTanks", 0] call BIS_fnc_getParamValue;
-	_description_ext_enemy_infantry = ["EnemyInfantry", 1] call BIS_fnc_getParamValue;
-	_description_ext_enemy_cars     = ["EnemyCars", _AUTO_BALANCE] call BIS_fnc_getParamValue;
-	_description_ext_enemy_apcs     = ["EnemyApcs", _AUTO_BALANCE] call BIS_fnc_getParamValue;
-	_description_ext_enemy_tanks    = ["EnemyTanks", _AUTO_BALANCE] call BIS_fnc_getParamValue;
-	_description_ext_difficulty     = ["Difficulty", 1] call BIS_fnc_getParamValue;
-	_description_ext_awareness      = ["Awareness", _RANDOMIZE] call BIS_fnc_getParamValue;
-	_description_ext_location       = ["Location", 0] call BIS_fnc_getParamValue;
-	_description_ext_time           = ["Time", _RANDOMIZE] call BIS_fnc_getParamValue;
-	_description_ext_moon           = ["Moon", _RANDOMIZE] call BIS_fnc_getParamValue;
-	_description_ext_weather        = ["Weather", _RANDOMIZE] call BIS_fnc_getParamValue;
+	_description_ext_player_cars       = ["PlayerCars", 0] call BIS_fnc_getParamValue;
+	_description_ext_player_apcs       = ["PlayerApcs", 0] call BIS_fnc_getParamValue;
+	_description_ext_player_tanks      = ["PlayerTanks", 0] call BIS_fnc_getParamValue;
+	_description_ext_enemy_infantry    = ["EnemyInfantry", 1] call BIS_fnc_getParamValue;
+	_description_ext_enemy_cars        = ["EnemyCars", _AUTO_BALANCE] call BIS_fnc_getParamValue;
+	_description_ext_enemy_apcs        = ["EnemyApcs", _AUTO_BALANCE] call BIS_fnc_getParamValue;
+	_description_ext_enemy_tanks       = ["EnemyTanks", _AUTO_BALANCE] call BIS_fnc_getParamValue;
+	_description_ext_friendly_infantry = ["FriendlyInfantry", 0] call BIS_fnc_getParamValue;
+	_description_ext_difficulty        = ["Difficulty", 1] call BIS_fnc_getParamValue;
+	_description_ext_awareness         = ["Awareness", _RANDOMIZE] call BIS_fnc_getParamValue;
+	_description_ext_location          = ["Location", 0] call BIS_fnc_getParamValue;
+	_description_ext_time              = ["Time", _RANDOMIZE] call BIS_fnc_getParamValue;
+	_description_ext_moon              = ["Moon", _RANDOMIZE] call BIS_fnc_getParamValue;
+	_description_ext_weather           = ["Weather", _RANDOMIZE] call BIS_fnc_getParamValue;
 
 	// Lookup tables - description.ext only supports int values, so we perform a lookup
 	// to convert the parameters into runtime types
@@ -84,13 +86,16 @@ _fnc_initParameters = {
 
 	// Spawned enemies will be units of this faction
 	_ENEMY_FACTION = [] call TH_fnc_getEnemyFaction;
-	
+
 	// Factor used to scale the number of spawned enemies in relation to the number of players
 	_ENEMY_SCALING_FACTOR = [_DIFFICULTY_TABLE, _description_ext_difficulty] call TH_fnc_lookupParameter;
 
+	// Minimum number of friendly AI to spawn
+	_FRIENDLY_NUMBER_OF_INFANTRY = _description_ext_friendly_infantry;
+
 	// Minimum number of enemies to spawn
 	_ENEMY_NUMBER_OF_INFANTRY = if (_description_ext_enemy_infantry == _AUTO_BALANCE) then {
-		ceil ((playersNumber west) * _ENEMY_SCALING_FACTOR);
+		ceil ((_FRIENDLY_NUMBER_OF_INFANTRY + playersNumber west) * _ENEMY_SCALING_FACTOR);
 	} else {
 		_description_ext_enemy_infantry
 	};
@@ -189,7 +194,7 @@ _fnc_randomizeEnemyLocation = {
 
 	_location = "";
 	if (count _param_location_classes == 0) then {
-		// If no location classes were provided, create a new location 
+		// If no location classes were provided, create a new location
 		_location_position = [] call TH_fnc_getRandomLandPosition;
 		_location_position = _location_position + [0];
 		_location = createLocation ["NameLocal", _location_position, 150 + random 200, 150 + random 200];
@@ -231,7 +236,7 @@ _fnc_randomizePlayerPosition = {
 	_distance =	if ([] call _fnc_vehiclesArePresent) then {
 		800;
 	} else {
-		300 + (25 * (playersNumber west));
+		300 + (25 * (west countSide allUnits));
 	};
 	_random_position = [_param_enemy_position, _distance - 75, _distance + 75, 1, 0, 100, 0] call BIS_fnc_findSafePos;
 
@@ -258,51 +263,97 @@ _fnc_exportToPublicMissionNamespace = {
 [(24 * _DAY) + _TIME, true, false] call BIS_fnc_setDate;
 
 // Random area selection
-_area_location = [_LOCATION_CLASSES] call _fnc_randomizeEnemyLocation;
-_area_marker = createMarker ["enemy_area", position _area_location];
-_area_marker setMarkerSize (size _area_location);
+_enemy_location = [_LOCATION_CLASSES] call _fnc_randomizeEnemyLocation;
+_enemy_marker = createMarker ["enemy_area", position _enemy_location];
+_enemy_marker setMarkerSize (size _enemy_location);
 
 // Create objective marker and set symbology
-_task_marker = createMarker ["task_marker", (getMarkerPos _area_marker)];
+_task_marker = createMarker ["task_marker", (getMarkerPos _enemy_marker)];
 _task_marker setMarkerShape "ICON";
 _task_marker setMarkerType "mil_objective";
 _task_marker setMarkerColor "ColorRed";
 
-// Create insertion marker and set symbology
-_insertion_marker_position = [getMarkerPos _area_marker] call _fnc_randomizePlayerPosition;
+// Create visible insertion marker and set symbology
+_insertion_marker_position = [getMarkerPos _enemy_marker] call _fnc_randomizePlayerPosition;
 _insertion_marker = createMarker ["player_start", _insertion_marker_position];
 _insertion_marker setMarkerShape "ICON";
 _insertion_marker setMarkerType "mil_start";
 _insertion_marker setMarkerColor "ColorBlue";
 
+// Create invisible insertion marker for spawning friendly AI
+_friendly_marker = createMarker ["friendly_area", _insertion_marker_position];
+_friendly_marker setMarkerSize [75, 75];
+
+// Spawn friendlies
+_friendlies = [
+	_friendly_marker,
+	west,
+	_PLAYER_FACTION,
+	"AWARE",
+	_FRIENDLY_NUMBER_OF_INFANTRY,
+	0, // cars
+	0, // apcs
+	0 // tanks
+] call TH_fnc_spawnEnemies;
+
 // Spawn enemies
 _enemies = [
-	_area_marker, 
-	east, 
-	_ENEMY_FACTION, 
-	_ENEMY_BEHAVIOR, 
-	_ENEMY_NUMBER_OF_INFANTRY, 
-	_ENEMY_NUMBER_OF_CARS, 
-	_ENEMY_NUMBER_OF_APCS, 
+	_enemy_marker,
+	east,
+	_ENEMY_FACTION,
+	_ENEMY_BEHAVIOR,
+	_ENEMY_NUMBER_OF_INFANTRY,
+	_ENEMY_NUMBER_OF_CARS,
+	_ENEMY_NUMBER_OF_APCS,
 	_ENEMY_NUMBER_OF_TANKS
 ] call TH_fnc_spawnEnemies;
+
+_enemy_marker_position = getMarkerPos _enemy_marker;
+_enemy_marker_size = ((getMarkerSize _enemy_marker select 0) + (getMarkerSize _enemy_marker select 1)) / 2.0;
+
+_enemy_groups = [];
+{
+	// Keep track of which groups we set waypoints for
+	_enemy_group = group _x;
+	if (!(_enemy_group in _enemy_groups)) then {
+		_enemy_groups append [_enemy_group];
+		// Add several patrol waypoints
+		[_enemy_group, getPos leader _enemy_group, 250] call BIS_fnc_taskPatrol;
+		// Add a defend waypoint, in case the AI runs out of patrol waypoints (unlikely... but possible)
+		_defend_waypoint = _enemy_group addWaypoint [_enemy_marker_position, _enemy_marker_size];
+		_defend_waypoint setWaypointType "MOVE";
+		_defend_waypoint setWaypointStatements ["true", "nul = [group this, position this] call BIS_fnc_taskDefend;"];
+	};
+} forEach _enemies;
+
+_friendly_groups = [];
+{
+	// Keep track of which groups we set waypoints for
+	_friendly_group = group _x;
+	if (!(_friendly_group in _friendly_groups)) then {
+		_friendly_groups append [_friendly_group];
+		// Add a Seek and Destroy waypoint
+		_attack_waypoint = _friendly_group addWaypoint [_enemy_marker_position, _enemy_marker_size];
+		_attack_waypoint setWaypointType "SAD";
+	};
+} forEach _friendlies;
 
 // Allow Zeus to manipulate/take control of spawned enemies
 game_master_module addCuratorEditableObjects [_enemies, false];
 
 // Move players to start
 _player_direction = [getMarkerPos "player_start", getMarkerPos "task_marker"] call TH_fnc_computeAngle;
-[compile format 
+[compile format
 	["player setDir %1; player setPos (getMarkerPos ""player_start"");", _player_direction],
 "BIS_fnc_spawn", true, true] call BIS_fnc_MP;
 
-// Spawn vehicles
+// Spawn player vehicles
 [
-	_PLAYER_FACTION, 
-	getMarkerPos "player_start", 
-	_player_direction, 
-	_PLAYER_NUMBER_OF_CARS, 
-	_PLAYER_NUMBER_OF_APCS, 
+	_PLAYER_FACTION,
+	getMarkerPos "player_start",
+	_player_direction,
+	_PLAYER_NUMBER_OF_CARS,
+	_PLAYER_NUMBER_OF_APCS,
 	_PLAYER_NUMBER_OF_TANKS
 ] call TH_fnc_spawnVehicles;
 

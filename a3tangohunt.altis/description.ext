@@ -99,6 +99,13 @@ class Params
 		texts[]  = {"Auto-Balance", "0", "1", "2", "3", "4"};
 		default  = -2;
 	};
+	class FriendlyInfantry
+	{
+		title    = "Number of Friendy AI Infantry";
+		values[] = {0, 5, 10, 15, 20, 25, 30};
+		texts[]  = {"0", "5", "10", "15", "20", "25", "30"};
+		default  = 0;
+	};
 	class Difficulty
 	{
 		title    = "Auto-Balance Scaling";

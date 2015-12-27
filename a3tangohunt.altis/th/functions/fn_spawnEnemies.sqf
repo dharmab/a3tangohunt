@@ -1,5 +1,5 @@
 /*
-Populates an area with AI that patrol and defend the area.
+Populates an area with AI.
 @param _param_area_marker (marker) marker where enemies will be spawned
 @param _param_side (west, east, resistance) side that units will spawn on
 @param _param_faction_template_name (string) name of faction template determining which units will spawn
@@ -163,12 +163,6 @@ while {_spawned_infantry_count < _param_number_of_infantry} do {
 	while {(count (units _new_group)) < _ai_count_group_total} do {
 		(_spawned_unit_type_distribution call BIS_fnc_selectRandom) createUnit [_new_group_position, _new_group];
 	};
-
-	// Add several patrol waypoints and a final defend waypoint to the new group
-	[_new_group, getPos leader _new_group, 250] call BIS_fnc_taskPatrol;
-	_defend_waypoint = _new_group addWaypoint [_area_marker_position, _area_marker_size];
-	_defend_waypoint setWaypointType "MOVE";
-	_defend_waypoint setWaypointStatements ["true", "nul = [group this, position this] call BIS_fnc_taskDefend;"];
 
 	_new_group setBehaviour _param_default_behavior;
 
