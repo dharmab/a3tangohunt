@@ -1,23 +1,5 @@
-The following files are copyright 2007-2013 F3 contributors and are 
-used with permission from the F3 project. See 
-a3tangohunt.altis/f/LICENSE and 
-https://github.com/ferstaberinde/F3/issues/391 for more information.
-
-a3tangohunt.altis/f/spect/config.hpp
-a3tangohunt.altis/f/spect/fn_CamInit.sqf
-a3tangohunt.altis/f/spect/fn_DialogLoop.sqf
-a3tangohunt.altis/f/spect/fn_DrawTags.sqf
-a3tangohunt.altis/f/spect/fn_EventHandler.sqf
-a3tangohunt.altis/f/spect/fn_FreeCam.sqf
-a3tangohunt.altis/f/spect/fn_GetIcon.sqf
-a3tangohunt.altis/f/spect/fn_GetPlayers.sqf
-a3tangohunt.altis/f/spect/fn_HandleCamera.sqf
-a3tangohunt.altis/f/spect/fn_ReloadModes.sqf
-a3tangohunt.altis/f/spect/fn_UpdateValues.sqf
-a3tangohunt.altis/f/spect/functions.hpp
-
-All other files are original work of Dharma Bellamkonda 
-(dharma.bellamkonda@gmail.com / www.dharmab.com) and are released into
+This software is the original work of Dharma Bellamkonda 
+(dharma.bellamkonda@gmail.com / www.dharmab.com) and is released into
 the public domain under the following license.
 
 This is free and unencumbered software released into the public domain.

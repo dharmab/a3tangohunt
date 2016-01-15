@@ -4,10 +4,6 @@ onLoadMission      = "Neutralize all hostiles";
 onLoadMissionTime  = 1;
 
 respawn = "BIRD";
-respawndelay = 10;
-respawnOnStart = 0;
-respawnTemplates[] = {"f_Spectator"};
-
 disabledAI = 1;
 saving = 0;
 
@@ -101,7 +97,7 @@ class Params
 	};
 	class FriendlyInfantry
 	{
-		title    = "Number of Friendy AI Infantry";
+		title    = "Number of Friendly AI Infantry";
 		values[] = {0, 5, 10, 15, 20, 25, 30};
 		texts[]  = {"0", "5", "10", "15", "20", "25", "30"};
 		default  = 0;
@@ -202,13 +198,8 @@ class CfgDebriefing
 		description = "Friendly forces sustained high casualties and failed to secure the area.";
 	};
 };
-#include "f\spect\config.hpp"
 class CfgFunctions
 {
-	class F
-	{
-		#include "f\spect\functions.hpp"
-	};
 	class TH
 	{
 		class EventHandlers
@@ -235,10 +226,3 @@ class CfgFunctions
 	};
 };
 #include "th\loadouts\config.hpp"
-class CfgRespawnTemplates
-{
-	class f_Spectator
-	{
-		onPlayerRespawn = "f_fnc_CamInit";
-	};
-};
