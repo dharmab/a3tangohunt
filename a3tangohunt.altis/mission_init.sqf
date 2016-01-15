@@ -233,11 +233,13 @@ in weapon ranges.
 _fnc_randomizePlayerPosition = {
 	_param_enemy_position = _this select 0;
 
-	_distance =	if ([] call _fnc_vehiclesArePresent) then {
-		800;
-	} else {
-		300 + (25 * (west countSide allUnits));
+	_distance =	300 + (25 * ((playersNumber west) + _FRIENDLY_NUMBER_OF_INFANTRY));
+
+	_max_distance = 800;
+	if ([] call _fnc_vehiclesArePresent || _distance > _max_distance) then {
+		_distance = _max_distance;
 	};
+
 	_random_position = [_param_enemy_position, _distance - 75, _distance + 75, 1, 0, 100, 0] call BIS_fnc_findSafePos;
 
 	_random_position;
