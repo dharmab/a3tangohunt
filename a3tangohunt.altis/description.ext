@@ -106,6 +106,27 @@ class Params
 		texts[]  = {"0", "5", "10", "15", "20", "25", "30"};
 		default  = 0;
 	};
+	class FriendlyCars
+	{
+		title    = "Number of Friendly AI Light Vehicles";
+		values[] = {0, 1, 2, 3, 4};
+		texts[]  = {"0", "1", "2", "3", "4"};
+		default  = 0;
+	};
+	class FriendlyApcs
+	{
+		title    = "Number of Friendly AI APCs";
+		values[] = {0, 1, 2, 3, 4};
+		texts[]  = {"0", "1", "2", "3", "4"};
+		default  = 0;
+	};
+	class Friendlytanks
+	{
+		title    = "Number of Friendly AI Tanks";
+		values[] = { 0, 1, 2, 3, 4};
+		texts[]  = {"0", "1", "2", "3", "4"};
+		default  = 0;
+	};
 	class Difficulty
 	{
 		title    = "Auto-Balance Scaling";

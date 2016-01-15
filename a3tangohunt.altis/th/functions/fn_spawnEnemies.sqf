@@ -38,7 +38,7 @@ _fnc_spawnVehicles = {
 	_n = 0;
 	_crew = [];
 	while {_n < _param_number_of_vehicles} do {
-		_new_vehicle_position = [_param_area_position, 25, 250, 50, 0, 20, 0] call BIS_fnc_findSafePos;
+		_new_vehicle_position = [_param_area_position, 25, 250, 5, 0, 100, 0] call BIS_fnc_findSafePos;
 		_return = [_new_vehicle_position, random 360, _param_vehicle_class, _param_vehicle_side] call BIS_fnc_spawnVehicle;
 		_new_vehicle = _return select 0;
 		_new_vehicle_crew = _return select 1;
@@ -122,7 +122,7 @@ if (_ai_tank != "") then {
 	_spawned_units append ([_ai_tank, _param_side, _param_number_of_tanks, _area_marker_position, 0.25] call _fnc_spawnVehicles);
 } else {
 	if (_param_number_of_tanks > 0) then {
-		logger_logic globalChat "The enemy faction doesn't have any tanks. Additional enemy APCs have been added instead.";
+		logger_logic globalChat "The faction doesn't have any tanks. Additional APCs have been added instead.";
 	};
 	_param_number_of_apcs = _param_number_of_apcs + (_param_number_of_tanks * 2);
 };
@@ -132,7 +132,7 @@ if (_ai_apc != "") then {
 	_spawned_units append ([_ai_apc, _param_side, _param_number_of_apcs, _area_marker_position, 0.50] call _fnc_spawnVehicles);
 } else {
 	if (_param_number_of_apcs > 0) then {
-		logger_logic globalChat "The enemy faction doesn't have any APCs. Additional enemy light vehicles have been added instead.";
+		logger_logic globalChat "The faction doesn't have any APCs. Additional light vehicles have been added instead.";
 	};
 	_param_number_of_cars = _param_number_of_cars + (_param_number_of_apcs * 2);
 };
@@ -142,7 +142,7 @@ if (_ai_car != "") then {
 	_spawned_units append ([_ai_car, _param_side, _param_number_of_cars, _area_marker_position, 0.75] call _fnc_spawnVehicles);
 } else {
 	if (_param_number_of_cars > 0) then {
-		logger_logic globalChat "The enemy faction doesn't have any light vehicles. Additional enemy infantry have been added instead.";
+		logger_logic globalChat "The faction doesn't have any light vehicles. Additional infantry have been added instead.";
 	};
 	_param_number_of_infantry = _param_number_of_infantry + (_param_number_of_cars * 2);
 };

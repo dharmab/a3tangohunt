@@ -26,6 +26,9 @@ _ENEMY_NUMBER_OF_TANKS = 0;
 _ENEMY_SCALING_FACTOR = "";
 _ENEMY_BEHAVIOR = "";
 _FRIENDLY_NUMBER_OF_INFANTRY = 0;
+_FRIENDLY_NUMBER_OF_CARS = 0;
+_FRIENDLY_NUMBER_OF_APCS = 0;
+_FRIENDLY_NUMBER_OF_TANKS = 0;
 _LOCATION_CLASSES = [];
 _DAY = 0;
 _TIME = 0;
@@ -52,6 +55,9 @@ _fnc_initParameters = {
 	_description_ext_enemy_apcs        = ["EnemyApcs", _AUTO_BALANCE] call BIS_fnc_getParamValue;
 	_description_ext_enemy_tanks       = ["EnemyTanks", _AUTO_BALANCE] call BIS_fnc_getParamValue;
 	_description_ext_friendly_infantry = ["FriendlyInfantry", 0] call BIS_fnc_getParamValue;
+	_description_ext_friendly_cars     = ["FriendlyCars", 0] call BIS_fnc_getParamValue;
+	_description_ext_friendly_apcs     = ["FriendlyApcs", 0] call BIS_fnc_getParamValue;
+	_description_ext_friendly_tanks    = ["FriendlyTanks", 0] call BIS_fnc_getParamValue;
 	_description_ext_difficulty        = ["Difficulty", 1] call BIS_fnc_getParamValue;
 	_description_ext_awareness         = ["Awareness", _RANDOMIZE] call BIS_fnc_getParamValue;
 	_description_ext_location          = ["Location", 0] call BIS_fnc_getParamValue;
@@ -92,6 +98,9 @@ _fnc_initParameters = {
 
 	// Minimum number of friendly AI to spawn
 	_FRIENDLY_NUMBER_OF_INFANTRY = _description_ext_friendly_infantry;
+	_FRIENDLY_NUMBER_OF_CARS = _description_ext_friendly_cars;
+	_FRIENDLY_NUMBER_OF_APCS = _description_ext_friendly_apcs;
+	_FRIENDLY_NUMBER_OF_TANKS = _description_ext_friendly_tanks;
 
 	// Minimum number of enemies to spawn
 	_ENEMY_NUMBER_OF_INFANTRY = if (_description_ext_enemy_infantry == _AUTO_BALANCE) then {
@@ -105,17 +114,17 @@ _fnc_initParameters = {
 
 	// Number of enemy vehicles to spawn
 	_ENEMY_NUMBER_OF_CARS = if (_description_ext_enemy_cars == _AUTO_BALANCE) then {
-		_PLAYER_NUMBER_OF_CARS;
+		_PLAYER_NUMBER_OF_CARS + _FRIENDLY_NUMBER_OF_CARS;
 	} else {
 		_description_ext_enemy_cars;
 	};
 	_ENEMY_NUMBER_OF_APCS = if (_description_ext_enemy_apcs == _AUTO_BALANCE) then {
-		_PLAYER_NUMBER_OF_APCS;
+		_PLAYER_NUMBER_OF_APCS + _FRIENDLY_NUMBER_OF_APCS;
 	} else {
 		_description_ext_enemy_apcs;
 	};
 	_ENEMY_NUMBER_OF_TANKS = if (_description_ext_enemy_tanks == _AUTO_BALANCE) then {
-		_PLAYER_NUMBER_OF_TANKS;
+		_PLAYER_NUMBER_OF_TANKS + _FRIENDLY_NUMBER_OF_TANKS;
 	} else {
 		_description_ext_enemy_tanks;
 	};
@@ -216,12 +225,13 @@ _fnc_randomizeEnemyLocation = {
 };
 
 /*
-@return (boolean) true if either player or enemies have vehicles. False otherwise.
+@return (boolean) true if either player or enemy faction has vehicles. False otherwise.
 */
 _fnc_vehiclesArePresent = {
 	_number_of_player_vehicles = _PLAYER_NUMBER_OF_TANKS + _PLAYER_NUMBER_OF_APCS + _PLAYER_NUMBER_OF_CARS;
+	_number_of_friendly_vehicles = _FRIENDLY_NUMBER_OF_TANKS + _FRIENDLY_NUMBER_OF_APCS + _FRIENDLY_NUMBER_OF_CARS;
 	_number_of_enemy_vehicles = _ENEMY_NUMBER_OF_TANKS + _ENEMY_NUMBER_OF_APCS + _ENEMY_NUMBER_OF_CARS;
-	(_number_of_player_vehicles > 0) || (_number_of_enemy_vehicles > 0);
+	(_number_of_player_vehicles > 0) || (_number_of_friendly_vehicles > 0) || (_number_of_enemy_vehicles > 0);
 };
 
 /*
@@ -293,9 +303,9 @@ _friendlies = [
 	_PLAYER_FACTION,
 	"AWARE",
 	_FRIENDLY_NUMBER_OF_INFANTRY,
-	0, // cars
-	0, // apcs
-	0 // tanks
+	_FRIENDLY_NUMBER_OF_CARS,
+	_FRIENDLY_NUMBER_OF_APCS,
+	_FRIENDLY_NUMBER_OF_TANKS
 ] call TH_fnc_spawnEnemies;
 
 // Spawn enemies
