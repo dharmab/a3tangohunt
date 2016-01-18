@@ -147,9 +147,9 @@ class Params
 	class Time
 	{
 		title    = "Time of Day";
-		values[] = {-1, 0, 1, 2, 3, 4, 5};
-		texts[]  = {"Random", "Midnight", "Dawn", "Morning", "Noon", "Afternoon", "Evening"};
-		default  = -1;
+		values[] = {-1, -2, 0, 1, 2, 3, 4, 5};
+		texts[]  = {"Random", "Random Daylight", "Midnight", "Dawn", "Morning", "Noon", "Afternoon", "Evening"};
+		default  = -2;
 	};
 	class Moon
 	{

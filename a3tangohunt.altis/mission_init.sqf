@@ -139,10 +139,17 @@ _fnc_initParameters = {
 	_DAY = [_MOON_TABLE, _description_ext_moon] call TH_fnc_lookupParameter;
 
 	// Time of day at which mission will start
-	_TIME = if (_description_ext_time == _RANDOMIZE) then {
-		random 24;
-	} else {
-		[_TIME_TABLE, _description_ext_time] call TH_fnc_lookupParameter;
+	_RANDOMIZE_DAYLIGHT = -2;
+	_TIME = switch (_description_ext_time) do { 
+		case _RANDOMIZE: {
+			random 24;
+		}; 
+		case _RANDOMIZE_DAYLIGHT: {
+			6 + random 12;
+		}; 
+		default {
+			[_TIME_TABLE, _description_ext_time] call TH_fnc_lookupParameter;
+		}; 
 	};
 
 	if (_description_ext_weather == _RANDOMIZE) then {
