@@ -329,12 +329,13 @@ _enemy_groups = [];
 	_enemy_group = group _x;
 	if (!(_enemy_group in _enemy_groups)) then {
 		_enemy_groups append [_enemy_group];
-		// Add several patrol waypoints
-		[_enemy_group, getPos leader _enemy_group, 250] call BIS_fnc_taskPatrol;
-		// Add a defend waypoint, in case the AI runs out of patrol waypoints (unlikely... but possible)
-		_defend_waypoint = _enemy_group addWaypoint [_enemy_marker_position, _enemy_marker_size];
-		_defend_waypoint setWaypointType "MOVE";
-		_defend_waypoint setWaypointStatements ["true", "nul = [group this, position this] call BIS_fnc_taskDefend;"];
+
+		// Either order the group to patrol the area or defend their location
+		if (random 1 < 0.67) then {
+			[_enemy_group, getPos _x, 250] call BIS_fnc_taskPatrol;
+		} else {
+			[_enemy_group, getPos _x] call BIS_fnc_taskDefend;
+		};
 	};
 } forEach _enemies;
 
@@ -344,6 +345,7 @@ _friendly_groups = [];
 	_friendly_group = group _x;
 	if (!(_friendly_group in _friendly_groups)) then {
 		_friendly_groups append [_friendly_group];
+
 		// Add a Seek and Destroy waypoint
 		_attack_waypoint = _friendly_group addWaypoint [_enemy_marker_position, _enemy_marker_size];
 		_attack_waypoint setWaypointType "SAD";

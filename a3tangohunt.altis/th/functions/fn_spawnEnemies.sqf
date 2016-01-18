@@ -25,7 +25,6 @@ Spawn crewed vehicles which will randomly either patrol or defend an area
 @param _param_vehicle_side (west, east, resistance) Side on which vehicle will be spawned
 @param _param_number_of_vehicles (number) Number of vehicles to spawn
 @param _param_area_position (number) Position near which vehicles will spawn
-@param _param_patrol_probability (number) Probability vehicle will patrol the area instead of defending (0.0-1.0)
 @return (array) all crew spawned by this function
 */
 _fnc_spawnVehicles = {
@@ -33,7 +32,6 @@ _fnc_spawnVehicles = {
 	_param_vehicle_side       = _this select 1;
 	_param_number_of_vehicles = _this select 2;
 	_param_area_position      = _this select 3;
-	_param_patrol_probability = _this select 4;
 
 	_n = 0;
 	_crew = [];
@@ -45,11 +43,6 @@ _fnc_spawnVehicles = {
 		_new_vehicle_group = createGroup _param_vehicle_side;
 		_new_vehicle_crew joinSilent _new_vehicle_group;
 
-		if (random 1 < _param_patrol_probability) then {
-			[_new_vehicle_group, getPos _new_vehicle, 250] call BIS_fnc_taskPatrol;
-		} else {
-			[_new_vehicle_group, getPos _new_vehicle] call BIS_fnc_taskDefend;
-		};
 
 		_n = _n + 1;
 		_crew = _crew + _new_vehicle_crew;
@@ -119,7 +112,7 @@ _spawned_units = [];
 
 // Spawn tanks
 if (_ai_tank != "") then {
-	_spawned_units append ([_ai_tank, _param_side, _param_number_of_tanks, _area_marker_position, 0.25] call _fnc_spawnVehicles);
+	_spawned_units append ([_ai_tank, _param_side, _param_number_of_tanks, _area_marker_position] call _fnc_spawnVehicles);
 } else {
 	if (_param_number_of_tanks > 0) then {
 		logger_logic globalChat "The faction doesn't have any tanks. Additional APCs have been added instead.";
@@ -129,7 +122,7 @@ if (_ai_tank != "") then {
 
 // Spawn APCs
 if (_ai_apc != "") then {
-	_spawned_units append ([_ai_apc, _param_side, _param_number_of_apcs, _area_marker_position, 0.50] call _fnc_spawnVehicles);
+	_spawned_units append ([_ai_apc, _param_side, _param_number_of_apcs, _area_marker_position] call _fnc_spawnVehicles);
 } else {
 	if (_param_number_of_apcs > 0) then {
 		logger_logic globalChat "The faction doesn't have any APCs. Additional light vehicles have been added instead.";
@@ -139,7 +132,7 @@ if (_ai_apc != "") then {
 
 // Spawn cars
 if (_ai_car != "") then {
-	_spawned_units append ([_ai_car, _param_side, _param_number_of_cars, _area_marker_position, 0.75] call _fnc_spawnVehicles);
+	_spawned_units append ([_ai_car, _param_side, _param_number_of_cars, _area_marker_position] call _fnc_spawnVehicles);
 } else {
 	if (_param_number_of_cars > 0) then {
 		logger_logic globalChat "The faction doesn't have any light vehicles. Additional infantry have been added instead.";
