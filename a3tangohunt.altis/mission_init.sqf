@@ -352,6 +352,7 @@ _friendly_groups = [];
 
 // Allow Zeus to manipulate/take control of spawned enemies
 game_master_module addCuratorEditableObjects [_enemies, false];
+game_master_module addCuratorEditableObjects [_friendlies, false];
 
 // Move players to start
 _player_direction = [getMarkerPos "player_start", getMarkerPos "task_marker"] call TH_fnc_computeAngle;
