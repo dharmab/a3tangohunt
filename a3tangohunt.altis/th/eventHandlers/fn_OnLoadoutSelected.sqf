@@ -31,11 +31,7 @@ _sniper_rifle_optic   = "";
 _rifle_accessory      = "";
 _frag_grenade         = "";
 _smoke_grenade        = "";
-_chemlight            = "";
-_ir_grenade           = "";
 _gl_he                = "";
-_gl_flare_red         = "";
-_gl_flare_green       = "";
 _gl_smoke_red         = "";
 _gl_smoke_green       = "";
 
@@ -123,20 +119,8 @@ _gl_smoke_green       = "";
 		case "smoke_grenade": {
 			_smoke_grenade = _value;
 		};
-		case "chemlight": {
-			_chemlight = _value;
-		};
-		case "ir_grenade": {
-			_ir_grenade = _value;
-		};
 		case "gl_he": {
 			_gl_he = _value;
-		};
-		case "gl_flare_red": {
-			_gl_flare_red = _value;
-		};
-		case "gl_flare_green": {
-			_gl_flare_green = _value;
 		};
 		case "gl_smoke_red": {
 			_gl_smoke_red = _value;
@@ -182,10 +166,6 @@ if (_goggles != "") then {
 ["FirstAidKit", 1, "uniform"] call TH_fnc_addItem;
 [_pistol_ammo, 2, "vest"] call TH_fnc_addItem;
 [_smoke_grenade, 2, "vest"] call TH_fnc_addItem;
-[_chemlight, 2, "vest"] call TH_fnc_addItem;
-if (_ir_grenade != "") then {
-	[_ir_grenade, 1, "vest"] call TH_fnc_addItem;
-};
 
 // Add loadout-specific items (primary weapon and ammo, frag grenades, etc.)
 switch (_loadout) do {
@@ -195,8 +175,6 @@ switch (_loadout) do {
 		[_frag_grenade, 2, "vest"] call TH_fnc_addItem;
 		[_gl_he, 8, "vest"] call TH_fnc_addItem;
 		[_gl_he, 14, "backpack"] call TH_fnc_addItem;
-		[_gl_flare_green, 1, "backpack"] call TH_fnc_addItem;
-		[_gl_flare_red, 1, "backpack"] call TH_fnc_addItem;
 		[_gl_smoke_green, 1, "backpack"] call TH_fnc_addItem;
 		[_gl_smoke_red, 1, "backpack"] call TH_fnc_addItem;
 		player addWeapon _rifle_gl;

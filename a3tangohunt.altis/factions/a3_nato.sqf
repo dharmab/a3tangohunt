@@ -30,12 +30,8 @@
 
 ["frag_grenade", "HandGrenade"],
 ["smoke_grenade", "SmokeShell"],
-["chemlight", "Chemlight_green"],
-["ir_grenade", "B_IR_Grenade"],
 
 ["gl_he", "1Rnd_HE_Grenade_shell"],
-["gl_flare_red", "UGL_FlareRed_F"],
-["gl_flare_green", "UGL_FlareGreen_F"],
 ["gl_smoke_red", "1Rnd_SmokeRed_Grenade_shell"],
 ["gl_smoke_green", "1Rnd_SmokeGreen_Grenade_shell"],
 

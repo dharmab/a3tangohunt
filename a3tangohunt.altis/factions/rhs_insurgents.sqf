@@ -31,12 +31,8 @@
 
 ["frag_grenade", "rhs_mag_rgd5"],
 ["smoke_grenade", "SmokeShell"],
-["chemlight", "Chemlight_red"],
-["ir_grenade", "O_IR_Grenade"],
 
 ["gl_he", "rhs_VOG25"],
-["gl_flare_red", "rhs_VG40OP_red"],
-["gl_flare_green", "rhs_VG40OP_green"],
 ["gl_smoke_red", "rhs_GRD40_Red"],
 ["gl_smoke_green", "rhs_GRD40_Green"],
 

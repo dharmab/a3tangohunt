@@ -31,12 +31,8 @@
 
 ["frag_grenade", "CUP_HandGrenade_M67"],
 ["smoke_grenade", "SmokeShell"],
-["chemlight", "Chemlight_green"],
-["ir_grenade", "B_IR_Grenade"],
 
 ["gl_he", "CUP_1Rnd_HEDP_M203"],
-["gl_flare_red", "CUP_FlareRed_M203"],
-["gl_flare_green", "CUP_FlareGreen_M203"],
 ["gl_smoke_red", "CUP_1Rnd_SmokeGreen_M203"],
 ["gl_smoke_green", "CUP_1Rnd_SmokeRed_M203"],
 
