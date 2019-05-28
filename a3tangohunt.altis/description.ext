@@ -23,12 +23,13 @@ class Params
 	class PlayerFaction
 	{
 		title    = "Player Faction";
-		values[] = {0, 1, 2, 3, 4, 5, 6};
+		values[] = {0, 1, 2, 3, 4, 5, 6, 7};
 		texts[]  = {
 			"NATO",
 			"CSAT",
 			"AAF",
 			"FIA",
+			"United States Army (Requires CUP)",
 			"United States Army (Requires RHS: Escalation)",
 			"Russian Ground Forces (Requires RHS: Escalation)",
 			"Insurgents (Requres RHS: Escalation)"
@@ -59,12 +60,13 @@ class Params
 	class EnemyFaction
 	{
 		title    = "Enemy Faction";
-		values[] = {0, 1, 2, 3, 4, 5, 6};
+		values[] = {0, 1, 2, 3, 4, 5, 6, 7};
 		texts[]  = {
 			"NATO",
 			"CSAT",
 			"AAF",
 			"FIA",
+			"United States Army (Requires CUP)",
 			"United States Army (Requires RHS: Escalation)",
 			"Russian Ground Forces (Requires RHS: Escalation)",
 			"Insurgents (Requires RHS: Escalation)"

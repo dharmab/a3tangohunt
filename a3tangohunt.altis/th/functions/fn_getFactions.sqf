@@ -4,4 +4,13 @@ template files in the faction templates directory. The table must also match the
 dialogs in description.ext.
 @return (array) The faction template table.
 */
-["a3_nato", "a3_csat", "a3_aaf", "a3_fia", "rhs_usa", "rhs_rgf", "rhs_insurgents"];
+[
+	"a3_nato", 
+	"a3_csat",
+	"a3_aaf",
+	"a3_fia",
+	"cup_usa",
+	"rhs_usa",
+	"rhs_rgf",
+	"rhs_insurgents"
+];
