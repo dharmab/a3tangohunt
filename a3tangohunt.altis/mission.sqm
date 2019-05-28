@@ -1,4 +1,4 @@
-version=52;
+version=53;
 class EditorData
 {
 	moveGridStep=1;
@@ -12,10 +12,10 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={14714.127,42.91,16758.463};
-		dir[]={0,-0.70710683,0.70710683};
-		up[]={0,0.70710677,0.70710677};
-		aside[]={0.99999994,0,-0};
+		pos[]={15118.975,411.03012,16748.105};
+		dir[]={-0.65488386,-0.74697912,0.11475973};
+		up[]={-0.73576707,0.66485053,0.12893352};
+		aside[]={0.17260833,-1.1705561e-007,0.98500258};
 	};
 };
 binarizationWanted=0;
@@ -37,28 +37,28 @@ class AddonsMetaData
 			className="A3_Characters_F";
 			name="Arma 3 Alpha - Characters and Clothing";
 			author="Bohemia Interactive";
-			url="http://www.arma3.com";
+			url="https://www.arma3.com";
 		};
 		class Item1
 		{
 			className="A3_Modules_F";
 			name="Arma 3 Alpha - Scripted Modules";
 			author="Bohemia Interactive";
-			url="http://www.arma3.com";
+			url="https://www.arma3.com";
 		};
 		class Item2
 		{
 			className="A3_Data_F_Curator";
 			name="Arma 3 Zeus Update - Main Configuration";
 			author="Bohemia Interactive";
-			url="http://www.arma3.com";
+			url="https://www.arma3.com";
 		};
 		class Item3
 		{
 			className="A3_Modules_F_Curator";
 			name="Arma 3 Zeus Update - Scripted Modules";
 			author="Bohemia Interactive";
-			url="http://www.arma3.com";
+			url="https://www.arma3.com";
 		};
 	};
 };
@@ -220,7 +220,6 @@ class Mission
 			{
 			};
 			id=67;
-			atlOffset=185.97;
 		};
 		class Item2
 		{
@@ -309,7 +308,6 @@ class Mission
 			{
 			};
 			id=72;
-			atlOffset=185.97;
 		};
 		class Item3
 		{
@@ -398,7 +396,6 @@ class Mission
 			{
 			};
 			id=77;
-			atlOffset=185.97;
 		};
 		class Item4
 		{
@@ -793,7 +790,6 @@ class Mission
 			{
 			};
 			id=88;
-			atlOffset=185.97;
 		};
 		class Item11
 		{
@@ -972,7 +968,6 @@ class Mission
 			{
 			};
 			id=94;
-			atlOffset=185.97;
 		};
 		class Item13
 		{
@@ -1151,7 +1146,6 @@ class Mission
 			{
 			};
 			id=100;
-			atlOffset=185.97;
 		};
 		class Item15
 		{
@@ -1330,7 +1324,6 @@ class Mission
 			{
 			};
 			id=106;
-			atlOffset=185.97;
 		};
 		class Item17
 		{
@@ -1509,7 +1502,6 @@ class Mission
 			{
 			};
 			id=112;
-			atlOffset=185.97;
 		};
 		class Item19
 		{
@@ -1688,7 +1680,6 @@ class Mission
 			{
 			};
 			id=118;
-			atlOffset=185.97;
 		};
 		class Item21
 		{
