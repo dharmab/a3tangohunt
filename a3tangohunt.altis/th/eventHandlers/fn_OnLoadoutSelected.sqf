@@ -141,14 +141,15 @@ removeBackpack player;
 removeHeadgear player;
 removeGoggles player;
 
-// Add uniform, vest, backback and headgear
+// Add uniform, vest, backpack and headgear
 player forceAddUniform _uniform;
 if (_loadout == "Grenadier") then {
 	player addVest _vest_gl;
 } else {
 	player addVest _vest;
 };
-player addBackpack _backpack;
+if (_backpack != "") then {
+};
 if (_headgear != "") then {
 	player addHeadgear _headgear;
 };
@@ -161,11 +162,6 @@ player linkItem "ItemRadio";
 if (_goggles != "") then {
 	player linkItem _goggles;
 };
-
-// Add common items
-["FirstAidKit", 1, "uniform"] call TH_fnc_addItem;
-[_pistol_ammo, 2, "vest"] call TH_fnc_addItem;
-[_smoke_grenade, 2, "vest"] call TH_fnc_addItem;
 
 // Add loadout-specific items (primary weapon and ammo, frag grenades, etc.)
 switch (_loadout) do {
@@ -222,6 +218,11 @@ switch (_loadout) do {
 		player addWeapon _rifle;
 	};
 };
+
+// Add common items
+["FirstAidKit", 1, "uniform"] call TH_fnc_addItem;
+[_pistol_ammo, 2, "vest"] call TH_fnc_addItem;
+[_smoke_grenade, 2, "vest"] call TH_fnc_addItem;
 
 // Add secondary weapons after primary weapons so that primary weapon is selected
 player addWeapon "Binocular";

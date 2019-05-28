@@ -10,6 +10,7 @@ dialogs in description.ext.
 	"a3_aaf",
 	"a3_fia",
 	"cup_usa",
+	"cup_takistan_insurgents",
 	"rhs_usa",
 	"rhs_rgf",
 	"rhs_insurgents"
