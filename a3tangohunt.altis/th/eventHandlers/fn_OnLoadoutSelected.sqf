@@ -149,6 +149,7 @@ if (_loadout == "Grenadier") then {
 	player addVest _vest;
 };
 if (_backpack != "") then {
+	player addBackpack _backpack;
 };
 if (_headgear != "") then {
 	player addHeadgear _headgear;
