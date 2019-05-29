@@ -39,7 +39,7 @@
 ["team_leader", "CUP_O_TK_INS_Soldier_TL"],
 ["rifleman", "CUP_O_TK_INS_Soldier"],
 ["machine_gunner", "CUP_O_TK_INS_Soldier_AR"],
-["designated_marksman", "CUP_O_TK_INS_Soldier_Sniper"],
+["designated_marksman", "CUP_O_TK_INS_Sniper"],
 ["antiarmor_specialist", "CUP_O_TK_INS_Soldier_AT"],
 
 ["car", "CUP_O_LR_MG_TKM"],
