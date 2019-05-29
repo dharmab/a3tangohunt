@@ -43,6 +43,6 @@
 ["antiarmor_specialist", "CUP_O_TK_INS_Soldier_AT"],
 
 ["car", "CUP_O_LR_MG_TKM"],
-["apc", "CUP_O_BTR40_MG_TKM"],
-["tank", "CUP_O_Ural_ZU23_TKM"]
+["apc", ""],
+["tank", ""]
 ];
