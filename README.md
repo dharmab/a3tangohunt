@@ -17,6 +17,12 @@ Tango Hunt is a procedurally generated scenario. The objective is for the player
 
 Place the a3tangohunt.altis folder folder in your ArmA 3 missions folder. Open the mission in the ArmA 3 mission editor and export the mission to multiplayer missions. You can then use the mission in LAN or Internet hosted or dedicated servers.
 
+Tip: You can symlink the directory from a Git repository so that changes made in the editor are synchronized to git automatically:
+
+```Powershell
+New-Item -ItemType SymbolicLink -Path "C:\Users\someuser\Documents\Arma 3 - Other Profiles\Some Profile\missions\a3tangohunt.altis" -Value "C:\Users\someuser\Documents\git\a3tangohunt\a3tangohunt.altis
+```
+
 ## Steam Workshop
 
 You can find the latest stable release on Steam Workshop [here](http://steamcommunity.com/sharedfiles/filedetails/?id=332544964)
